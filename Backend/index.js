@@ -74,7 +74,7 @@ app.get('/', function (request, response, next) {
 });
 
 // set routes to api
-app.use('/student', studentRoutes);
+app.use('/api/student', studentRoutes);
 // app.use('/api/category', categoryRoutes);
 // app.use('/api/product', productRoutes);
 // app.use('/api/shipping', shippingRoutes);

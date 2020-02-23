@@ -1,0 +1,9 @@
+GET  ---> http://localhost:8080/api/student/students
+
+POST ---> http://localhost:8080/api/student/students  
+{
+        "id": "4",
+        "name": "c",
+        "email": "h@gmail.com",
+        "active": true
+}
