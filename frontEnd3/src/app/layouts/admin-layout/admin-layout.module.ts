@@ -2,11 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdminLayoutRoutingModule } from './admin-layout-routing.module';
-
-import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
-// import { AdminLayoutRoutes } from './admin-layout.routing';
 
 import { DashboardComponent }       from './pages/dashboard/dashboard.component';
 // import { UserComponent }            from './pages/user/user.component';
@@ -55,7 +51,6 @@ import { UserComponent } from './pages/user/user.component';
   imports: [
     CommonModule,
     AdminLayoutRoutingModule,
-    // RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
     NgbModule
   ]
