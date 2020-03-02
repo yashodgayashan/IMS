@@ -23,10 +23,22 @@ import { DashboardComponent }       from './pages/dashboard/dashboard.component'
 // import { FeedbackComponent } from './pages/feedback/feedback.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FeedbackComponent } from './pages/feedback/feedback.component';
+import { SelectedStudentsComponent } from './pages/selected-students/selected-students.component';
+import { NotSelectedStudentsComponent } from './pages/not-selected-students/not-selected-students.component';
+import { MonthlyReportsComponent } from './pages/monthly-reports/monthly-reports.component';
+import { OrganizationsComponent } from './pages/organizations/organizations.component';
+import { UserComponent } from './pages/user/user.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
+    FeedbackComponent,
+    SelectedStudentsComponent,
+    NotSelectedStudentsComponent,
+    MonthlyReportsComponent,
+    OrganizationsComponent,
+    UserComponent,
     // UserComponent,
     // TableComponent,
     // UpgradeComponent,
