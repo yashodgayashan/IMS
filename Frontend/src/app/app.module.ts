@@ -14,6 +14,7 @@ import { AppRoutes } from './app.routing';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { CompanyLayoutComponent } from './layouts/company-layout/company-layout.component';
 import { StudentLayoutComponent } from './layouts/student-layout/student-layout.component';
+import { LoginComponent } from './shared/login/login.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { StudentLayoutComponent } from './layouts/student-layout/student-layout.
     AdminLayoutComponent,
     CompanyLayoutComponent,
     StudentLayoutComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserAnimationsModule,

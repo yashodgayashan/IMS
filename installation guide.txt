@@ -1,0 +1,18 @@
+install nodejs v12.16.1
+npm install -g npm-windows-upgrade
+npm i  npm
+npm install  @angular/cli@latest.
+ng update @angular/cli @angular/core
+
+npm uninstall @angular-devkit/build-angular
+npm install @angular-devkit/build-angular
+ng update --all
+
+ng --version
+
+npm install bootstrap --save
+npm install jquery --save
+
+npm install --save @ng-bootstrap/ng-bootstrap
+npm install @angular/localize --save
+npm i ngx-toastr
