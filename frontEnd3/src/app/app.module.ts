@@ -17,6 +17,10 @@ import { StudentLayoutComponent } from './layouts/student-layout/student-layout.
 import { CompanyLayoutComponent } from './layouts/company-layout/company-layout.component';
 import { LoginComponent } from './shared/login/login.component';
 
+import { FormsModule } from '@angular/forms';
+import { LoginService } from './shared/login/login.service';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,8 +39,10 @@ import { LoginComponent } from './shared/login/login.component';
     FixedPluginModule,
     AdminLayoutModule,
     AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

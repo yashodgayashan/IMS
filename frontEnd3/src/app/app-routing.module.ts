@@ -7,7 +7,7 @@ import { LoginComponent } from './shared/login/login.component';
 
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/admin/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
     path: 'admin',

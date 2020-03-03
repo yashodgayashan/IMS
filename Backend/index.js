@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const path = require('path');
 const app = express();
+var cors = require('cors');
 // const dbConfig = require('./models/db.js');
 const port = process.env.PORT || 8080;
 const dbConfig = require("./config/db.config.js");
@@ -52,7 +53,7 @@ app.set('port', process.env.port || port); // set express to use this port
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); // parse form data client
 app.use(express.static(path.join(__dirname, 'public'))); // configure express to use public folder
-
+app.use(cors());
 // app.use(function (request, response, next) {
 //     response.header("Access-Control-Allow-Origin", "*");
 //     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
