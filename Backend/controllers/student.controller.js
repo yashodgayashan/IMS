@@ -13,12 +13,12 @@ exports.create = (req, res) => {
   // Create a student
   const student = new Student({
     id: req.body.id,
-    email: req.body.email,
     name: req.body.name,
-    active: req.body.active
+    email: req.body.email,
+    password: req.body.password
   });
 
-  sql.query("INSERT INTO students SET ?", student, (err, result) => {
+  sql.query("INSERT INTO student SET ?", student, (err, result) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -32,33 +32,40 @@ exports.create = (req, res) => {
 
 // Retrieve all students from the database.
 exports.findAll = (req, res) => {
-  sql.query("SELECT * FROM students", (err, result) => {
+  sql.query("SELECT * FROM student", (err, result) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
       return;
     }
-    console.log("students: ", result);
+    console.log("student: ", result);
     return res.json(result);
   });
 };
 
 // Find a single student with a studentId
 exports.findOne = (req, res) => {
-  Student.findById(req.params.studentId, (err, data) => {
+  sql.query(`SELECT * FROM student WHERE id='${req.params.studentId}'`, (err, data) => {
     if (err) {
-      if (err.kind === "not_found") {
-        res.status(404).send({
-          message: `Not found student with id ${req.params.studentId}.`
-        });
-      } else {
-        res.status(500).send({
-          message: "Error retrieving student with id " + req.params.studentId
-        });
-      }
-    } else res.send(data);
+      console.log("error: ", err);
+      // result(err, null);
+      // return;
+      res.status(500).send({
+        message: "Error retrieving student with id " + req.params.studentId
+      });
+    } else if (data.length) {
+      console.log("found student: ", data[0]);
+      // result(null, data[0]);
+      return res.send(data);
+    } else {
+      res.status(404).send({
+        message: `Not found student with id ${req.params.studentId}.`
+      });
+    }
   });
 };
+
+
 
 // Update a student identified by the studentId in the request
 exports.update = (req, res) => {

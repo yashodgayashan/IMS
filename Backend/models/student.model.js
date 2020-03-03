@@ -5,11 +5,12 @@ const Student = function(student) {
   this.id=student.id;
   this.email = student.email;
   this.name = student.name;
-  this.active = student.active;
+  this.password = student.password;
+
 };
 
 Student.findById = (studentId, result) => {
-  sql.query(`SELECT * FROM students WHERE id = ${studentId}`, (err, res) => {
+  sql.query(`SELECT * FROM student WHERE id='${studentId}'`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -29,8 +30,8 @@ Student.findById = (studentId, result) => {
 
 Student.updateById = (id, student, result) => {
   sql.query(
-    "UPDATE students SET email = ?, name = ?, active = ? WHERE id = ?",
-    [student.email, student.name, student.active, student.id],
+    "UPDATE student SET email = ?, name = ?, password = ? WHERE id = ?",
+    [student.email, student.name, student.password, student.id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -51,7 +52,7 @@ Student.updateById = (id, student, result) => {
 };
 
 Student.remove = (id, result) => {
-  sql.query("DELETE FROM students WHERE id = ?", id, (err, res) => {
+  sql.query("DELETE FROM student WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -70,7 +71,7 @@ Student.remove = (id, result) => {
 };
 
 Student.removeAll = result => {
-  sql.query("DELETE FROM students", (err, res) => {
+  sql.query("DELETE FROM student", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);

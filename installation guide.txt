@@ -16,3 +16,7 @@ npm install jquery --save
 npm install --save @ng-bootstrap/ng-bootstrap
 npm install @angular/localize --save
 npm i ngx-toastr
+
+ng generate module admin-layout --module app --flat --routing
+
+npm i chart.js
