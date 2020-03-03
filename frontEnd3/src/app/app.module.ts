@@ -11,6 +11,8 @@ import { FixedPluginModule} from './shared/fixedplugin/fixedplugin.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AdminLayoutModule }     from './layouts/admin-layout/admin-layout.module';
+import { CompanyLayoutModule } from './layouts/company-layout/company-layout.module';
+import { StudentLayoutModule } from './layouts/student-layout/student-layout.module';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { StudentLayoutComponent } from './layouts/student-layout/student-layout.component';
@@ -38,9 +40,12 @@ import { HttpClientModule } from '@angular/common/http';
     FooterModule,
     FixedPluginModule,
     AdminLayoutModule,
+    CompanyLayoutModule,
+    StudentLayoutModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]

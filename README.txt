@@ -26,3 +26,6 @@ DB configuration
     PASSWORD: "test@123",
     DB: "testDB"
 
+===========================================================================
+Before login create tables for admin, student, and company. Then using those credentials 
+log in can be done.

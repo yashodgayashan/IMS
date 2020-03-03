@@ -4,13 +4,4 @@ CREATE TABLE admin (id varchar(255), name varchar(255), email varchar(255), pass
 
 CREATE TABLE organization (id varchar(255), name varchar(255), email varchar(255), password varchar(255) );
 
-INSERT INTO student (id , name , email , password)
-VALUES ("164124V", "Hasini", "h@g.com", "123");
-
-INSERT INTO admin (id , name , email , password)
-VALUES ("a-a", "sonali", "s@g.com", "123");
-
-INSERT INTO organization (id , name , email , password)
-VALUES ("virtusa", "v", "v@g.com", "123");
-
 DROP TABLE student; 

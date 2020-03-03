@@ -10,34 +10,36 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class LoginComponent implements OnInit {
   username: string = '';
   password: string = '';
+  userType:string='null';
   // const match;
   constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
     sessionStorage.clear();
   }
-  adminLogin() {
-
-  }
-  signup() {
-
-  }
   onSubmit() {
     if (this.username == '' || this.password == '') {
       // this.sendNotification1();
       return;
     }
-    console.log("inside student login component");
-
-    this.loginService.getData('164124V', '123', 'Student')
+    localStorage.setItem('username', this.username);
+    this.userType=this.loginService.getUserType(this.username);
+    console.log("inside student login component"+ this.userType+"this.userType");
+    this.loginService.getData(this.username, this.password, this.userType)
       .subscribe(
         // (data: match) => {
         //   this.match = data;
         // }
         data => {
           console.log('Observer got a next value: ' + data);
-          if(data=="1"){
+          if(data=="1" && this.userType=="Student"){
+            this.router.navigate(['/student/dashboard']);
+          }else if(data=="1" && this.userType=="Admin"){
             this.router.navigate(['/admin/dashboard']);
+          }else if(data=="1" && this.userType=="Company"){
+            this.router.navigate(['/company/dashboard']);
+          }else{
+            this.router.navigate(['/login']);
           }
         },
         err => console.error('Observer got an error: ' + err),

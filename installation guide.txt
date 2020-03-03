@@ -20,3 +20,5 @@ npm i ngx-toastr
 ng generate module admin-layout --module app --flat --routing
 
 npm i chart.js
+
+npm install cors --save
