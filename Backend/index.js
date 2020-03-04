@@ -5,9 +5,17 @@ const mysql = require('mysql');
 const path = require('path');
 const app = express();
 var cors = require('cors');
-// const dbConfig = require('./models/db.js');
 const port = process.env.PORT || 8080;
 const dbConfig = require("./config/db.config.js");
+
+// import routes
+const studentRoutes = require('./routes/student.routes.js');
+const loginRoutes = require('./routes/login.routes.js');
+// const productRoutes = require('./routes/product');
+// const shippingRoutes = require('./routes/shipping');
+// const customerRoutes = require('./routes/customer');
+// const orderRoutes = require('./routes/order');
+
 // create connection to database
 var connection;
 
@@ -60,14 +68,6 @@ app.use(cors());
 //     next();
 // });
 
-// import routes
-const studentRoutes = require('./routes/student.routes.js');
-const loginRoutes = require('./routes/login.routes.js');
-// const productRoutes = require('./routes/product');
-// const shippingRoutes = require('./routes/shipping');
-// const customerRoutes = require('./routes/customer');
-// const orderRoutes = require('./routes/order');
-
 // app.get('/', function (request, response, next) {
 //     db.query("SELECT * FROM students", function (error, rows) {
 //         return response.json(rows);
@@ -75,7 +75,7 @@ const loginRoutes = require('./routes/login.routes.js');
 // });
 
 // set routes to api
-app.use('/api/student', studentRoutes);
+app.use('/student', studentRoutes);
 app.use('/login', loginRoutes);
 // app.use('/api/product', productRoutes);
 // app.use('/api/shipping', shippingRoutes);

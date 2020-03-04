@@ -11,7 +11,7 @@ router.get("/students", students.findAll);
 // Retrieve a single student with studentId
 router.get("/students/:studentId", students.findOne);
 
-// Update a Customer with studentId
+// Update a student with studentId
 router.put("/students/:studentId", students.update);
 
 // Delete a student with studentId
