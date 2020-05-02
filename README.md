@@ -16,4 +16,4 @@ First go to the **Backend** and run
 `npm install`
 
 Then run the code using
-`npm start`
+`node index.js`
