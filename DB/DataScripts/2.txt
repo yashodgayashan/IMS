@@ -1,8 +1,0 @@
-INSERT INTO student (id , name , email , password)
-VALUES ("164124V", "Hasini", "h@g.com", "123");
-
-INSERT INTO admin (id , name , email , password)
-VALUES ("a-a", "sonali", "s@g.com", "123");
-
-INSERT INTO organization (id , name , email , password)
-VALUES ("virtusa", "v", "v@g.com", "123");

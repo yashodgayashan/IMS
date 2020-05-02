@@ -9,7 +9,7 @@ export class OrganizationsComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

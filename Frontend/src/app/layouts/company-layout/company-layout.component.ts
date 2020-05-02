@@ -9,7 +9,7 @@ export class CompanyLayoutComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

@@ -9,7 +9,7 @@ export class StudentLayoutComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

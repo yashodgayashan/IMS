@@ -1,0 +1,42 @@
+<div class="wrapper">
+    
+
+
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="card card-user">
+                <div class="card-header">
+                    <h5 class="card-title">LOGIN</h5>
+                </div>
+                <div class="card-body">
+                    <div class="col-md-7 px-1">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" class="form-control" placeholder="Username" value="michael23">
+                        </div>
+                    </div>
+                    <div class="col-md-7 px-1">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" class="form-control" placeholder="Username" value="michael23">
+                        </div>
+                    </div>
+                    <div class="col-md-5 px-1">
+                        <div class="form-group">
+                            <button id="login-button" type="submit"
+                                (click)="adminLogin(uname.value,psw.value)">Login</button> </div>
+                    </div>
+                    <div class="col-md-5 px-1">
+                        <div class="form-group">
+                            <button id="signup" type="button" (click)="signup()">Sign up</button><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer-cmp></footer-cmp>
+        </div>
+        
+    </div>
+
+    <fixedplugin-cmp></fixedplugin-cmp>
