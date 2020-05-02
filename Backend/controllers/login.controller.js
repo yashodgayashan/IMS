@@ -1,6 +1,3 @@
-const Student = require("../models/student.model.js");
-const Organization = require("../models/organization.model.js");
-const Admin = require("../models/admin.model.js");
 const sql = require("../models/db.js");
 const jwtLogin = require("jwt-login");
 const roles = require("user-groups-roles");
@@ -28,7 +25,7 @@ exports.findUser = (req, res) => {
                     let token = jwt.sign({ user },"topsecret", {expiresIn: '24h'});
                     
                     // return the JWT token for the future API calls
-                    res.json({
+                    res.send(200).json({
                         success: true,
                         message: 'Authentication successful!',
                         token: token
@@ -59,13 +56,16 @@ exports.findUser = (req, res) => {
                     let token = jwt.sign({ user },"topsecret", {expiresIn: '24h'});
                     
                     // return the JWT token for the future API calls
-                    res.json({
+                    res.send(200).json({
                         success: true,
                         message: 'Authentication successful!',
                         token: token
                     });
                 } else {
-                    res.send('Please register');
+                    res.send(403).json({
+                        success: false,
+                        message: 'Please register'
+                      });
                 }
                 res.end();
             });
@@ -87,7 +87,7 @@ exports.findUser = (req, res) => {
                 let token = jwt.sign({ user },"topsecret", {expiresIn: '24h'});
                 
                 // return the JWT token for the future API calls
-                res.json({
+                res.send(200).json({
                     success: true,
                     message: 'Authentication successful!',
                     token: token
