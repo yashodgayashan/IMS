@@ -38,7 +38,7 @@ paths:
                   reason:
                     type: string
         "404":
-          description: Application not found(Not Found).
+          description: Students not found(Not Found).
           content:
             application/json:
               schema:
@@ -73,8 +73,33 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Student"
-        "405":
-          description: Invalid input
+        "401":
+          description: Authorization failure(Unauthorized).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "406":
+          description: Inputs are not acceptable(Not acceptable).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
   /student/{student-id}:
     get:
       description: Returns a single student
@@ -87,15 +112,38 @@ paths:
             type: string
       responses:
         "200":
-          description: successful operation
+          description: Successful response(Success).
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Student"
-        "400":
-          description: Invalid ID supplied
+        "401":
+          description: Authorization failure(Unauthorized).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
         "404":
-          description: Student not found
+          description: Student not found(Not Found).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
     put:
       description: update a student
       parameters:
@@ -114,13 +162,50 @@ paths:
               $ref: "#/components/schemas/Student"
       responses:
         "200":
-          description: Successful response(Success).
-        "400":
-          description: Invalid ID supplied
+          description: Successful response (Success).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "401":
+          description: Authorization failure(Unauthorized).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
         "404":
-          description: Student not found
-        "405":
-          description: Validation exception
+          description: Student not found(Not Found).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "406":
+          description: Student not acceptable(Not Acceptable).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
     delete:
       description: Delete a student
       parameters:
@@ -264,6 +349,7 @@ paths:
               schema:
                 type: string
                 description: Reason
+
 components:
   schemas:
     Student:
