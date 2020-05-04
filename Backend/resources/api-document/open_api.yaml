@@ -301,3 +301,61 @@ components:
           type: integer
         studentId:
           type: string
+        companyId:
+          type: string
+        startDate:
+          $ref: "#/components/schemas/Date"
+        projectBrief:
+          type: string
+        mentor:
+          $ref: "#/components/schemas/Mentor"
+        isGivenAdequateWork:
+          type: string
+        workEnvironment:
+          type: string
+        employeeSupportiveness:
+          type: string
+        managementSupportiveness:
+          type: string
+        countSeniorSoftwareEngineerOrHigh:
+          type: integer
+        isPayed:
+          type: boolean
+        payment:
+          type: integer
+        problems:
+          type: string
+        suggesions:
+          type: string
+        overallComment:
+          type: string
+        Satisfaction:
+          type: string
+          enum:
+            - "High"
+            - "Medium"
+            - "Low"
+        isRecomended:
+          type: boolean
+        contactPerson:
+          $ref: "#/components/schemas/Mentor"
+    Mentor:
+      type: object
+      properties:
+        name:
+          type: string
+        phoneNumber:
+          type: integer
+        email:
+          type: string
+        designation:
+          type: string
+    Date:
+      type: object
+      properties:
+        year:
+          type: integer
+        month:
+          type: integer
+        day:
+          type: integer
