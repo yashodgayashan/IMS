@@ -38,7 +38,7 @@ paths:
                   reason:
                     type: string
         "404":
-          description: Application not found(Not Found).
+          description: Students not found(Not Found).
           content:
             application/json:
               schema:
@@ -56,7 +56,7 @@ paths:
                   reason:
                     type: string
     post:
-      description: Create students
+      description: Create a student.
       requestBody:
         description: Add students to database
         required: true
@@ -66,15 +66,40 @@ paths:
               $ref: "#/components/schemas/Student"
       responses:
         "201":
-          description: Successful response(Success).
+          description: Successfull Created(Created).
           content:
             application/json:
               schema:
-                type: "array"
+                type: array
                 items:
                   $ref: "#/components/schemas/Student"
-        "405":
-          description: Invalid input
+        "401":
+          description: Authorization failure(Unauthorized).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "406":
+          description: Inputs are not acceptable(Not acceptable).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
   /student/{student-id}:
     get:
       description: Returns a single student
@@ -87,15 +112,38 @@ paths:
             type: string
       responses:
         "200":
-          description: successful operation
+          description: Successful response(Success).
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Student"
-        "400":
-          description: Invalid ID supplied
+        "401":
+          description: Authorization failure(Unauthorized).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
         "404":
-          description: Student not found
+          description: Student not found(Not Found).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
     put:
       description: update a student
       parameters:
@@ -104,7 +152,7 @@ paths:
           description: details of student to return
           required: true
           schema:
-            type: "string"
+            type: string
       requestBody:
         description: update Student object that needs to be added to the db
         required: true
@@ -114,13 +162,50 @@ paths:
               $ref: "#/components/schemas/Student"
       responses:
         "200":
-          description: Successful response(Success).
-        "400":
-          description: Invalid ID supplied
+          description: Successful response (Success).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "401":
+          description: Authorization failure(Unauthorized).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
         "404":
-          description: Student not found
-        "405":
-          description: Validation exception
+          description: Student not found(Not Found).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "406":
+          description: Student not acceptable(Not Acceptable).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
     delete:
       description: Delete a student
       parameters:
@@ -134,7 +219,7 @@ paths:
         "400":
           description: Invalid ID supplied
         "404":
-          description: "student not found"
+          description: Student not found
   /Students/graph:
     get:
       description: Get student Counts
@@ -169,7 +254,7 @@ paths:
                   reason:
                     type: string
         "404":
-          description: "students not found"
+          description: students not found
   /Student/{student-id}/feedback:
     post:
       description: Create feedback
@@ -193,7 +278,7 @@ paths:
           content:
             application/json:
               schema:
-                type: "array"
+                type: array
                 items:
                   $ref: "#/components/schemas/Feedback"
         "405":
@@ -234,17 +319,17 @@ paths:
                     type: string
   /Student/{student-id}/feedback/{feedback-id}:
     get:
-      description: Returns a single feedback from a student
+      description: Returns a single feedback from a student.
       parameters:
         - name: student-id
           in: path
-          description: details of student to return
+          description: Details of student to return.
           required: true
           schema:
             type: string
         - name: feedback-id
-          in: "path"
-          description: feedback of student to return
+          in: path
+          description: Feedback of student to return.
           required: true
           schema:
             type: string
@@ -258,7 +343,12 @@ paths:
         "400":
           description: Invalid data supplied
         "404":
-          description: Feedback not found
+          description: Feedback not found(Not Found).
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Reason
 
 components:
   schemas:
@@ -266,34 +356,92 @@ components:
       type: object
       properties:
         id:
-          type: "string"
+          type: string
         batchId:
-          type: "integer"
+          type: integer
         fullName:
-          type: "string"
-        nameWithInials:
-          type: "string"
+          type: string
+        nameWithInitials:
+          type: string
         isSelected:
-          type: "boolean"
+          type: boolean
     Batch:
-      type: "object"
+      type: object
       properties:
         batchId:
-          type: "integer"
+          type: integer
         Description:
-          type: "string"
+          type: string
         year:
-          type: "string"
+          type: string
         startDate:
-          type: "string"
+          type: string
         endDate:
-          type: "string"
+          type: string
         allowedCompanyCount:
-          type: "integer"
+          type: integer
     Feedback:
-      type: "object"
+      type: object
       properties:
         feebackId:
-          type: "integer"
+          type: integer
         studentId:
-          type: "string"
+          type: string
+        companyId:
+          type: string
+        startDate:
+          $ref: "#/components/schemas/Date"
+        projectBrief:
+          type: string
+        mentor:
+          $ref: "#/components/schemas/Mentor"
+        isGivenAdequateWork:
+          type: string
+        workEnvironment:
+          type: string
+        employeeSupportiveness:
+          type: string
+        managementSupportiveness:
+          type: string
+        countSeniorSoftwareEngineerOrHigh:
+          type: integer
+        isPayed:
+          type: boolean
+        payment:
+          type: integer
+        problems:
+          type: string
+        suggesions:
+          type: string
+        overallComment:
+          type: string
+        Satisfaction:
+          type: string
+          enum:
+            - "High"
+            - "Medium"
+            - "Low"
+        isRecomended:
+          type: boolean
+        contactPerson:
+          $ref: "#/components/schemas/Mentor"
+    Mentor:
+      type: object
+      properties:
+        name:
+          type: string
+        phoneNumber:
+          type: integer
+        email:
+          type: string
+        designation:
+          type: string
+    Date:
+      type: object
+      properties:
+        year:
+          type: integer
+        month:
+          type: integer
+        day:
+          type: integer
