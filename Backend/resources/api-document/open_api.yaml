@@ -8,7 +8,7 @@ paths:
   /students:
     get:
       description: Get all students
-      parameters: 
+      parameters:
         - in: query
           name: isSelected
           description: To get selected students specificaly..
@@ -20,7 +20,7 @@ paths:
           description: To get studentList for specific company
           required: false
           schema:
-            type: string 
+            type: string
       responses:
         "200":
           description: Successful response(Success).
@@ -63,7 +63,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Student'
+              $ref: "#/components/schemas/Student"
       responses:
         "201":
           description: Successfull Created(Created).
@@ -72,7 +72,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Student'
+                  $ref: "#/components/schemas/Student"
         "405":
           description: Invalid input
   /student/{student-id}:
@@ -111,7 +111,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Student'
+              $ref: "#/components/schemas/Student"
       responses:
         "200":
           description: Successful response(Success).
@@ -151,14 +151,14 @@ paths:
           required: false
           schema:
             type: string
-      
+
       responses:
         "200":
           description: Successful response(Success).
           content:
             application/json:
               schema:
-                type : integer
+                type: integer
         "500":
           description: Server error(Internal Server Error).
           content:
@@ -186,7 +186,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Feedback'
+              $ref: "#/components/schemas/Feedback"
       responses:
         "201":
           description: Successful response(Success).
@@ -195,7 +195,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Feedback'
+                  $ref: "#/components/schemas/Feedback"
         "405":
           description: Invalid input
     get:
@@ -210,312 +210,10 @@ paths:
       responses:
         "200":
           description: Successful response(Success).
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Feedback'
-        "404":
-          description: Application not found(Not Found).
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  reason:
-                    type: string
-        "500":
-          description: Server error(Internal Server Error).
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  reason:
-                    type: string
-  /Student/{student-id}/feedback/{feedback-id}:
-    get:
-      description: Returns a single feedback from a student.
-      parameters:
-        - name: student-id
-          in: path
-          description: Details of student to return.
-          required: true
-          schema:
-            type: string
-        - name: feedback-id
-          in: path
-          description: Feedback of student to return.
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: successful operation
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Feedback"
-        "400":
-          description: Invalid data supplied
-        "404":
-          description: Feedback not found(Not Found).
-          content:
-            application/json:
-              schema:
-                type: string
-                description: Reason
-components:
-  schemas:
-    Student:
-      type: object
-      properties:
-        id:
-          type: string
-        batchId:
-          type: integer
-        fullName:
-          type: string
-        nameWithInitials:
-          type: string
-        isSelected:
-          type: boolean
-    Batch:
-      type: object
-      properties:
-        batchId:
-          type: integer
-        Description:
-          type: string
-        year:
-          type: string
-        startDate:
-          type: string
-        endDate:
-          type: string
-        allowedCompanyCount:
-          type: integer
-    Feedback:
-      type: object
-      properties:
-        feebackId:
-          type: integer
-        studentId:
-          type: stringopenapi: 3.0.0
-info:
-  version: 1.0.0
-  title: IMS Platform
-  description: This is the RESTfull API specification for the IMS platform which is developed for the Faculty of Information technology.
-
-paths:
-  /students:
-    get:
-      description: Get all students
-      parameters: 
-        - in: query
-          name: isSelected
-          description: To get selected students specificaly..
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: companyName
-          description: To get studentList for specific company
-          required: false
-          schema:
-            type: string 
-      responses:
-        "200":
-          description: Successful response(Success).
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Student"
-        "401":
-          description: Authorization failure(Unauthorized).
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  reason:
-                    type: string
-        "404":
-          description: Application not found(Not Found).
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  reason:
-                    type: string
-        "500":
-          description: Server error(Internal Server Error).
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  reason:
-                    type: string
-    post:
-      description: Create a student.
-      requestBody:
-        description: Add students to database
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Student'
-      responses:
-        "201":
-          description: Successfull Created(Created).
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Student'
-        "405":
-          description: Invalid input
-  /student/{student-id}:
-    get:
-      description: Returns a single student
-      parameters:
-        - in: path
-          name: student-id
-          description: details of student to return
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Student"
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: Student not found
-    put:
-      description: update a student
-      parameters:
-        - name: student-id
-          in: path
-          description: details of student to return
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: update Student object that needs to be added to the db
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Student'
-      responses:
-        "200":
-          description: Successful response(Success).
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: Student not found
-        "405":
-          description: Validation exception
-    delete:
-      description: Delete a student
-      parameters:
-        - name: student-id
-          in: path
-          description: details of student to return
-          required: true
-          schema:
-            type: string
-      responses:
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: Student not found
-  /Students/graph:
-    get:
-      description: Get student Counts
-      parameters:
-        - in: query
-          name: isSelected
-          description: To get selected students specificaly..
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: isFormSubmitted
-          description: To get students who have completed personal details specificaly..
-          required: false
-          schema:
-            type: string
-      
-      responses:
-        "200":
-          description: Successful response(Success).
-          content:
-            application/json:
-              schema:
-                type : integer
-        "500":
-          description: Server error(Internal Server Error).
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  reason:
-                    type: string
-        "404":
-          description: students not found
-  /Student/{student-id}/feedback:
-    post:
-      description: Create feedback
-      parameters:
-        - name: student-id
-          in: path
-          description: details of student to return
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Add feedback to database
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Feedback'
-      responses:
-        "201":
-          description: Successful response(Success).
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Feedback'
-        "405":
-          description: Invalid input
-    get:
-      description: Get all feedback from students
-      parameters:
-        - name: student-id
-          in: path
-          description: details of student to return
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Successful response(Success).
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Feedback'
         "404":
           description: Application not found(Not Found).
           content:
