@@ -70,9 +70,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Student"
+                type: string
         "401":
           description: Authorization failure(Unauthorized).
           content:
@@ -374,8 +372,8 @@ paths:
                 description: Reason
   /batches:
     post:
-      description : create an entire new batch for internship.
-      requestBody :
+      description: create an entire new batch for internship.
+      requestBody:
         description: Details regarding new batch.
         required: true
         content:
@@ -391,34 +389,34 @@ paths:
                 $ref: "#/components/schemas/Batch"
         "405":
           description: Invalid input
-          content :
+          content:
             application/json:
               schema:
-                type : string
-                description : Could not create a batch.
-    get : 
-      description : Get details of all batches.
-      responses :
-        "200" :
-          description : Successful response(Success).
-          content : 
-            application/json : 
-              schema : 
-                $ref : "#/components/schemas/Batch"
-        "404" :
-          description : Details of batches are not found.
-          content : 
+                type: string
+                description: Could not create a batch.
+    get:
+      description: Get details of all batches.
+      responses:
+        "200":
+          description: Successful response(Success).
+          content:
             application/json:
-              schema : 
-                type : string
-                description : No batch details are found.
+              schema:
+                $ref: "#/components/schemas/Batch"
+        "404":
+          description: Details of batches are not found.
+          content:
+            application/json:
+              schema:
+                type: string
+                description: No batch details are found.
         "500":
           description: Server error(Internal Server Error).
           content:
             application/json:
               schema:
                 type: string
-                description : Reason.
+                description: Reason.
   /batch/{batch-id}:
     get:
       description: Returns details of single batch
@@ -525,11 +523,10 @@ paths:
                 properties:
                   reason:
                     type: string
-          
   /admin:
     post:
-      description : create an account for admin.
-      requestBody :
+      description: create an account for admin.
+      requestBody:
         description: Details regarding new admin.
         required: true
         content:
@@ -545,34 +542,34 @@ paths:
                 $ref: "#/components/schemas/Admin"
         "405":
           description: Invalid input
-          content :
+          content:
             application/json:
               schema:
-                type : string
-                description : Could not create a admin account.
-    get : 
-      description : Get details of all IMS admins.
-      responses :
-        "200" :
-          description : Successful response(Success).
-          content : 
-            application/json : 
-              schema : 
-                $ref : "#/components/schemas/Admin"
-        "404" :
-          description : No admins are found.
-          content : 
+                type: string
+                description: Could not create a admin account.
+    get:
+      description: Get details of all IMS admins.
+      responses:
+        "200":
+          description: Successful response(Success).
+          content:
             application/json:
-              schema : 
-                type : string
-                description : No admin details are found.
+              schema:
+                $ref: "#/components/schemas/Admin"
+        "404":
+          description: No admins are found.
+          content:
+            application/json:
+              schema:
+                type: string
+                description: No admin details are found.
         "500":
           description: Server error(Internal Server Error).
           content:
             application/json:
               schema:
                 type: string
-                description : Reason.
+                description: Reason.
   /admin/{admin-id}:
     get:
       description: Returns details of a admin
@@ -678,7 +675,7 @@ paths:
                 type: object
                 properties:
                   reason:
-                    type: string    
+                    type: string
     delete:
       description: Delete an admin
       parameters:
@@ -718,8 +715,8 @@ paths:
                     type: string
   /company:
     post:
-      description : create an account for a company.
-      requestBody :
+      description: create an account for a company.
+      requestBody:
         description: Details regarding new company.
         required: true
         content:
@@ -735,34 +732,34 @@ paths:
                 $ref: "#/components/schemas/Company"
         "405":
           description: Invalid input
-          content :
+          content:
             application/json:
               schema:
-                type : string
-                description : Could not create an account for company.
-    get : 
-      description : Get details of all companies.
-      responses :
-        "200" :
-          description : Successful response(Success).
-          content : 
-            application/json : 
-              schema : 
-                $ref : "#/components/schemas/Company"
-        "404" :
-          description : No companies are found.
-          content : 
+                type: string
+                description: Could not create an account for company.
+    get:
+      description: Get details of all companies.
+      responses:
+        "200":
+          description: Successful response(Success).
+          content:
             application/json:
-              schema : 
-                type : string
-                description : No company details are found.
+              schema:
+                $ref: "#/components/schemas/Company"
+        "404":
+          description: No companies are found.
+          content:
+            application/json:
+              schema:
+                type: string
+                description: No company details are found.
         "500":
           description: Server error(Internal Server Error).
           content:
             application/json:
               schema:
                 type: string
-                description : Reason.
+                description: Reason.
   /company/{company-id}:
     get:
       description: Returns details of a company
@@ -868,7 +865,7 @@ paths:
                 type: object
                 properties:
                   reason:
-                    type: string    
+                    type: string
     delete:
       description: Delete a company
       parameters:
@@ -906,7 +903,7 @@ paths:
                 properties:
                   reason:
                     type: string
-    
+
 components:
   schemas:
     Student:
@@ -920,8 +917,40 @@ components:
           type: string
         nameWithInitials:
           type: string
+        email:
+          type: string
+        telephoneNumber:
+          type: integer
+        gpa:
+          $ref: "#/components/schemas/GPA"
+        preferedOrg:
+          type: array
+          items:
+            type: object
+            properties:
+              companyName:
+                type: string
+              companyId:
+                type: integer
+        cv:
+          type: string
+        selectedCompany:
+          type: string
+        startdate:
+          $ref: "#/components/schemas/Date"
         isSelected:
           type: boolean
+    GPA:
+      type: object
+      properties:
+        first_sem:
+          type: number
+        second_sem:
+          type: number
+        third_sem:
+          type: number
+        fourth_sem:
+          type: number
     Batch:
       type: object
       properties:
