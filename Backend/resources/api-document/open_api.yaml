@@ -466,7 +466,117 @@ paths:
                     type: string
   /students/{student-id}/reports:
     get:
+      description: This will get all reports submitted by the student
+      parameters:
+        - name: student-id
+          in: path
+          description: Details of student to return.
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response (Success).
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: integer
+                    submittedDate:
+                      $ref: "#/components/schemas/Date"
+        "401":
+          description: Authorization failure(Unauthorized).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "404":
+          description: Student not found(Not Found).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
     post:
+      description: This will create a new report
+      parameters:
+        - name: student-id
+          in: path
+          description: Details of student to return.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Add confirmation to database
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                report:
+                  type: string
+                submittedDate:
+                  $ref: "#/components/schemas/Date"
+      responses:
+        "201":
+          description: Successfully created (Created).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+        "401":
+          description: Authorization failure(Unauthorized).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "404":
+          description: Student not found(Not Found).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
   /students/{student-id}/reports/{report-id}:
     get:
   /batches:
