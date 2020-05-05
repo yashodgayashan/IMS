@@ -579,6 +579,61 @@ paths:
                     type: string
   /students/{student-id}/reports/{report-id}:
     get:
+      description: This will get a specific report submitted by the student
+      parameters:
+        - name: student-id
+          in: path
+          description: Details of student to return.
+          required: true
+          schema:
+            type: string
+        - name: report-id
+          in: path
+          description: The id of the report.
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response (Success).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: integer
+                  submittedDate:
+                    $ref: "#/components/schemas/Date"
+        "401":
+          description: Authorization failure(Unauthorized).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "404":
+          description: Student not found(Not Found).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
   /batches:
     post:
       description: create an entire new batch for internship.
