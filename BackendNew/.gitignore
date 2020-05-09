@@ -5,3 +5,6 @@
 package-lock.json
 
 .DS_Store
+
+# Remove environment config files
+.env
