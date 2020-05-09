@@ -1,0 +1,5 @@
+# Remove node_modules
+/node_modules
+
+# Remove package-lock.json
+package-lock.json
