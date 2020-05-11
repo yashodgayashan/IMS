@@ -30,7 +30,7 @@ CREATE TABLE Company (
     ContactPerson varchar(255),
     PhoneNumber int,
     Website varchar(255),
-    Email varchar(255),
+    Email varchar(255) NOT NULL,
     InterviewProgress varchar(255),
     Password varchar(255) NOT NULL,
     PRIMARY KEY (CompanyId),
