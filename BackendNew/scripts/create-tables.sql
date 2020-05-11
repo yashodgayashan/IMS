@@ -92,4 +92,12 @@ CREATE TABLE Student_Select_Company (
     PRIMARY KEY (StudentId, CompanyId),
     FOREIGN KEY (StudentId) REFERENCES Student(StudentId),
     FOREIGN KEY (CompanyId) REFERENCES Company(CompanyId)
-)
+);
+
+CREATE TABLE Monthly_Report (
+    StudentId int NOT NULL,
+    ReportNumber int NOT NULL,
+    Report varchar(100) NOT NULL,
+    PRIMARY KEY (StudentId, ReportNumber),
+    FOREIGN KEY (StudentId) REFERENCES Student(StudentId),
+);
