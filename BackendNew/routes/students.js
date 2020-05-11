@@ -1,0 +1,60 @@
+const express = require("express");
+const router = express.Router();
+
+router.get("/", (req, res) => {
+  res.send("get Students");
+});
+
+router.post("/", (req, res) => {
+  res.send("post students");
+});
+
+router.get("/:studentId", (req, res) => {
+  res.send("get student Id");
+});
+
+router.put("/:studentId", (req, res) => {
+  res.send("put student Id");
+});
+
+router.delete("/:studentId", (req, res) => {
+  res.send("delete student Id");
+});
+
+router.get("/graph", (req, res) => {
+  res.send("Graph");
+});
+
+router.get("/:studentId/feedback", (req, res) => {
+  res.send("get student feedback");
+});
+
+router.post("/:studentId/feedback", (req, res) => {
+  res.send("post student feedback");
+});
+
+router.get("/:studentId/feedback/:feedbackId", (req, res) => {
+  res.send("get student feedback id");
+});
+
+router.get("/:studentId/confirmation", (req, res) => {
+  res.send("get student confirmation");
+});
+
+router.post("/:studentId/confirmation", (req, res) => {
+  res.send("post student confirmation");
+});
+
+router.get("/:studentId/reports", (req, res) => {
+  res.send("get student reports");
+});
+
+router.post("/:studentId/reports", (req, res) => {
+  res.send("post student reports");
+});
+
+router.get("/:studentId/reports/:reportsId", (req, res) => {
+  res.send("get student reports id");
+});
+
+module.exports = router;

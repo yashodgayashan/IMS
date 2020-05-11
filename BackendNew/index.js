@@ -4,6 +4,9 @@ const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const cors = require("cors");
 
+// Import Routes
+const studentRoutes = require("./routes/students.js");
+
 // Configure dotenv for read environment variables.
 dotenv.config();
 
@@ -18,7 +21,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
-// Set the app to listen on the port
+// Set the app to listen on the port.
 app.listen(port, () => {
   console.log(`Server running on port: ${port}`);
 });
+
+// Routing
+app.use("/students", studentRoutes);
