@@ -46,3 +46,15 @@ VALUES (1, 1, "Batch16", 2019, DATE '2019-8-17',DATE '2020-3-01', 263);
 -- Batch 17
 INSERT INTO Batch (BatchId, CreatedBy, Name, Year, StartDate, EndDate, CompanyCount) 
 VALUES (2, 2, "Batch17", 2020, DATE '2020-8-17',DATE '2021-3-01', 242);
+
+/*
+    Add four vacancies for dummy data
+*/
+INSERT INTO Vacancy (CompanyId, InternBatchId, Vacancies, Filled) 
+VALUES (1, 1, 20, 16);
+INSERT INTO Vacancy (CompanyId, InternBatchId, Vacancies, Filled) 
+VALUES (1, 2, 16, 13);
+INSERT INTO Vacancy (CompanyId, InternBatchId, Vacancies, Filled) 
+VALUES (2, 1, 12, 11);
+INSERT INTO Vacancy (CompanyId, InternBatchId, Vacancies, Filled) 
+VALUES (3, 2, 10, 10);

@@ -41,8 +41,8 @@ CREATE TABLE Company (
 CREATE TABLE Batch (
     BatchId int NOT NULL AUTO_INCREMENT,
     CreatedBy int NOT NULL,
-    Description varchar(255),
-    Yeah int,
+    Name varchar(255),
+    Year int,
     StartDate DATE,
     EndDate DATE,
     CompanyCount int NOT NULL,
@@ -51,12 +51,11 @@ CREATE TABLE Batch (
 );
 
 CREATE TABLE Vacancy (
-    VacancyId int NOT NULL AUTO_INCREMENT,
     CompanyId int NOT NULL,
     InternBatchId int NOT NULL,
     Vacancies int,
     Filled int,
-    PRIMARY KEY (VacancyId),
+    PRIMARY KEY (CompanyId, InternBatchId),
     FOREIGN KEY (CompanyId) REFERENCES Company(CompanyId),
     FOREIGN KEY (InternBatchId) REFERENCES Batch(BatchId)
 );
@@ -67,6 +66,8 @@ CREATE TABLE Student (
     CreatedBy int NOT NULL,
     RoleId int NOT NULL,
     FullName varchar(255),
+    NameWithInitials varchar(100),
+    Batch varchar(7),
     PhoneNumber int,
     Sem1GPA number,
     Sem2GPA number,
