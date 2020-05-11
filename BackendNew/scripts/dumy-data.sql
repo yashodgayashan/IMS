@@ -78,3 +78,23 @@ INSERT INTO Student (StudentId, BatchId, CreatedBy, RoleId, FullName, NameWithIn
                     Email, CV, PreferedArea1, PreferedArea2, PreferedArea3, DateOfStart, Degree, Password) 
 VALUES (4, 2, 2, 3, "Yashod Perera", "U L Y G Perera", "Batch16", 0716931384, 3.89, 3.78, 4.03, 3.57, 3.72, "hasinisenanayaka@gmail.com", 
                     "UI/UX", "Networking", "QA Engineering", DATE '2019-08-19', "IT", "yashod");
+
+/*
+    Add 8 student select company as dummy data
+*/
+INSERT INTO Student_Select_Company (StudentId, CompanyId) 
+VALUES (1, 1);
+INSERT INTO Student_Select_Company (StudentId, CompanyId) 
+VALUES (1, 3);
+INSERT INTO Student_Select_Company (StudentId, CompanyId) 
+VALUES (2, 1);
+INSERT INTO Student_Select_Company (StudentId, CompanyId) 
+VALUES (2, 2);
+INSERT INTO Student_Select_Company (StudentId, CompanyId) 
+VALUES (2, 3);
+INSERT INTO Student_Select_Company (StudentId, CompanyId) 
+VALUES (3, 2);
+INSERT INTO Student_Select_Company (StudentId, CompanyId) 
+VALUES (3, 3);
+INSERT INTO Student_Select_Company (StudentId, CompanyId) 
+VALUES (4, 2);
