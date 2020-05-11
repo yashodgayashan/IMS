@@ -26,6 +26,7 @@ CREATE TABLE Company (
     PhoneNumber int,
     Website varchar(255),
     Email varchar(255),
+    InterviewProgress varchar(255),
     Password varchar(255) NOT NULL,
     PRIMARY KEY (CompanyId),
     FOREIGN KEY (RoleId) REFERENCES Role(RoleId),
@@ -49,8 +50,46 @@ CREATE TABLE Vacancy (
     VacancyId int NOT NULL AUTO_INCREMENT,
     CompanyId int NOT NULL,
     InternBatchId int NOT NULL,
-    Vacancies int NOT NULL,
+    Vacancies int,
+    Filled int,
     PRIMARY KEY (VacancyId),
     FOREIGN KEY (CompanyId) REFERENCES Company(CompanyId),
     FOREIGN KEY (InternBatchId) REFERENCES Batch(BatchId)
 );
+
+CREATE TABLE Student (
+    StudentId int NOT NULL AUTO_INCREMENT,
+    BatchId int NOT NULL,
+    CreatedBy int NOT NULL,
+    RoleId int NOT NULL,
+    FullName varchar(255),
+    PhoneNumber int,
+    Sem1GPA number,
+    Sem2GPA number,
+    Sem3GPA number,
+    Sem4GPA number,
+    SGPA number,
+    Email varchar(50),
+    CV varchar(50),
+    PreferedArea1 varchar(100),
+    PreferedArea2 varchar(100),
+    PreferedArea3 varchar(100),
+    PreferedArea4 varchar(100),
+    PreferedArea5 varchar(100),
+    DateOfStart DATE,
+    Degree varchar(100),
+    Password varchar(100),
+    PRIMARY KEY (StudentId),
+    FOREIGN KEY (BatchId) REFERENCES Batch(BatchId),
+    FOREIGN KEY (CreatedBy) REFERENCES Admin(AdminId),
+    FOREIGN KEY (RoleId) REFERENCES Role(RoleId)
+);
+
+CREATE TABLE Student_Select_Company (
+    StudentId int NOT NULL,
+    CompanyId int NOT NULL,
+    IsSelected boolean DEFAULT 0,
+    PRIMARY KEY (StudentId, CompanyId),
+    FOREIGN KEY (StudentId) REFERENCES Student(StudentId),
+    FOREIGN KEY (CompanyId) REFERENCES Company(CompanyId)
+)
