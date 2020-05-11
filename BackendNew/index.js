@@ -7,6 +7,9 @@ const cors = require("cors");
 // Import Routes
 const studentRoutes = require("./routes/students.js");
 
+// Import database connection
+const connection = require("./models/database.js");
+
 // Configure dotenv for read environment variables.
 dotenv.config();
 
