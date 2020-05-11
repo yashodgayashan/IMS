@@ -31,3 +31,26 @@ CREATE TABLE Company (
     FOREIGN KEY (RoleId) REFERENCES Role(RoleId),
     FOREIGN KEY (CreatedBy) REFERENCES Admin(AdminId)
 );
+
+CREATE TABLE Batch (
+    BatchId int NOT NULL AUTO_INCREMENT,
+    CreatedBy int NOT NULL,
+    RoleId int NOT NULL,
+    Description varchar(255),
+    Yeah int,
+    StartDate DATE,
+    EndDate DATE,
+    CompanyCount int NOT NULL,
+    PRIMARY KEY (BatchId),
+    FOREIGN KEY (CreatedBy) REFERENCES Admin(AdminId)
+);
+
+CREATE TABLE Vacancy (
+    VacancyId int NOT NULL AUTO_INCREMENT,
+    CompanyId int NOT NULL,
+    InternBatchId int NOT NULL,
+    Vacancies int NOT NULL,
+    PRIMARY KEY (VacancyId),
+    FOREIGN KEY (CompanyId) REFERENCES Company(CompanyId),
+    FOREIGN KEY (InternBatchId) REFERENCES Batch(BatchId)
+);
