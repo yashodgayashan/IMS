@@ -98,3 +98,39 @@ INSERT INTO Student_Select_Company (StudentId, CompanyId)
 VALUES (3, 3);
 INSERT INTO Student_Select_Company (StudentId, CompanyId) 
 VALUES (4, 2);
+
+/*
+    Add monthly report dummy data
+*/
+INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
+VALUES (1, 1, "report url");
+INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
+VALUES (1, 2, "report url");
+INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
+VALUES (1, 3, "report url");
+INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
+VALUES (1, 4, "report url");
+INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
+VALUES (1, 5, "report url");
+INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
+VALUES (1, 6, "report url");
+INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
+VALUES (2, 1, "report url");
+INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
+VALUES (2, 2, "report url");
+INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
+VALUES (2, 4, "report url");
+INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
+VALUES (2, 6, "report url");
+INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
+VALUES (3, 1, "report url");
+INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
+VALUES (3, 2, "report url");
+INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
+VALUES (3, 3, "report url");
+INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
+VALUES (3, 4, "report url");
+INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
+VALUES (4, 1, "report url");
+INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
+VALUES (4, 4, "report url");
