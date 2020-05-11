@@ -7,3 +7,4 @@ CREATE TABLE Roles
     PRIMARY KEY
     (RoleId)
 );
+
