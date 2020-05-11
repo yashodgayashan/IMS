@@ -101,3 +101,33 @@ CREATE TABLE Monthly_Report (
     PRIMARY KEY (StudentId, ReportNumber),
     FOREIGN KEY (StudentId) REFERENCES Student(StudentId),
 );
+
+CREATE TABLE Feedback (
+    FeedbackId int NOT NULL AUTO_INCREMENT,
+    StudentId int NOT NULL,
+    SubmittedDate DATE NOT NULL,
+    CompanyId int NOT NULL,
+    StartDate DATE NOT NULL,
+    ProjectBrief varchar(100),
+    Mentor varchar(100),
+    IsGivenAdequateWork boolean,
+    WorkEnvironment varchar(100),
+    EmployeeSupportiveness varchar(100),
+    ManagementSupportiveness varchar(100),
+    SeniorEngineerCount int,
+    isPayed boolean,
+    Payment number,
+    Problems varchar(255),
+    Suggesions varchar(255),
+    OverallComment varchar(255),
+    Satisfaction varchar(255),
+    IsRecommended boolean,
+    ContactPerson varchar(100),
+    ContactPersonPhoneNumber int,
+    ContactPersonEmail varchar(100),
+    ContactPersonDesignation varchar(100),
+    MentorName varchar(100),
+    MentorPhoneNumber int,
+    MentorEmail varchar(100),
+    MentorDesgnation varchar(100)
+);
