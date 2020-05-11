@@ -6,13 +6,13 @@
     Add several roles to the system including super role, admin role, student role and company role
 */
 -- Super Role
-INSERT INTO Roles (RoleId, Name, Description) VALUES (1, 'Super', 'The person who can added any student, company, admin');
+INSERT INTO Role (RoleId, Name, Description) VALUES (1, 'Super', 'The person who can added any student, company, admin');
 -- Admin Role
-INSERT INTO Roles (RoleId, Name, Description) VALUES (2, 'Admin', 'The person who can added any student, company');
+INSERT INTO Role (RoleId, Name, Description) VALUES (2, 'Admin', 'The person who can added any student, company');
 -- Student Role
-INSERT INTO Roles (RoleId, Name, Description) VALUES (3, 'Student', 'The person who is a student');
+INSERT INTO Role (RoleId, Name, Description) VALUES (3, 'Student', 'The person who is a student');
 -- Company Role
-INSERT INTO Roles (RoleId, Name, Description) VALUES (4, 'Company', 'The person who is a company');
+INSERT INTO Role (RoleId, Name, Description) VALUES (4, 'Company', 'The person who is a company');
 
 /*
     Add two admins who are assigned to super role and the admin role
@@ -64,19 +64,19 @@ VALUES (3, 2, 10, 10);
 */
 INSERT INTO Student (StudentId, BatchId, CreatedBy, RoleId, FullName, NameWithInitials, Batch, PhoneNumber, Sem1GPA, Sem2GPA, Sem3GPA, Sem4GPA, SGPA, 
                     Email, CV, PreferedArea1, PreferedArea2, PreferedArea3, DateOfStart, Degree, Password) 
-VALUES (1, 1, 2, 3, "Hasini Senanayaka", "H C Senanayaka", "Batch16", 0713847631, 4.02, 3.98, 4.01, 3.87, 3.99, "hasinisenanayaka@gmail.com", 
+VALUES (1, 1, 2, 3, "Hasini Senanayaka", "H C Senanayaka", "Batch16", 0713847631, 4.02, 3.98, 4.01, 3.87, 3.99, "hasinisenanayaka@gmail.com", "cv",
                     "Software Engineering", "Networking", "UI/UX", DATE '2019-08-19', "IT", "hasini");
 INSERT INTO Student (StudentId, BatchId, CreatedBy, RoleId, FullName, NameWithInitials, Batch, PhoneNumber, Sem1GPA, Sem2GPA, Sem3GPA, Sem4GPA, SGPA, 
                     Email, CV, PreferedArea1, PreferedArea2, PreferedArea3, DateOfStart, Degree, Password) 
-VALUES (2, 1, 2, 3, "Piyumi Dasnayaka", "D A P Dasanayaka", "Batch16", 0717382928, 4.01, 3.48, 4.11, 3.87, 3.87, "piyumimadhubashini@gmail.com", 
+VALUES (2, 1, 2, 3, "Piyumi Dasnayaka", "D A P Dasanayaka", "Batch16", 0717382928, 4.01, 3.48, 4.11, 3.87, 3.87, "piyumimadhubashini@gmail.com", "cv",
                     "QA Engineering", "Networking", "UI/UX", DATE '2019-08-19', "ITM", "piyumi");
 INSERT INTO Student (StudentId, BatchId, CreatedBy, RoleId, FullName, NameWithInitials, Batch, PhoneNumber, Sem1GPA, Sem2GPA, Sem3GPA, Sem4GPA, SGPA, 
                     Email, CV, PreferedArea1, PreferedArea2, PreferedArea3, DateOfStart, Degree, Password) 
-VALUES (3, 2, 1, 3, "Lakshika Swarnamali", "A L Swaranamali", "Batch16", 071298765, 4.01, 3.78, 4.13, 3.77, 3.79, "lakshikaswarnamali@gmail.com", 
+VALUES (3, 2, 1, 3, "Lakshika Swarnamali", "A L Swaranamali", "Batch16", 071298765, 4.01, 3.78, 4.13, 3.77, 3.79, "lakshikaswarnamali@gmail.com", "cv",
                     "Software Engineering", "QA Engineering", "UI/UX", DATE '2019-08-19', "ITM", "lakshika");
 INSERT INTO Student (StudentId, BatchId, CreatedBy, RoleId, FullName, NameWithInitials, Batch, PhoneNumber, Sem1GPA, Sem2GPA, Sem3GPA, Sem4GPA, SGPA, 
                     Email, CV, PreferedArea1, PreferedArea2, PreferedArea3, DateOfStart, Degree, Password) 
-VALUES (4, 2, 2, 3, "Yashod Perera", "U L Y G Perera", "Batch16", 0716931384, 3.89, 3.78, 4.03, 3.57, 3.72, "hasinisenanayaka@gmail.com", 
+VALUES (4, 2, 2, 3, "Yashod Perera", "U L Y G Perera", "Batch16", 0716931384, 3.89, 3.78, 4.03, 3.57, 3.72, "hasinisenanayaka@gmail.com", "cv",
                     "UI/UX", "Networking", "QA Engineering", DATE '2019-08-19', "IT", "yashod");
 
 /*

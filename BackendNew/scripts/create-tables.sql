@@ -102,7 +102,7 @@ CREATE TABLE Monthly_Report (
     ReportNumber int NOT NULL,
     Report varchar(100) NOT NULL,
     PRIMARY KEY (StudentId, ReportNumber),
-    FOREIGN KEY (StudentId) REFERENCES Student(StudentId),
+    FOREIGN KEY (StudentId) REFERENCES Student(StudentId)
 );
 
 CREATE TABLE Feedback (
