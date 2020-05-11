@@ -1,6 +1,11 @@
+/*
+ This script is to add all the tables to the database including Role table, Admin table, Company Table, Batch table,
+ Vacancy table, Student table, Student_Select_Company table, Monthly report table and Feedback table
+ */
 CREATE TABLE Role (
     RoleId int NOT NULL AUTO_INCREMENT,
-    Description varchar (255) NOT NULL,
+    Name varchar(255) NOT NULL,
+    Description varchar(255),
     PRIMARY KEY (RoleId)
 );
 
@@ -129,5 +134,7 @@ CREATE TABLE Feedback (
     MentorName varchar(100),
     MentorPhoneNumber int,
     MentorEmail varchar(100),
-    MentorDesgnation varchar(100)
+    MentorDesgnation varchar(100),
+    PRIMARY KEY (FeedbackId),
+    FOREIGN KEY (StudentId) REFERENCES Student(StudentId)
 );
