@@ -23,3 +23,35 @@ VALUES (1, 1, "Amila Perera", 0773456746, "amilaperera@gmail.com", "amila");
 -- Admin role admin
 INSERT INTO Admin (AdminId, RoleId, Name, PhoneNumber, Email, Password) 
 VALUES (2, 1, "Kasun Fonseka", 0715383948, "kasunfonseka@gmail.com", "kasun");
+
+/*
+    Create three companies naming virtusa, wso2, creative software
+*/
+-- Virtusa Company
+INSERT INTO Company (CompanyId, CreatedBy, RoleId, Name, Location, Description,
+    ContactPerson ,
+    PhoneNumber ,
+    Website ,
+    Email ,
+    InterviewProgress ,
+    Password  ,) 
+VALUES (2, 1, "Kasun Fonseka", 0715383948, "kasunfonseka@gmail.com", "kasun");
+
+
+CREATE TABLE Company (
+    CompanyId int NOT NULL AUTO_INCREMENT,
+    CreatedBy int NOT NULL,
+    RoleId int NOT NULL,
+    Name varchar(255) NOT NULL,
+    Location varchar(255),
+    Description varchar(255),
+    ContactPerson varchar(255),
+    PhoneNumber int,
+    Website varchar(255),
+    Email varchar(255),
+    InterviewProgress varchar(255),
+    Password varchar(255) NOT NULL,
+    PRIMARY KEY (CompanyId),
+    FOREIGN KEY (RoleId) REFERENCES Role(RoleId),
+    FOREIGN KEY (CreatedBy) REFERENCES Admin(AdminId)
+);
