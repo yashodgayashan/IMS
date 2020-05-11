@@ -41,7 +41,6 @@ CREATE TABLE Company (
 CREATE TABLE Batch (
     BatchId int NOT NULL AUTO_INCREMENT,
     CreatedBy int NOT NULL,
-    RoleId int NOT NULL,
     Description varchar(255),
     Yeah int,
     StartDate DATE,
