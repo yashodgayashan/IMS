@@ -134,3 +134,21 @@ INSERT INTO Monthly_Report (StudentId, ReportNumber, Report)
 VALUES (4, 1, "report url");
 INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
 VALUES (4, 4, "report url");
+
+/*
+    Add feedback dummy data
+*/
+INSERT INTO Feedback (FeedbackId, StudentId, SubmittedDate, CompanyId, StartDate, ProjectBrief, Mentor, IsGivenAdequateWork, WorkEnvironment, EmployeeSupportiveness,
+                       ManagementSupportiveness, SeniorEngineerCount, isPayed, Payment, Problems, Suggesions, OverallComment, Satisfaction, IsRecommended, 
+                       ContactPerson, ContactPersonPhoneNumber, ContactPersonEmail, ContactPersonDesignation, MentorName, MentorPhoneNumber, MentorEmail,
+                       MentorDesgnation ) 
+VALUES (1, 1, DATE '2020-02-01', 1, DATE '2020-02-01', "It is a group project", "Good mentor", 1, "Good Environment", "Supportive",
+        "Not much supportive", 12, 1, 15000, "Lot of time for transport", "Give a shuttle", "Good", "Yes satisfied", 1,
+        "Nimal", 0773862763, "nimalamarasekara@gmail.com", "HR", "Amila", 0712456783, "amilamadush@gmail.com", "techlead");
+INSERT INTO Feedback (FeedbackId, StudentId, SubmittedDate, CompanyId, StartDate, ProjectBrief, Mentor, IsGivenAdequateWork, WorkEnvironment, EmployeeSupportiveness,
+                       ManagementSupportiveness, SeniorEngineerCount, isPayed, Payment, Problems, Suggesions, OverallComment, Satisfaction, IsRecommended, 
+                       ContactPerson, ContactPersonPhoneNumber, ContactPersonEmail, ContactPersonDesignation, MentorName, MentorPhoneNumber, MentorEmail,
+                       MentorDesgnation ) 
+VALUES (2, 3, DATE '2020-03-01', 2, DATE '2020-01-01', "It is an individual Project", "fair mentoring", 1, "moderate Environment", "Not much Supportive",
+        "Less supportive", 10, 1, 12000, "Didt't give foods", "Give foods", "normal", "Yes satisfied", 1,
+        "Amangi", 0712345763, "amanginimali@gmail.com", "HR", "Malith", 0717435621, "malithperera@gmail.com", "manager");

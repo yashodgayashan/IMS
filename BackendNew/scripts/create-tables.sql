@@ -134,5 +134,6 @@ CREATE TABLE Feedback (
     MentorEmail varchar(100),
     MentorDesgnation varchar(100),
     PRIMARY KEY (FeedbackId),
-    FOREIGN KEY (StudentId) REFERENCES Student(StudentId)
+    FOREIGN KEY (StudentId) REFERENCES Student(StudentId),
+    FOREIGN KEY (CompanyId) REFERENCES Company(CompanyId)
 );
