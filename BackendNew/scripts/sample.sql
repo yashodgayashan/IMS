@@ -33,9 +33,7 @@ GROUP BY
     S.Batch,
     B.Name,
     SC.StudentId
-    /*
-     */
-    -- Get selected Students
+    /*Get selected Students*/
 SELECT
     S.NameWithInitials as Name,
     S.Batch as RegNo,
@@ -51,3 +49,13 @@ WHERE
     AND S.StudentId = SC.StudentId
     AND C.CompanyId = SC.CompanyId
     AND SC.IsSelected = 1
+    /*Get selected Students*/
+SELECT
+    S.NameWithInitials as Name,
+    S.Batch as RegNo,
+    B.Name as InternBatch
+FROM
+    Student S,
+    Batch B
+WHERE
+    S.BatchId = B.BatchId
