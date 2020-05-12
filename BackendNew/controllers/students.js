@@ -5,6 +5,7 @@ exports.getStudents = (req, res) => {
   var company = req.query.company;
 
   if (isSelected) {
+    students.getSelectedStudents(isSelected, () => {});
     // Get selected or not selected students
   } else if (company) {
     // Get students by companywise

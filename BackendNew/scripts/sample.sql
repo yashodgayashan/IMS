@@ -49,7 +49,7 @@ WHERE
     AND S.StudentId = SC.StudentId
     AND C.CompanyId = SC.CompanyId
     AND SC.IsSelected = 1
-    /*Get selected Students*/
+    /*Get All Students*/
 SELECT
     S.NameWithInitials as Name,
     S.Batch as RegNo,
