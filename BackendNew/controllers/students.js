@@ -5,8 +5,17 @@ exports.getStudents = (req, res) => {
   var company = req.query.company;
 
   if (isSelected) {
-    students.getSelectedStudents(isSelected, () => {});
     // Get selected or not selected students
+    students.getSelectedStudents(isSelected, (err, result) => {
+      if (err) {
+        console.error("Error :" + err.message);
+        res.status(404);
+      } else {
+        console.log("Get Student control function");
+        res.status(200);
+        res.send(result.data);
+      }
+    });
   } else if (company) {
     // Get students by companywise
   } else {
