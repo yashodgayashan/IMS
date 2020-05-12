@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const debug = require("debug")("http");
 
 // Import Routes
 const studentRoutes = require("./routes/students.js");
@@ -26,6 +27,7 @@ app.use(cors());
 
 // Set the app to listen on the port.
 app.listen(port, () => {
+  debug(`Start server at port : ${port}`);
   console.log(`Server running on port: ${port}`);
 });
 

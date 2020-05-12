@@ -6,7 +6,6 @@ const Student = function(student) {
   this.email = student.email;
   this.name = student.name;
   this.password = student.password;
-
 };
 
 module.exports = Student;

@@ -152,3 +152,5 @@ INSERT INTO Feedback (FeedbackId, StudentId, SubmittedDate, CompanyId, StartDate
 VALUES (2, 3, DATE '2020-03-01', 2, DATE '2020-01-01', "It is an individual Project", "fair mentoring", 1, "moderate Environment", "Not much Supportive",
         "Less supportive", 10, 1, 12000, "Didt't give foods", "Give foods", "normal", "Yes satisfied", 1,
         "Amangi", 0712345763, "amanginimali@gmail.com", "HR", "Malith", 0717435621, "malithperera@gmail.com", "manager");
+
+SELECT S.NameWithInitials as Name, S.Batch as RegNo, B.Name as InternBatch  FROM Student S, Batch B WHERE S.BatchId = B.BatchId
