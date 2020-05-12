@@ -43,6 +43,16 @@ exports.getSelectedStudents = (val, callback) => {
   });
 };
 
-exports.getStudentsByCompany = company => {
+exports.getStudentsByCompany = (comapnyName, callback) => {
   // Get Selected students by compan
+  var sqlString =
+    "SELECT S.NameWithInitials as Name, S.Batch as RegNo, B.Name as InternBatch, SC.StudentId FROM Student S, Batch B, Student_Select_Company SC, Company C " +
+    " WHERE S.BatchId = B.BatchId AND S.StudentId = SC.StudentId AND C.CompanyId = SC.CompanyId AND SC.IsSelected = 1 AND C.Name = ?";
+  sql.query(sqlString, [comapnyName], (err, result) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, { data: result });
+    }
+  });
 };
