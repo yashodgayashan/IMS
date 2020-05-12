@@ -76,3 +76,10 @@ WHERE
     AND C.CompanyId = SC.CompanyId
     AND SC.IsSelected = 1
     AND C.Name = ?
+    /*Check whether company exsists*/
+SELECT
+    COUNT(Name)
+FROM
+    Company
+WHERE
+    Name = "?"
