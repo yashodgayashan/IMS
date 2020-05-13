@@ -1,9 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const students = require("../controllers/students");
 
-router.get("/", (req, res) => {
-  res.send("get Students");
-});
+router.get("/", students.getStudents);
 
 router.post("/", (req, res) => {
   res.send("post students");
