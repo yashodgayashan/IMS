@@ -1,7 +1,7 @@
 -- Get not selected students
 SELECT
     S.NameWithInitials as Name,
-    S.Batch as RegNo,
+    S.IndexNumber as RegNo,
     B.Name as InternBatch,
     SC.StudentId
 FROM
@@ -30,13 +30,13 @@ WHERE
     )
 GROUP BY
     S.NameWithInitials,
-    S.Batch,
+    S.IndexNumber,
     B.Name,
     SC.StudentId
     /*Get selected Students*/
 SELECT
     S.NameWithInitials as Name,
-    S.Batch as RegNo,
+    S.IndexNumber as RegNo,
     B.Name as InternBatch,
     SC.StudentId
 FROM
@@ -52,7 +52,7 @@ WHERE
     /*Get All Students*/
 SELECT
     S.NameWithInitials as Name,
-    S.Batch as RegNo,
+    S.IndexNumber as RegNo,
     B.Name as InternBatch
 FROM
     Student S,
@@ -62,7 +62,7 @@ WHERE
     /* Get Selected students by company*/
 SELECT
     S.NameWithInitials as Name,
-    S.Batch as RegNo,
+    S.IndexNumber as RegNo,
     B.Name as InternBatch,
     SC.StudentId
 FROM
