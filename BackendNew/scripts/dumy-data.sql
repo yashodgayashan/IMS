@@ -153,4 +153,4 @@ VALUES (2, 3, DATE '2020-03-01', 2, DATE '2020-01-01', "It is an individual Proj
         "Less supportive", 10, 1, 12000, "Didt't give foods", "Give foods", "normal", "Yes satisfied", 1,
         "Amangi", 0712345763, "amanginimali@gmail.com", "HR", "Malith", 0717435621, "malithperera@gmail.com", "manager");
 
-SELECT S.NameWithInitials as Name, S.Batch as RegNo, B.Name as InternBatch  FROM Student S, Batch B WHERE S.BatchId = B.BatchId
+SELECT S.NameWithInitials as Name, S.Batch as RegNo, B.Name as InternBatch FROM Student S, Batch B WHERE S.BatchId = B.BatchId
