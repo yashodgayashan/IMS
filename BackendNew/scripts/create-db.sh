@@ -12,3 +12,4 @@ mysql -u $userName -h $hostName -p <<EOF
     CREATE DATABASE IF NOT EXISTS $1;
     USE $1;
 EOF
+

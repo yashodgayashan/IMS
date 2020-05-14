@@ -67,7 +67,7 @@ CREATE TABLE Student (
     RoleId int NOT NULL,
     FullName varchar(255),
     NameWithInitials varchar(100),
-    Batch varchar(7),
+    IndexNumber varchar(7),
     PhoneNumber int,
     Sem1GPA float,
     Sem2GPA float,
