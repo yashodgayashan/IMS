@@ -3,7 +3,7 @@ const sql = require("../models/database.js");
 
 exports.getStudents = callback => {
   var sqlString =
-    "SELECT S.NameWithInitials as Name, S.IndexNumber as RegNo, B.Name as InternBatch FROM Student S, Batch B WHERE S.BatchId = B.BatchId";
+    "SELECT S.NameWithInitials as Name, S.i as RegNo, B.Name as InternBatch FROM Student S, Batch B WHERE S.BatchId = B.BatchId";
   sql.query(sqlString, (err, result) => {
     if (err) {
       callback(err, null);
@@ -16,7 +16,7 @@ exports.getStudents = callback => {
 exports.getSelectedStudents = (val, callback) => {
   // Sql query for not selected students.
   var notSelectedStudentsSql =
-    "SELECT S.NameWithInitials as Name, S.IndexNumber as RegNo, B.Name as InternBatch, SC.StudentId FROM Student S, Batch B, Student_Select_Company SC, Company C WHERE S.BatchId = B.BatchId AND S.StudentId = SC.StudentId AND C.CompanyId = SC.CompanyId AND SC.IsSelected = 0 AND S.NameWithInitials NOT IN (SELECT S.NameWithInitials FROM Student S, Batch B, Student_Select_Company SC, Company C WHERE S.BatchId = B.BatchId AND S.StudentId = SC.StudentId AND C.CompanyId = SC.CompanyId AND SC.IsSelected = 1) GROUP BY S.NameWithInitials, S.IndexNumber, B.Name, SC.StudentId";
+    "SELECT S.NameWithInitials as Name, S.i as RegNo, B.Name as InternBatch, SC.StudentId FROM Student S, Batch B, Student_Select_Company SC, Company C WHERE S.BatchId = B.BatchId AND S.StudentId = SC.StudentId AND C.CompanyId = SC.CompanyId AND SC.IsSelected = 0 AND S.NameWithInitials NOT IN (SELECT S.NameWithInitials FROM Student S, Batch B, Student_Select_Company SC, Company C WHERE S.BatchId = B.BatchId AND S.StudentId = SC.StudentId AND C.CompanyId = SC.CompanyId AND SC.IsSelected = 1) GROUP BY S.NameWithInitials, S.IndexNumber, B.Name, SC.StudentId";
   // Sql query for selected students.
   var selectedStudentsSql =
     "SELECT S.NameWithInitials as Name, S.IndexNumber as RegNo, B.Name as InternBatch, SC.StudentId FROM Student S, Batch B, Student_Select_Company SC," +
@@ -69,4 +69,15 @@ exports.getStudent = (studentId, callback) => {
       callback(null, { data: result });
     }
   });
+};
+
+exports.BasicStudent = student => {
+  this.batchId = student.batchId;
+  this.createdBy = student.createdBy;
+  this.roleId = 3;
+  this.studentId = student.studentId;
+  this.email = student.email;
+  this.nameWithInitials = student.nameWithInitials;
+  this.indexNumber = student.indexNumber;
+  this.password = student.password;
 };
