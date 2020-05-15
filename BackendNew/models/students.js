@@ -60,7 +60,8 @@ exports.getStudentsByCompany = (comapnyName, callback) => {
 exports.getStudent = (studentId, callback) => {
   var sqlString =
     "SELECT S.FullName, S.NameWithInitials, S.IndexNumber, S.PhoneNumber, S.Sem1GPA, S.Sem2GPA, S.Sem3GPA, S.Sem4GPA, S.SGPA, S.Email, S.CV, S.PreferedArea1, " +
-    "S.PreferedArea2, S.PreferedArea3, S.DateOfStart, S.Degree, B.Name FROM Student S, Batch B WHERE S.BatchId = B.BatchId AND S.StudentId = 2;";
+    "S.PreferedArea2, S.PreferedArea3, S.DateOfStart, S.Degree, B.Name FROM Student S, Batch B WHERE S.BatchId = B.BatchId AND S.StudentId = ?";
+
   sql.query(sqlString, [studentId], (err, result) => {
     if (err) {
       callback(err, null);
