@@ -52,3 +52,21 @@ exports.getStudents = (req, res) => {
     });
   }
 };
+
+exports.getStudent = (req, res) => {
+  var studentId = req.query.studentId;
+
+  students.getStudent(
+    (studentId,
+    (err, result) => {
+      if (err) {
+        console.error("Error :" + err);
+        res.status(404);
+      } else {
+        console.log("Get Student control function");
+        res.status(200);
+        res.send(result.data);
+      }
+    })
+  );
+};
