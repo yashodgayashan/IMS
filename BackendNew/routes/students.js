@@ -8,9 +8,7 @@ router.post("/", (req, res) => {
   res.send("post students");
 });
 
-router.get("/:studentId", (req, res) => {
-  res.send("get student Id");
-});
+router.get("/:studentId", students.getStudent);
 
 router.put("/:studentId", (req, res) => {
   res.send("put student Id");
