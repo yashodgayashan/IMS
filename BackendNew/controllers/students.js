@@ -67,3 +67,14 @@ exports.getStudent = (req, res) => {
     }
   });
 };
+
+const BasicStudent = function(student) {
+  this.batchId = student.batchId;
+  this.createdBy = student.createdBy;
+  this.roleId = 3;
+  this.studentId = student.studentId;
+  this.email = student.email;
+  this.nameWithInitials = student.nameWithInitials;
+  this.indexNumber = student.indexNumber;
+  this.password = student.password;
+};
