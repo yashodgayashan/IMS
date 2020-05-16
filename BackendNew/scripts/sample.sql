@@ -72,3 +72,28 @@ FROM
     Company
 WHERE
     Name = "?"
+    /*Get a student by Id*/
+SELECT
+    S.FullName,
+    S.NameWithInitials,
+    S.IndexNumber,
+    S.PhoneNumber,
+    S.Sem1GPA,
+    S.Sem2GPA,
+    S.Sem3GPA,
+    S.Sem4GPA,
+    S.SGPA,
+    S.Email,
+    S.CV,
+    S.PreferedArea1,
+    S.PreferedArea2,
+    S.PreferedArea3,
+    S.DateOfStart,
+    S.Degree,
+    B.Name
+FROM
+    Student S,
+    Batch B
+WHERE
+    S.BatchId = B.BatchId
+    AND S.StudentId = ?

@@ -4,13 +4,9 @@ const students = require("../controllers/students");
 
 router.get("/", students.getStudents);
 
-router.post("/", (req, res) => {
-  res.send("post students");
-});
+router.post("/", students.createBasicStudent);
 
-router.get("/:studentId", (req, res) => {
-  res.send("get student Id");
-});
+router.get("/:studentId", students.getStudent);
 
 router.put("/:studentId", (req, res) => {
   res.send("put student Id");
