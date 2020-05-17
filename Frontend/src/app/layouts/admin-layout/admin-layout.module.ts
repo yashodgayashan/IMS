@@ -12,6 +12,8 @@ import { NotSelectedStudentsComponent } from './pages/not-selected-students/not-
 import { MonthlyReportsComponent } from './pages/monthly-reports/monthly-reports.component';
 import { OrganizationsComponent } from './pages/organizations/organizations.component';
 import { UserComponent } from './pages/user/user.component';
+import { RequestsComponent } from './pages/requests/requests.component';
+import { ManageAdminsComponent } from './pages/manage-admins/manage-admins.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { UserComponent } from './pages/user/user.component';
     MonthlyReportsComponent,
     OrganizationsComponent,
     UserComponent,
+    RequestsComponent,
+    ManageAdminsComponent,
   ],
   imports: [
     CommonModule,

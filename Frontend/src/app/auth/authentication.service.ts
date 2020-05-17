@@ -25,8 +25,7 @@ export class AuthenticationService {
       "id": username,
       "password": password,
       "type": type
-    })
-      .pipe(map(
+    }).pipe(map(
         user => {
           // login successful if there's a jwt token in the response
           if (user || user.token) {

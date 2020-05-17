@@ -25,7 +25,7 @@ exports.findUser = (req, res) => {
                     let token = jwt.sign({ user },"topsecret", {expiresIn: '24h'});
                     
                     // return the JWT token for the future API calls
-                    res.send(200).json({
+                    res.status(200).send({
                         success: true,
                         message: 'Authentication successful!',
                         token: token
@@ -56,7 +56,7 @@ exports.findUser = (req, res) => {
                     let token = jwt.sign({ user },"topsecret", {expiresIn: '24h'});
                     
                     // return the JWT token for the future API calls
-                    res.send(200).json({
+                    res.status(200).send({
                         success: true,
                         message: 'Authentication successful!',
                         token: token
@@ -87,7 +87,7 @@ exports.findUser = (req, res) => {
                 let token = jwt.sign({ user },"topsecret", {expiresIn: '24h'});
                 
                 // return the JWT token for the future API calls
-                res.send(200).json({
+                res.status(200).send({
                     success: true,
                     message: 'Authentication successful!',
                     token: token

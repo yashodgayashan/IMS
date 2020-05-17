@@ -29,20 +29,21 @@ export class JwtInterceptor implements HttpInterceptor {
         if (!request.headers.has('Content-Type')) {
           request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
       }
-      return next.handle(request).pipe(
-        map((event: HttpEvent<any>) => {
-            if (event instanceof HttpResponse) {
-                catchError((error: HttpErrorResponse) => {
-                    let data = {};
-                    data = {
-                        reason: error && error.error.reason ? error.error.reason : '',
-                        status: error.status
-                    };
-                    // this.errorDialogService.openDialog(data);
-                    return throwError(error);
-                })
-            }
-            return event;
-        }));
+      return next.handle(request);
+    //   return next.handle(request).pipe(
+    //     map((event: HttpEvent<any>) => {
+    //         if (event instanceof HttpResponse) {
+    //             catchError((error: HttpErrorResponse) => {
+    //                 let data = {};
+    //                 data = {
+    //                     reason: error && error.error.reason ? error.error.reason : '',
+    //                     status: error.status
+    //                 };
+    //                 // this.errorDialogService.openDialog(data);
+    //                 return throwError(error);
+    //             })
+    //         }
+    //         return event;
+    //     }));
   }
 }

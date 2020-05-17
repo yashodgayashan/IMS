@@ -40,6 +40,7 @@ exports.getStudents = (req, res) => {
       }
     });
   } else {
+    //get list of all students
     students.getStudents((err, result) => {
       if (err) {
         console.error("Error :" + err);
@@ -53,6 +54,7 @@ exports.getStudents = (req, res) => {
   }
 };
 
+//get students based on index number
 exports.getStudent = (req, res) => {
   var studentId = req.params.studentId;
 
