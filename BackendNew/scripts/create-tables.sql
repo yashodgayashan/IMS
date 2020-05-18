@@ -9,8 +9,8 @@ CREATE TABLE Role (
 );
 
 CREATE TABLE Admin (
-    AdminId int NOT NULL AUTO_INCREMENT,
-    RoleName int,
+    AdminId varchar(255) NOT NULL,
+    RoleName varchar(255) NOT NULL,
     Name varchar(255) NOT NULL,
     PhoneNumber int,
     Email varchar(255),
@@ -20,9 +20,9 @@ CREATE TABLE Admin (
 );
 
 CREATE TABLE Company (
-    CompanyId int NOT NULL AUTO_INCREMENT,
-    CreatedBy int NOT NULL,
-    RoleName int NOT NULL,
+    CompanyId varchar(255) NOT NULL,
+    CreatedBy varchar(255) NOT NULL,
+    RoleName varchar(255) NOT NULL,
     Name varchar(255) NOT NULL,
     Location varchar(255),
     Description varchar(255),
@@ -38,9 +38,8 @@ CREATE TABLE Company (
 );
 
 CREATE TABLE Batch (
-    BatchId int NOT NULL AUTO_INCREMENT,
-    CreatedBy int NOT NULL,
-    Name varchar(255),
+    BatchId varchar(255) NOT NULL,
+    CreatedBy varchar(255) NOT NULL,
     Year int,
     StartDate DATE,
     EndDate DATE,
@@ -50,8 +49,8 @@ CREATE TABLE Batch (
 );
 
 CREATE TABLE Vacancy (
-    CompanyId int NOT NULL,
-    InternBatchId int NOT NULL,
+    CompanyId varchar(255) NOT NULL,
+    InternBatchId varchar(255) NOT NULL,
     Vacancies int,
     Filled int,
     PRIMARY KEY (CompanyId, InternBatchId),
@@ -60,12 +59,12 @@ CREATE TABLE Vacancy (
 );
 
 CREATE TABLE Student (
-    BatchId int NOT NULL,
-    CreatedBy int NOT NULL,
-    RoleName int NOT NULL,
+    IndexNumber varchar(255) NOT NULL,
+    BatchId varchar(255) NOT NULL,
+    CreatedBy varchar(255) NOT NULL,
+    RoleName varchar(255) NOT NULL,
     FullName varchar(255),
     NameWithInitials varchar(100),
-    IndexNumber varchar(7),
     PhoneNumber int,
     Sem1GPA float,
     Sem2GPA float,
@@ -87,32 +86,30 @@ CREATE TABLE Student (
 );
 
 CREATE TABLE Student_Select_Company (
-    BatchId int NOT NULL,
-    IndexNumber varchar(7),
-    CompanyId int NOT NULL,
+    BatchId varchar(255) NOT NULL,
+    IndexNumber varchar(255) NOT NULL,
+    CompanyId varchar(255) NOT NULL,
     IsSelected boolean DEFAULT 0,
     PRIMARY KEY (BatchId, IndexNumber, CompanyId),
-    FOREIGN KEY (IndexNumber) REFERENCES Student(IndexNumber),
-    FOREIGN KEY (BatchId) REFERENCES Batch(BatchId),
+    FOREIGN KEY (BatchId, IndexNumber) REFERENCES Student(BatchId, IndexNumber),
     FOREIGN KEY (CompanyId) REFERENCES Company(CompanyId)
 );
 
 CREATE TABLE Monthly_Report (
-    BatchId int NOT NULL,
+    BatchId varchar(255) NOT NULL,
     IndexNumber varchar(7),
     ReportNumber int NOT NULL,
     Report varchar(100) NOT NULL,
     PRIMARY KEY (BatchId, IndexNumber, ReportNumber),
-    FOREIGN KEY (IndexNumber) REFERENCES Student(IndexNumber),
-    FOREIGN KEY (BatchId) REFERENCES Batch(BatchId),
+    FOREIGN KEY (BatchId, IndexNumber) REFERENCES Student(BatchId, IndexNumber)
 );
 
 CREATE TABLE Feedback (
     FeedbackId int NOT NULL AUTO_INCREMENT,
-    BatchId int NOT NULL,
-    IndexNumber varchar(7),
+    BatchId varchar(255) NOT NULL,
+    IndexNumber varchar(255) NOT NULL,
     SubmittedDate DATE NOT NULL,
-    CompanyId int NOT NULL,
+    CompanyId varchar(255) NOT NULL,
     StartDate DATE NOT NULL,
     ProjectBrief varchar(100),
     Mentor varchar(100),
@@ -136,8 +133,7 @@ CREATE TABLE Feedback (
     MentorPhoneNumber int,
     MentorEmail varchar(100),
     MentorDesgnation varchar(100),
-    PRIMARY KEY (BatchId, IndexNumber, FeedbackId),
-    FOREIGN KEY (IndexNumber) REFERENCES Student(IndexNumber),
-    FOREIGN KEY (BatchId) REFERENCES Batch(BatchId),
+    PRIMARY KEY (FeedbackId),
+    FOREIGN KEY (BatchId, IndexNumber) REFERENCES Student(BatchId, IndexNumber),
     FOREIGN KEY (CompanyId) REFERENCES Company(CompanyId)
 );
