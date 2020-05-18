@@ -13,7 +13,7 @@ CREATE TABLE Admin (
     RoleName varchar(255) NOT NULL,
     Name varchar(255) NOT NULL,
     PhoneNumber int,
-    Email varchar(255),
+    Email varchar(255) NOT NULL,
     Password varchar(255) NOT NULL,
     PRIMARY KEY (AdminId),
     FOREIGN KEY (RoleName) REFERENCES Role(Name)
