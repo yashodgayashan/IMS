@@ -29,23 +29,23 @@ VALUES ('kasun', 'Admin', "Kasun Fonseka", 0715383948, "kasunfonseka@gmail.com",
 */
 -- Virtusa Company
 INSERT INTO Company (CompanyId, CreatedBy, RoleId, Name, Location, Description, ContactPerson, PhoneNumber, Website, Email, InterviewProgress, Password) 
-VALUES (1, 1, 4, "Virtusa", "Dematagoda", "Software company", "Nimesh", 0773589724, "www.virtusa.com", "info@virtusa.com", "Completed", "virtusa");
+VALUES ('virtusa', 'amila', 'Company', "Virtusa", "Dematagoda", "Software company", "Nimesh", 0773589724, "www.virtusa.com", "info@virtusa.com", "Completed", "virtusa");
 -- Wso2 Company
 INSERT INTO Company (CompanyId, CreatedBy, RoleId, Name, Location, Description, ContactPerson, PhoneNumber, Website, Email, InterviewProgress, Password) 
-VALUES (2, 1, 4, "Wso2", "Kollupitiya", "Software company", "Akila", 0729836273, "www.wso2.com", "info@wso2.com", "In progress", "wso2");
+VALUES ('wso2', 'amila', 'Company', "Wso2", "Kollupitiya", "Software company", "Akila", 0729836273, "www.wso2.com", "info@wso2.com", "In progress", "wso2");
 -- CreativeSoftware Company
 INSERT INTO Company (CompanyId, CreatedBy, RoleId, Name, Location, Description, ContactPerson, PhoneNumber, Website, Email, InterviewProgress, Password) 
-VALUES (3, 2, 4, "CreativeSoftware", "Maradana", "Software company", "Rangika", 0717824673, "www.CreativeSoftware.com", "info@CreativeSoftware.com", "In progress", "creativesoftware");
+VALUES ('creativesoftware', 'kasun', 'Company', "CreativeSoftware", "Maradana", "Software company", "Rangika", 0717824673, "www.CreativeSoftware.com", "info@CreativeSoftware.com", "In progress", "creativesoftware");
 
 /*
     Create two batches naming barch16 and batch17
 */
 -- Batch 16
 INSERT INTO Batch (BatchId, CreatedBy, Name, Year, StartDate, EndDate, CompanyCount) 
-VALUES (1, 1, "Batch16", 2019, DATE '2019-8-17',DATE '2020-3-01', 263);
+VALUES ("batch16", 'amila', "Batch16", 2019, DATE '2019-8-17',DATE '2020-3-01', 263);
 -- Batch 17
 INSERT INTO Batch (BatchId, CreatedBy, Name, Year, StartDate, EndDate, CompanyCount) 
-VALUES (2, 2, "Batch17", 2020, DATE '2020-8-17',DATE '2021-3-01', 242);
+VALUES ("batch17",'kasun', "Batch17", 2020, DATE '2020-8-17',DATE '2021-3-01', 242);
 
 /*
     Add four vacancies for dummy data
