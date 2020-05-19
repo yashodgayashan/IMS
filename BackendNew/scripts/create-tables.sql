@@ -3,27 +3,26 @@
  Vacancy table, Student table, Student_Select_Company table, Monthly report table and Feedback table
  */
 CREATE TABLE Role (
-    RoleId int NOT NULL AUTO_INCREMENT,
     Name varchar(255) NOT NULL,
     Description varchar(255),
-    PRIMARY KEY (RoleId)
+    PRIMARY KEY (Name)
 );
 
 CREATE TABLE Admin (
-    AdminId int NOT NULL AUTO_INCREMENT,
-    RoleId int,
+    AdminId varchar(255) NOT NULL,
+    RoleName varchar(255) NOT NULL,
     Name varchar(255) NOT NULL,
     PhoneNumber int,
-    Email varchar(255),
+    Email varchar(255) NOT NULL,
     Password varchar(255) NOT NULL,
     PRIMARY KEY (AdminId),
-    FOREIGN KEY (RoleId) REFERENCES Role(RoleId)
+    FOREIGN KEY (RoleName) REFERENCES Role(Name)
 );
 
 CREATE TABLE Company (
-    CompanyId int NOT NULL AUTO_INCREMENT,
-    CreatedBy int NOT NULL,
-    RoleId int NOT NULL,
+    CompanyId varchar(255) NOT NULL,
+    CreatedBy varchar(255) NOT NULL,
+    RoleName varchar(255) NOT NULL,
     Name varchar(255) NOT NULL,
     Location varchar(255),
     Description varchar(255),
@@ -34,14 +33,13 @@ CREATE TABLE Company (
     InterviewProgress varchar(255),
     Password varchar(255) NOT NULL,
     PRIMARY KEY (CompanyId),
-    FOREIGN KEY (RoleId) REFERENCES Role(RoleId),
+    FOREIGN KEY (RoleName) REFERENCES Role(Name),
     FOREIGN KEY (CreatedBy) REFERENCES Admin(AdminId)
 );
 
 CREATE TABLE Batch (
-    BatchId int NOT NULL AUTO_INCREMENT,
-    CreatedBy int NOT NULL,
-    Name varchar(255),
+    BatchId varchar(255) NOT NULL,
+    CreatedBy varchar(255) NOT NULL,
     Year int,
     StartDate DATE,
     EndDate DATE,
@@ -51,8 +49,8 @@ CREATE TABLE Batch (
 );
 
 CREATE TABLE Vacancy (
-    CompanyId int NOT NULL,
-    InternBatchId int NOT NULL,
+    CompanyId varchar(255) NOT NULL,
+    InternBatchId varchar(255) NOT NULL,
     Vacancies int,
     Filled int,
     PRIMARY KEY (CompanyId, InternBatchId),
@@ -61,13 +59,12 @@ CREATE TABLE Vacancy (
 );
 
 CREATE TABLE Student (
-    StudentId int NOT NULL AUTO_INCREMENT,
-    BatchId int NOT NULL,
-    CreatedBy int NOT NULL,
-    RoleId int NOT NULL,
+    IndexNumber varchar(255) NOT NULL,
+    BatchId varchar(255) NOT NULL,
+    CreatedBy varchar(255) NOT NULL,
+    RoleName varchar(255) NOT NULL,
     FullName varchar(255),
     NameWithInitials varchar(100),
-    IndexNumber varchar(7),
     PhoneNumber int,
     Sem1GPA float,
     Sem2GPA float,
@@ -82,34 +79,37 @@ CREATE TABLE Student (
     DateOfStart DATE,
     Degree varchar(100),
     Password varchar(100),
-    PRIMARY KEY (StudentId),
+    PRIMARY KEY (BatchId, IndexNumber),
     FOREIGN KEY (BatchId) REFERENCES Batch(BatchId),
     FOREIGN KEY (CreatedBy) REFERENCES Admin(AdminId),
-    FOREIGN KEY (RoleId) REFERENCES Role(RoleId)
+    FOREIGN KEY (RoleName) REFERENCES Role(Name)
 );
 
 CREATE TABLE Student_Select_Company (
-    StudentId int NOT NULL,
-    CompanyId int NOT NULL,
+    BatchId varchar(255) NOT NULL,
+    IndexNumber varchar(255) NOT NULL,
+    CompanyId varchar(255) NOT NULL,
     IsSelected boolean DEFAULT 0,
-    PRIMARY KEY (StudentId, CompanyId),
-    FOREIGN KEY (StudentId) REFERENCES Student(StudentId),
+    PRIMARY KEY (BatchId, IndexNumber, CompanyId),
+    FOREIGN KEY (BatchId, IndexNumber) REFERENCES Student(BatchId, IndexNumber),
     FOREIGN KEY (CompanyId) REFERENCES Company(CompanyId)
 );
 
 CREATE TABLE Monthly_Report (
-    StudentId int NOT NULL,
+    BatchId varchar(255) NOT NULL,
+    IndexNumber varchar(7),
     ReportNumber int NOT NULL,
     Report varchar(100) NOT NULL,
-    PRIMARY KEY (StudentId, ReportNumber),
-    FOREIGN KEY (StudentId) REFERENCES Student(StudentId)
+    PRIMARY KEY (BatchId, IndexNumber, ReportNumber),
+    FOREIGN KEY (BatchId, IndexNumber) REFERENCES Student(BatchId, IndexNumber)
 );
 
 CREATE TABLE Feedback (
     FeedbackId int NOT NULL AUTO_INCREMENT,
-    StudentId int NOT NULL,
+    BatchId varchar(255) NOT NULL,
+    IndexNumber varchar(255) NOT NULL,
     SubmittedDate DATE NOT NULL,
-    CompanyId int NOT NULL,
+    CompanyId varchar(255) NOT NULL,
     StartDate DATE NOT NULL,
     ProjectBrief varchar(100),
     Mentor varchar(100),
@@ -134,6 +134,6 @@ CREATE TABLE Feedback (
     MentorEmail varchar(100),
     MentorDesgnation varchar(100),
     PRIMARY KEY (FeedbackId),
-    FOREIGN KEY (StudentId) REFERENCES Student(StudentId),
+    FOREIGN KEY (BatchId, IndexNumber) REFERENCES Student(BatchId, IndexNumber),
     FOREIGN KEY (CompanyId) REFERENCES Company(CompanyId)
 );
