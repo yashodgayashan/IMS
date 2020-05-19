@@ -82,58 +82,58 @@ VALUES ("164106T", "batch17", 'kasun', 'Student', "Yashod Perera", "U L Y G Pere
 /*
     Add 8 student select company as dummy data
 */
-INSERT INTO Student_Select_Company (StudentId, CompanyId, IsSelected) 
-VALUES (1, 1, 1);
-INSERT INTO Student_Select_Company (StudentId, CompanyId) 
-VALUES (1, 3);
-INSERT INTO Student_Select_Company (StudentId, CompanyId) 
-VALUES (2, 1);
-INSERT INTO Student_Select_Company (StudentId, CompanyId) 
-VALUES (2, 2);
-INSERT INTO Student_Select_Company (StudentId, CompanyId) 
-VALUES (2, 3);
-INSERT INTO Student_Select_Company (StudentId, CompanyId) 
-VALUES (3, 2);
-INSERT INTO Student_Select_Company (StudentId, CompanyId) 
-VALUES (3, 3);
-INSERT INTO Student_Select_Company (StudentId, CompanyId, IsSelected) 
-VALUES (4, 2, 1);
+INSERT INTO Student_Select_Company (BatchId, IndexNumber, CompanyId, IsSelected) 
+VALUES ("batch16", "164124H", 'virtusa' 1);
+INSERT INTO Student_Select_Company (BatchId, IndexNumber, CompanyId) 
+VALUES ("batch16", "164124H", 'creativesoftware');
+INSERT INTO Student_Select_Company (BatchId, IndexNumber, CompanyId) 
+VALUES ("batch16", "164081J", 'virtusa');
+INSERT INTO Student_Select_Company (BatchId, IndexNumber, CompanyId) 
+VALUES ("batch16", "164081J", 'wso2');
+INSERT INTO Student_Select_Company (BatchId, IndexNumber, CompanyId) 
+VALUES ("batch16", "164081J", 'creativesoftware');
+INSERT INTO Student_Select_Company (BatchId, IndexNumber, CompanyId) 
+VALUES ("batch17", "164188T", 'wso2');
+INSERT INTO Student_Select_Company (BatchId, IndexNumber, CompanyId) 
+VALUES ("batch17", "164188T", 'creativesoftware');
+INSERT INTO Student_Select_Company (BatchId, IndexNumber, CompanyId, IsSelected) 
+VALUES ("batch17", "164106T", 'wso2', 1);
 
 /*
     Add monthly report dummy data
 */
-INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
-VALUES (1, 1, "report url");
-INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
-VALUES (1, 2, "report url");
-INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
-VALUES (1, 3, "report url");
-INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
-VALUES (1, 4, "report url");
-INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
-VALUES (1, 5, "report url");
-INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
-VALUES (1, 6, "report url");
-INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
-VALUES (2, 1, "report url");
-INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
-VALUES (2, 2, "report url");
-INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
-VALUES (2, 4, "report url");
-INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
-VALUES (2, 6, "report url");
-INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
-VALUES (3, 1, "report url");
-INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
-VALUES (3, 2, "report url");
-INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
-VALUES (3, 3, "report url");
-INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
-VALUES (3, 4, "report url");
-INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
-VALUES (4, 1, "report url");
-INSERT INTO Monthly_Report (StudentId, ReportNumber, Report) 
-VALUES (4, 4, "report url");
+INSERT INTO Monthly_Report (BatchId, IndexNumber, ReportNumber, Report) 
+VALUES ("batch16", "164124H", 1, "report url");
+INSERT INTO Monthly_Report (BatchId, IndexNumber, ReportNumber, Report) 
+VALUES ("batch16", "164124H", 2, "report url");
+INSERT INTO Monthly_Report (BatchId, IndexNumber, ReportNumber, Report) 
+VALUES ("batch16", "164124H", 3, "report url");
+INSERT INTO Monthly_Report (BatchId, IndexNumber, ReportNumber, Report) 
+VALUES ("batch16", "164124H", 4, "report url");
+INSERT INTO Monthly_Report (BatchId, IndexNumber, ReportNumber, Report) 
+VALUES ("batch16", "164124H", 5, "report url");
+INSERT INTO Monthly_Report (BatchId, IndexNumber, ReportNumber, Report) 
+VALUES ("batch16", "164124H", 6, "report url");
+INSERT INTO Monthly_Report (BatchId, IndexNumber, ReportNumber, Report) 
+VALUES ("batch16", "164081J", 1, "report url");
+INSERT INTO Monthly_Report (BatchId, IndexNumber, ReportNumber, Report) 
+VALUES ("batch16", "164081J", 2, "report url");
+INSERT INTO Monthly_Report (BatchId, IndexNumber, ReportNumber, Report) 
+VALUES ("batch16", "164081J", 4, "report url");
+INSERT INTO Monthly_Report (BatchId, IndexNumber, ReportNumber, Report) 
+VALUES ("batch16", "164081J", 6, "report url");
+INSERT INTO Monthly_Report (BatchId, IndexNumber, ReportNumber, Report) 
+VALUES ("batch17", "164188T", 1, "report url");
+INSERT INTO Monthly_Report (BatchId, IndexNumber, ReportNumber, Report) 
+VALUES ("batch17", "164188T", 2, "report url");
+INSERT INTO Monthly_Report (BatchId, IndexNumber, ReportNumber, Report) 
+VALUES ("batch17", "164188T", 3, "report url");
+INSERT INTO Monthly_Report (BatchId, IndexNumber, ReportNumber, Report) 
+VALUES ("batch17", "164188T", 4, "report url");
+INSERT INTO Monthly_Report (BatchId, IndexNumber, ReportNumber, Report) 
+VALUES ("batch17", "164106T", 1, "report url");
+INSERT INTO Monthly_Report (BatchId, IndexNumber, ReportNumber, Report) 
+VALUES ("batch17", "164106T", 4, "report url");
 
 /*
     Add feedback dummy data
