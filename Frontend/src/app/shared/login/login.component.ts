@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
       // this.sendNotification1();
       return;
     }
-    localStorage.setItem('username', this.username);
+    // localStorage.setItem('username', this.username);
     this.userType = this.loginService.getUserType(this.username);
     console.log("inside student login component" + this.userType + "this.userType");
     this.authService.login(this.username, this.password, this.userType)
@@ -48,26 +48,6 @@ export class LoginComponent implements OnInit {
           console.error('Observer got an error: ' + error),
             () => console.log('Observer got a complete notification')
         }
-      );
-    // this.loginService.getData(this.username, this.password, this.userType)
-    //   .subscribe(
-    //     // (data: match) => {
-    //     //   this.match = data;
-    //     // }
-    //     data => {
-    //       console.log('Observer got a next value: ' + data);
-    //       if(data=="1" && this.userType=="Student"){
-    //         this.router.navigate(['/student/dashboard']);
-    //       }else if(data=="1" && this.userType=="Admin"){
-    //         this.router.navigate(['/admin/dashboard']);
-    //       }else if(data=="1" && this.userType=="Company"){
-    //         this.router.navigate(['/company/dashboard']);
-    //       }else{
-    //         this.router.navigate(['/login']);
-    //       }
-    //     },
-    //     err => console.error('Observer got an error: ' + err),
-    //     () => console.log('Observer got a complete notification')
-    //   );
+      );   
   }
 }

@@ -5,6 +5,7 @@ import { STUDENTROUTES } from '../../sidebar/sidebar.component';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { LoginService } from '../login/login.service';
+import { AuthenticationService } from 'src/app/auth/authentication.service';
 
 @Component({
   selector: 'app-navbar',
@@ -25,7 +26,8 @@ export class NavbarComponent implements OnInit {
 
   @ViewChild("app-navbar", { static: false }) button;
 
-  constructor(location: Location, private renderer: Renderer2, private element: ElementRef, private router: Router, private loginService: LoginService) {
+  constructor(location: Location, private renderer: Renderer2, private element: ElementRef, 
+    private router: Router, private loginService: LoginService,private authService: AuthenticationService) {
     this.location = location;
     this.nativeElement = element.nativeElement;
     this.sidebarVisible = false;
@@ -107,6 +109,10 @@ export class NavbarComponent implements OnInit {
       navbar.classList.remove('bg-white');
     }
 
+  }
+  logOut(){
+    console.log("inside log out");
+    this.authService.logout();
   }
 
 }

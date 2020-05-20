@@ -4,7 +4,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { StudentLayoutComponent } from './layouts/student-layout/student-layout.component';
 import { CompanyLayoutComponent } from './layouts/company-layout/company-layout.component';
 import { LoginComponent } from './shared/login/login.component';
-
+import { AuthGuardService } from './auth/auth-guard.service';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -12,6 +12,7 @@ export const routes: Routes = [
   {
     path: 'admin',
     component: AdminLayoutComponent,
+    canActivate: [AuthGuardService],
     children: [
       {
         path: '',
@@ -27,6 +28,7 @@ export const routes: Routes = [
   {
     path: 'student',
     component: StudentLayoutComponent,
+    canActivate: [AuthGuardService],
     children: [
       {
         path: '',
@@ -42,6 +44,7 @@ export const routes: Routes = [
   {
     path: 'company',
     component: CompanyLayoutComponent,
+    canActivate: [AuthGuardService],
     children: [
       {
         path: '',
