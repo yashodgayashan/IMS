@@ -25,6 +25,7 @@ import { AuthenticationService } from './auth/authentication.service';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
     StudentLayoutComponent,
     CompanyLayoutComponent,
     LoginComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserAnimationsModule,
