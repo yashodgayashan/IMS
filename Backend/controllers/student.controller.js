@@ -33,6 +33,7 @@ exports.create = (req, res) => {
 
 // Retrieve all students from the database.
 exports.findAll = (req, res) => {
+  console.log("student: ");
   sql.query("SELECT * FROM student", (err, result) => {
     if (err) {
       console.log("error: ", err);
