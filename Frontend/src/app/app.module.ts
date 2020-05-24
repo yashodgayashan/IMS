@@ -27,7 +27,6 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +50,6 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-
   ],
   providers: [LoginService, AuthenticationService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
