@@ -1,8 +1,22 @@
 INSERT INTO student (id , name , email , password, role)
 VALUES ("164124V", "Hasini", "h@g.com", "123", "student");
+INSERT INTO student (id , name , email , password, role)
+VALUES ("164123V", "nishadi", "nisha@g.com", "123", "student");
+INSERT INTO student (id , name , email , password, role)
+VALUES ("164122V", "ahern", "ashern@g.com", "123", "student");
+INSERT INTO student (id , name , email , password, role)
+VALUES ("164121V", "niky", "nik@g.com", "123", "student");
+INSERT INTO student (id , name , email , password, role)
+VALUES ("164128V", "kamal", "km@g.com", "123", "student");
+INSERT INTO student (id , name , email , password, role)
+VALUES ("164129V", "sheron", "sheronD@g.com", "123", "student");
+INSERT INTO student (id , name , email , password, role)
+VALUES ("164127V", "buddika", "buddhi@g.com", "123", "student");
 
 INSERT INTO admin (id , name , email , password, role)
 VALUES ("a-a", "sonali", "s@g.com", "123", "admin");
 
 INSERT INTO organization (id , name , email , password, role)
 VALUES ("virtusa", "v", "v@g.com", "123", "organization");
+
+ DELETE FROM student WHERE id IS NULL;

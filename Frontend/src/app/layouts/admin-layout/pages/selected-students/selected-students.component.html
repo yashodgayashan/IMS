@@ -3,6 +3,13 @@
     <div class="card ">
       <div class="card-header">
         <h4 class="card-title"> Selected Student List</h4>
+        <div>
+          Name : <input type="text" [(ngModel)]="nameSearch">
+
+          Email : <input type="text" [(ngModel)]="emailSearch">
+
+          Index : <input type="text" [(ngModel)]="indexSearch">
+        </div>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -25,7 +32,7 @@
               </th>
             </thead>
             <tbody>
-              <tr *ngFor='let student of students'>
+              <tr *ngFor='let student of students | batch: nameSearch: emailSearch: indexSearch'>
                 <td> {{student.id}}</td>
                 <td> {{student.name}}</td>
                 <td> {{student.email}}</td>

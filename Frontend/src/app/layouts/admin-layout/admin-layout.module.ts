@@ -14,6 +14,7 @@ import { OrganizationsComponent } from './pages/organizations/organizations.comp
 import { UserComponent } from './pages/user/user.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { ManageAdminsComponent } from './pages/manage-admins/manage-admins.component';
+import { BatchFilter } from 'src/app/filters/BatchFilter.pipes';
 
 @NgModule({
   declarations: [
@@ -26,13 +27,15 @@ import { ManageAdminsComponent } from './pages/manage-admins/manage-admins.compo
     UserComponent,
     RequestsComponent,
     ManageAdminsComponent,
+    BatchFilter
   ],
   imports: [
     CommonModule,
     AdminLayoutRoutingModule,
     FormsModule,
     NgbModule
-  ]
+  ],
+  exports: [BatchFilter]
 })
 export class AdminLayoutModule { }
 

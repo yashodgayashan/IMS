@@ -9,6 +9,9 @@ import { Student} from 'src/app/layouts/admin-layout/models/student.model';
 })
 export class SelectedStudentsComponent implements OnInit {
   students: Student[];
+  nameSearch: string="";
+  emailSearch: string="";
+  indexSearch: string="";
   constructor(private stuService: StudentService) { }
 
   ngOnInit(): void {
