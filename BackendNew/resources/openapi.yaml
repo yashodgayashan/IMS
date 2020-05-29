@@ -33,7 +33,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Student"
+                type: array
+                items:
+                  $ref: "#/components/schemas/BasicStudent"
         "401":
           description: Authorization failure(Unauthorized).
           content:
