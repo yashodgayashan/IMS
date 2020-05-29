@@ -328,7 +328,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Feedback"
+                type: array
+                items:
+                  $ref: "#/components/schemas/Feedback"
         "404":
           description: Application not found(Not Found).
           content:
@@ -378,13 +380,22 @@ paths:
                 $ref: "#/components/schemas/Feedback"
         "400":
           description: Invalid data supplied
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
         "404":
           description: Feedback not found(Not Found).
           content:
             application/json:
               schema:
-                type: string
-                description: Reason
+                type: object
+                properties:
+                  reason:
+                    type: string
   /student/{student-id}/confirmation:
     get:
       description: Return confirmed company of a student
