@@ -277,7 +277,7 @@ paths:
                     type: string
         "404":
           description: students not found
-  /student/{student-id}/feedback:
+  /student/{student-id}/feedbacks:
     post:
       description: Create feedback
       parameters:
@@ -300,11 +300,19 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Feedback"
+                type: object
+                properties:
+                  reason:
+                    type: string
         "405":
           description: Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
     get:
       description: Get all feedback from students
       parameters:
@@ -1328,6 +1336,8 @@ components:
           type: string
         companyId:
           type: string
+        submittedDate:
+          $ref: "#/components/schemas/Date"
         startDate:
           $ref: "#/components/schemas/Date"
         projectBrief:
