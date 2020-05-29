@@ -1286,6 +1286,13 @@ components:
                 type: string
               companyId:
                 type: integer
+        preferedArea:
+          type: array
+          items:
+            type: object
+            properties:
+              area:
+                type: string
         cv:
           type: string
         selectedCompany:
