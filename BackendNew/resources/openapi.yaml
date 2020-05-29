@@ -254,18 +254,6 @@ paths:
       description: Get student Counts
       parameters:
         - in: query
-          name: isSelected
-          description: To get selected students specificaly..
-          required: false
-          schema:
-            type: string
-        - in: query
-          name: isFormSubmitted
-          description: To get students who have completed personal details specificaly..
-          required: false
-          schema:
-            type: string
-        - in: query
           name: batch
           description: To get studentList for specific batch
           required: false
