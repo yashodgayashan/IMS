@@ -1214,6 +1214,21 @@ paths:
 
 components:
   schemas:
+    createStudent:
+      type: object
+      properties:
+        id:
+          type: string
+          description: "The index number of the student"
+        batch:
+          type: string
+          description: "The intern batch of the student"
+        fullName:
+          type: string
+        nameWithInitials:
+          type: string
+        password:
+          type: string
     BasicStudent:
       type: object
       properties:
