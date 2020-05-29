@@ -1212,6 +1212,37 @@ paths:
 
 components:
   schemas:
+    BasicStudent:
+      type: object
+      properties:
+        id:
+          type: string
+          description: "The index number of the student"
+        batch:
+          type: string
+          description: "The intern batch of the student"
+        fullName:
+          type: string
+        nameWithInitials:
+          type: string
+        email:
+          type: string
+        telephoneNumber:
+          type: integer
+        gpa:
+          $ref: "#/components/schemas/GPA"
+        isSelected:
+          type: boolean
+        selectedCompany:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+        isCompleted:
+          type: boolean
+          description: "Whether the student has completed the information"
     Student:
       type: object
       properties:
