@@ -1,0 +1,1374 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: IMS Platform
+  description: This is the RESTfull API specification for the IMS platform which is developed for the Faculty of Information technology.
+
+paths:
+  /students:
+    get:
+      description: Get all students
+      parameters:
+        - in: query
+          name: isSelected
+          description: To get selected students specificaly..
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: companyName
+          description: To get studentList for specific company
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: batch
+          description: To get studentList for specific batch
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response(Success).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Student"
+        "401":
+          description: Authorization failure(Unauthorized).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "404":
+          description: Students not found(Not Found).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+    post:
+      description: Create a student.
+      requestBody:
+        description: Add students to database
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Student"
+      responses:
+        "201":
+          description: Successfull Created(Created).
+          content:
+            application/json:
+              schema:
+                type: string
+        "401":
+          description: Authorization failure(Unauthorized).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "406":
+          description: Inputs are not acceptable(Not acceptable).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+  /student/{student-id}:
+    get:
+      description: Returns a single student
+      parameters:
+        - in: path
+          name: student-id
+          description: details of student to return
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response(Success).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Student"
+        "401":
+          description: Authorization failure(Unauthorized).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "404":
+          description: Student not found(Not Found).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+    put:
+      description: update a student
+      parameters:
+        - name: student-id
+          in: path
+          description: details of student to return
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: update Student object that needs to be added to the db
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Student"
+      responses:
+        "200":
+          description: Successful response (Success).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "401":
+          description: Authorization failure(Unauthorized).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "404":
+          description: Student not found(Not Found).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "406":
+          description: Student not acceptable(Not Acceptable).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+    delete:
+      description: Delete a student
+      parameters:
+        - name: student-id
+          in: path
+          description: details of student to return
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successfully deleted(Success response).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "400":
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "404":
+          description: Student not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+  /students/graph:
+    get:
+      description: Get student Counts
+      parameters:
+        - in: query
+          name: isSelected
+          description: To get selected students specificaly..
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: isFormSubmitted
+          description: To get students who have completed personal details specificaly..
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: batch
+          description: To get studentList for specific batch
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response(Success).
+          content:
+            application/json:
+              schema:
+                type: integer
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "404":
+          description: students not found
+  /student/{student-id}/feedback:
+    post:
+      description: Create feedback
+      parameters:
+        - name: student-id
+          in: path
+          description: details of student to return
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Add feedback to database
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Feedback"
+      responses:
+        "201":
+          description: Successful response(Success).
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Feedback"
+        "405":
+          description: Invalid input
+    get:
+      description: Get all feedback from students
+      parameters:
+        - name: student-id
+          in: path
+          description: details of student to return
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response(Success).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Feedback"
+        "404":
+          description: Application not found(Not Found).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+  /student/{student-id}/feedback/{feedback-id}:
+    get:
+      description: Returns a single feedback from a student.
+      parameters:
+        - name: student-id
+          in: path
+          description: Details of student to return.
+          required: true
+          schema:
+            type: string
+        - name: feedback-id
+          in: path
+          description: Feedback of student to return.
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: batch
+          description: To get feedback given by student for specific batch
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response(Success).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Feedback"
+        "400":
+          description: Invalid data supplied
+        "404":
+          description: Feedback not found(Not Found).
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Reason
+  /student/{student-id}/confirmation:
+    get:
+      description: Return confirmed company of a student
+      parameters:
+        - name: student-id
+          in: path
+          description: confirmed company for specific student.
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: batch
+          description: get confirmed company for a student in specific batch
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response (Success).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Confirmation"
+        "401":
+          description: Authorization failure(Unauthorized).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "404":
+          description: Student not found(Not Found).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+    post:
+      description: Post a new confirmation company
+      parameters:
+        - name: student-id
+          in: path
+          description: Details of student to return.
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: batch
+          description: confirmation company for a student and specific batch
+          required: false
+          schema:
+            type: string
+      requestBody:
+        description: Add confirmation to database
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Confirmation"
+      responses:
+        "201":
+          description: Successful response(Success).
+          content:
+            application/json:
+              schema:
+                type: string
+        "401":
+          description: Authorization failure(Unauthorized).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "404":
+          description: Student not found(Not Found).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+  /students/{student-id}/reports:
+    get:
+      description: This will get all reports submitted by the student
+      parameters:
+        - name: student-id
+          in: path
+          description: Monthly reports of a student to return.
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: batch
+          description: get all reports submitted by the student for specific batch
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response (Success).
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: integer
+                    submittedDate:
+                      $ref: "#/components/schemas/Date"
+        "401":
+          description: Authorization failure(Unauthorized).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "404":
+          description: Student not found(Not Found).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+    post:
+      description: This will create a new report
+      parameters:
+        - name: student-id
+          in: path
+          description: add new monthly report for specific student.
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: batch
+          description: add new monthly report for specific student for specific batch
+          required: false
+          schema:
+            type: string
+      requestBody:
+        description: Add confirmation to database
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                report:
+                  type: string
+                submittedDate:
+                  $ref: "#/components/schemas/Date"
+      responses:
+        "201":
+          description: Successfully created (Created).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+        "401":
+          description: Authorization failure(Unauthorized).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "404":
+          description: Student not found(Not Found).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+  /students/{student-id}/reports/{report-id}:
+    get:
+      description: This will get a specific report submitted by the student
+      parameters:
+        - name: student-id
+          in: path
+          description: Details of student to return.
+          required: true
+          schema:
+            type: string
+        - name: report-id
+          in: path
+          description: The id of the report.
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response (Success).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: integer
+                  submittedDate:
+                    $ref: "#/components/schemas/Date"
+        "401":
+          description: Authorization failure(Unauthorized).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "404":
+          description: Student not found(Not Found).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+  /batches:
+    post:
+      description: create an entire new batch for internship.
+      requestBody:
+        description: Details regarding new batch.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Batch"
+      responses:
+        "201":
+          description: Batch has been sucessfully created(Success).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Batch"
+        "405":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Could not create a batch.
+    get:
+      description: Get details of all batches.
+      responses:
+        "200":
+          description: Successful response(Success).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Batch"
+        "404":
+          description: Details of batches are not found.
+          content:
+            application/json:
+              schema:
+                type: string
+                description: No batch details are found.
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Reason.
+  /batch/{batch-id}:
+    get:
+      description: Returns details of single batch
+      parameters:
+        - in: path
+          name: batch-id
+          description: Details of batch to return.
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response(Success).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Batch"
+        "401":
+          description: Authorization failure(Unauthorized).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "404":
+          description: Batch not found(Not Found).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+    put:
+      description: Update details of a batch
+      parameters:
+        - name: batch-id
+          in: path
+          description: details of batch to return
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: update batch details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Batch"
+      responses:
+        "200":
+          description: Successful response (Success).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "401":
+          description: Authorization failure(Unauthorized).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "404":
+          description: Batch not found(Not Found).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "406":
+          description: Batch not acceptable(Not Acceptable).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+
+  /admin:
+    post:
+      description: create an account for admin.
+      requestBody:
+        description: Details regarding new admin.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Admin"
+      responses:
+        "201":
+          description: Admin account has been sucessfully created(Success).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Admin"
+        "405":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Could not create a admin account.
+    get:
+      description: Get details of all IMS admins.
+      responses:
+        "200":
+          description: Successful response(Success).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Admin"
+        "404":
+          description: No admins are found.
+          content:
+            application/json:
+              schema:
+                type: string
+                description: No admin details are found.
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Reason.
+  /admin/{admin-id}:
+    get:
+      description: Returns details of a admin
+      parameters:
+        - in: path
+          name: admin-id
+          description: Details of admins to return.
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response(Success).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Admin"
+        "401":
+          description: Authorization failure(Unauthorized).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "404":
+          description: Admin not found(Not Found).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+    put:
+      description: Update details of a admin
+      parameters:
+        - name: admin-id
+          in: path
+          description: details of admin to return
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: update admin details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Admin"
+      responses:
+        "200":
+          description: Successful response (Success).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "401":
+          description: Authorization failure(Unauthorized).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "404":
+          description: Admin not found(Not Found).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "406":
+          description: Admin details could not accept(Not Acceptable).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+    delete:
+      description: Delete an admin
+      parameters:
+        - name: admin-id
+          in: path
+          description: details of admin to return
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successfully deleted(Success response).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "400":
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "404":
+          description: Student not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+  /company:
+    post:
+      description: create an account for a company.
+      requestBody:
+        description: Details regarding new company.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Company"
+      responses:
+        "201":
+          description: Company account has been sucessfully created(Success).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Company"
+        "405":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Could not create an account for company.
+    get:
+      description: Get details of all companies.
+      responses:
+        "200":
+          description: Successful response(Success).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Company"
+        "404":
+          description: No companies are found.
+          content:
+            application/json:
+              schema:
+                type: string
+                description: No company details are found.
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: string
+                description: Reason.
+  /company/{company-id}:
+    get:
+      description: Returns details of a company
+      parameters:
+        - in: path
+          name: company-id
+          description: Details of companies to return.
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response(Success).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Company"
+        "401":
+          description: Authorization failure(Unauthorized).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "404":
+          description: Comapny not found(Not Found).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+    put:
+      description: Update details of a company
+      parameters:
+        - name: company-id
+          in: path
+          description: details of company to return
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: update company details
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Company"
+      responses:
+        "200":
+          description: Successful response (Success).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "401":
+          description: Authorization failure(Unauthorized).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "404":
+          description: Company not found(Not Found).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "406":
+          description: Company details could not accept(Not Acceptable).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "500":
+          description: Server error(Internal Server Error).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+    delete:
+      description: Delete a company
+      parameters:
+        - name: company-id
+          in: path
+          description: details of company to return
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successfully deleted(Success response).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "400":
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+        "404":
+          description: Company not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reason:
+                    type: string
+
+components:
+  schemas:
+    Student:
+      type: object
+      properties:
+        id:
+          type: string
+        batchId:
+          type: integer
+        fullName:
+          type: string
+        nameWithInitials:
+          type: string
+        email:
+          type: string
+        telephoneNumber:
+          type: integer
+        gpa:
+          $ref: "#/components/schemas/GPA"
+        preferedOrg:
+          type: array
+          items:
+            type: object
+            properties:
+              companyName:
+                type: string
+              companyId:
+                type: integer
+        cv:
+          type: string
+        selectedCompany:
+          type: string
+        startdate:
+          $ref: "#/components/schemas/Date"
+        isSelected:
+          type: boolean
+        createdBy:
+          type: string
+    GPA:
+      type: object
+      properties:
+        first_sem:
+          type: number
+        second_sem:
+          type: number
+        third_sem:
+          type: number
+        fourth_sem:
+          type: number
+    Batch:
+      type: object
+      properties:
+        batchId:
+          type: integer
+        Description:
+          type: string
+        year:
+          type: string
+        startDate:
+          type: string
+        endDate:
+          type: string
+        allowedCompanyCount:
+          type: integer
+    Feedback:
+      type: object
+      properties:
+        feebackId:
+          type: integer
+        studentId:
+          type: string
+        companyId:
+          type: string
+        startDate:
+          $ref: "#/components/schemas/Date"
+        projectBrief:
+          type: string
+        mentor:
+          $ref: "#/components/schemas/Mentor"
+        isGivenAdequateWork:
+          type: string
+        workEnvironment:
+          type: string
+        employeeSupportiveness:
+          type: string
+        managementSupportiveness:
+          type: string
+        countSeniorSoftwareEngineerOrHigh:
+          type: integer
+        isPayed:
+          type: boolean
+        payment:
+          type: integer
+        problems:
+          type: string
+        suggesions:
+          type: string
+        overallComment:
+          type: string
+        Satisfaction:
+          type: string
+          enum:
+            - "High"
+            - "Medium"
+            - "Low"
+        isRecomended:
+          type: boolean
+        contactPerson:
+          $ref: "#/components/schemas/Mentor"
+    Mentor:
+      type: object
+      properties:
+        name:
+          type: string
+        phoneNumber:
+          type: integer
+        email:
+          type: string
+        designation:
+          type: string
+    Date:
+      type: object
+      properties:
+        year:
+          type: integer
+        month:
+          type: integer
+        day:
+          type: integer
+    Admin:
+      type: object
+      properties:
+        name:
+          type: string
+        phoneNumber:
+          type: integer
+        email:
+          type: string
+        designation:
+          type: string
+    Company:
+      type: object
+      properties:
+        name:
+          type: string
+        phoneNumber:
+          type: integer
+        email:
+          type: string
+        location:
+          type: string
+    Confirmation:
+      type: object
+      properties:
+        id:
+          type: string
+        nameWithInitials:
+          type: string
+        companyName:
+          type: string
+        companyId:
+          type: string
