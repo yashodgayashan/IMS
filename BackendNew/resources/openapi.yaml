@@ -1307,6 +1307,8 @@ components:
           type: number
         fourth_sem:
           type: number
+        SGPA:
+          type: number
     Batch:
       type: object
       properties:
