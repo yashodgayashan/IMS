@@ -409,7 +409,7 @@ paths:
         - in: query
           name: batch
           description: get confirmed company for a student in specific batch
-          required: false
+          required: true
           schema:
             type: string
       responses:
