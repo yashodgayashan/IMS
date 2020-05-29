@@ -71,7 +71,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Student"
+              $ref: "#/components/schemas/createStudent"
       responses:
         "201":
           description: Successfull Created(Created).
