@@ -1230,8 +1230,6 @@ components:
         batch:
           type: string
           description: "The intern batch of the student"
-        fullName:
-          type: string
         nameWithInitials:
           type: string
         password:
