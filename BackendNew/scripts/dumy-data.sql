@@ -410,6 +410,29 @@ VALUES
     );
 
 /*
+ Updated student has batch
+ */
+INSERT INTO
+    Student_Has_Batch(BatchId, IndexNumber, CV, DateOfStart)
+VALUES
+    ("batch16", "164124H", "cv", DATE '2020-1-17');
+
+INSERT INTO
+    Student_Has_Batch(BatchId, IndexNumber, CV, DateOfStart)
+VALUES
+    ("batch16", "164081J", "cv", DATE '2020-1-17');
+
+INSERT INTO
+    Student_Has_Batch(BatchId, IndexNumber, CV, DateOfStart)
+VALUES
+    ("batch17", "164188T", "cv", DATE '2020-1-17');
+
+INSERT INTO
+    Student_Has_Batch(BatchId, IndexNumber, CV, DateOfStart)
+VALUES
+    ("batch17", "164106T", "cv", DATE '2020-1-17');
+
+/*
  Add 8 student select company as dummy data
  */
 INSERT INTO
