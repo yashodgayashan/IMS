@@ -60,7 +60,6 @@ CREATE TABLE Vacancy (
 
 CREATE TABLE Student (
     IndexNumber varchar(255) NOT NULL,
-    BatchId varchar(255) NOT NULL,
     CreatedBy varchar(255) NOT NULL,
     RoleName varchar(255) NOT NULL,
     FullName varchar(255),
@@ -77,8 +76,7 @@ CREATE TABLE Student (
     PreferedArea3 varchar(100),
     Degree varchar(100),
     Password varchar(100),
-    PRIMARY KEY (BatchId, IndexNumber),
-    FOREIGN KEY (BatchId) REFERENCES Batch(BatchId),
+    PRIMARY KEY (IndexNumber),
     FOREIGN KEY (CreatedBy) REFERENCES Admin(AdminId),
     FOREIGN KEY (RoleName) REFERENCES Role(Name)
 );
@@ -89,7 +87,8 @@ CREATE TABLE Student_Has_Batch (
     CV varchar(50),
     DateOfStart DATE,
     PRIMARY KEY (BatchId, IndexNumber),
-    FOREIGN KEY (BatchId, IndexNumber) REFERENCES Student(BatchId, IndexNumber),
+    FOREIGN KEY (IndexNumber) REFERENCES Student(IndexNumber),
+    FOREIGN KEY (BatchId) REFERENCES Batch(BatchId)
 );
 
 CREATE TABLE Student_Select_Company (
@@ -98,7 +97,8 @@ CREATE TABLE Student_Select_Company (
     CompanyId varchar(255) NOT NULL,
     IsSelected boolean DEFAULT 0,
     PRIMARY KEY (BatchId, IndexNumber, CompanyId),
-    FOREIGN KEY (BatchId, IndexNumber) REFERENCES Student(BatchId, IndexNumber),
+    FOREIGN KEY (IndexNumber) REFERENCES Student(IndexNumber),
+    FOREIGN KEY (BatchId) REFERENCES Batch(BatchId),
     FOREIGN KEY (CompanyId) REFERENCES Company(CompanyId)
 );
 
@@ -108,7 +108,8 @@ CREATE TABLE Monthly_Report (
     ReportNumber int NOT NULL,
     Report varchar(100) NOT NULL,
     PRIMARY KEY (BatchId, IndexNumber, ReportNumber),
-    FOREIGN KEY (BatchId, IndexNumber) REFERENCES Student(BatchId, IndexNumber)
+    FOREIGN KEY (IndexNumber) REFERENCES Student(IndexNumber),
+    FOREIGN KEY (BatchId) REFERENCES Batch(BatchId)
 );
 
 CREATE TABLE Feedback (
@@ -141,6 +142,7 @@ CREATE TABLE Feedback (
     MentorEmail varchar(100),
     MentorDesgnation varchar(100),
     PRIMARY KEY (FeedbackId),
-    FOREIGN KEY (BatchId, IndexNumber) REFERENCES Student(BatchId, IndexNumber),
+    FOREIGN KEY (IndexNumber) REFERENCES Student(IndexNumber),
+    FOREIGN KEY (BatchId) REFERENCES Batch(BatchId),
     FOREIGN KEY (CompanyId) REFERENCES Company(CompanyId)
 );
