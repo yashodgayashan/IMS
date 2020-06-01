@@ -72,17 +72,24 @@ CREATE TABLE Student (
     Sem4GPA float,
     SGPA float,
     Email varchar(50),
-    CV varchar(50),
     PreferedArea1 varchar(100),
     PreferedArea2 varchar(100),
     PreferedArea3 varchar(100),
-    DateOfStart DATE,
     Degree varchar(100),
     Password varchar(100),
     PRIMARY KEY (BatchId, IndexNumber),
     FOREIGN KEY (BatchId) REFERENCES Batch(BatchId),
     FOREIGN KEY (CreatedBy) REFERENCES Admin(AdminId),
     FOREIGN KEY (RoleName) REFERENCES Role(Name)
+);
+
+CREATE TABLE Student_Has_Batch (
+    BatchId varchar(255) NOT NULL,
+    IndexNumber varchar(255) NOT NULL,
+    CV varchar(50),
+    DateOfStart DATE,
+    PRIMARY KEY (BatchId, IndexNumber),
+    FOREIGN KEY (BatchId, IndexNumber) REFERENCES Student(BatchId, IndexNumber),
 );
 
 CREATE TABLE Student_Select_Company (
