@@ -277,7 +277,7 @@ paths:
                     type: string
         "404":
           description: students not found
-  /student/{student-id}/feedbacks:
+  /student/{student-id}/feedback:
     post:
       description: Create feedback
       parameters:
