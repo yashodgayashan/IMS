@@ -15,3 +15,15 @@ exports.hasCompany = (companyName, callback) => {
     }
   });
 };
+
+exports.getCompanyByUserNamePassword = (companyId, password, callback) => {
+  var sqlString =
+    "SELECT companyId as Id, RoleName as Role, Name FROM Company WHERE companyId = ? AND password = ?";
+  sql.query(sqlString, [companyId, password], (err, result) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, { data: result });
+    }
+  });
+};
