@@ -83,3 +83,15 @@ exports.createBasicStudent = (student, callback) => {
     }
   });
 };
+
+exports.getStudntByUserNamePassword = (studentId, password, callback) => {
+  var sqlString =
+    "SELECT IndexNumber as Id, RoleName as Role, FullName as Name FROM Student WHERE indexNumber = ? AND password = ?";
+  sql.query(sqlString, [studentId, password], (err, result) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, { data: result });
+    }
+  });
+};
