@@ -5,9 +5,11 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const mysql = require("mysql");
 const debug = require("debug")("http");
+const jwt = require("jsonwebtoken");
 
 // Import Routes
 const studentRoutes = require("./routes/students.js");
+const authenticationRoutes = require("./routes/authentication.js");
 
 // Import database connection
 const connection = require("./models/database.js");
@@ -46,4 +48,5 @@ app.listen(port, () => {
 });
 
 // Routing
-app.use("/students", studentRoutes);
+app.use("/students", authenticateUser, studentRoutes);
+app.use("/login", authenticationRoutes);
