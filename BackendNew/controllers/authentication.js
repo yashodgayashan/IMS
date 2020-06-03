@@ -22,8 +22,8 @@ exports.authenticate = (req, res) => {
     // To-do hash the password.
     var password = req.body.password;
 
-    // Check in student table.
-    students.getStudntByUserNamePassword(userName, password, (err, result) => {
+    // Check in admin table.
+    admins.getAdminByUserNamePassword(userName, password, (err, result) => {
       if (err) {
         console.error("Error :" + err);
         res.status(404);
@@ -39,8 +39,8 @@ exports.authenticate = (req, res) => {
                 res.status(404);
               } else {
                 if (result.data.length == 0) {
-                  // If not found in company table check in admin table.
-                  admins.getAdminByUserNamePassword(
+                  // If not found in company table check in Student table.
+                  students.getStudntByUserNamePassword(
                     userName,
                     password,
                     (err, result) => {
