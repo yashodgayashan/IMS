@@ -363,6 +363,112 @@ exports.getSelectedStudentsByCompany = (companyId, callback) => {
   });
 };
 
+exports.getStudents = callback => {
+  var sqlString = `(
+      SELECT 
+        S.IndexNumber, 
+        S.FullName, 
+        S.NameWithInitials, 
+        S.PhoneNumber, 
+        S.Email, 
+        S.Sem1GPA, 
+        S.Sem2GPA, 
+        S.Sem3GPA, 
+        S.Sem4GPA, 
+        S.SGPA, 
+        B.BatchId, 
+        NULL as IsSelected, 
+        NULL as CompanyId, 
+        NULL as CompanyName 
+      FROM 
+        student S, 
+        student_has_batch H, 
+        Batch B 
+      WHERE 
+        s.IndexNumber = H.IndexNumber  
+        AND H.BatchId = B.BatchId 
+        AND s.IndexNumber NOT IN ( 
+          SELECT 
+            S.IndexNumber 
+          FROM 
+            student S, 
+            student_has_batch H, 
+            Batch B, 
+            student_select_company SC 
+          WHERE 
+            s.IndexNumber = H.IndexNumber 
+            AND H.BatchId = B.BatchId 
+            AND SC.IndexNumber = S.IndexNumber 
+            AND SC.BatchId = B.BatchId 
+            AND SC.IsSelected = 1 
+          ) 
+      GROUP BY 
+        S.IndexNumber, 
+        S.FullName, 
+        S.NameWithInitials, 
+        S.PhoneNumber, 
+        S.Email, 
+        S.Sem1GPA, 
+        S.Sem2GPA, 
+        S.Sem3GPA, 
+        S.Sem4GPA, 
+        S.SGPA, 
+        B.BatchId 
+    ) 
+    UNION 
+    ( 
+      SELECT 
+        S.IndexNumber, 
+        S.FullName, 
+        S.NameWithInitials, 
+        S.PhoneNumber, 
+        S.Email, 
+        S.Sem1GPA, 
+        S.Sem2GPA, 
+        S.Sem3GPA, 
+        S.Sem4GPA, 
+        S.SGPA, 
+        B.BatchId, 
+        Sc.IsSelected, 
+        C.CompanyId, 
+        C.Name as CompanyName 
+      FROM 
+        student S, 
+        student_has_batch H, 
+        Batch B, 
+        student_select_company SC, 
+        Company C 
+      WHERE 
+        s.IndexNumber = H.IndexNumber 
+        AND H.BatchId = B.BatchId 
+        AND SC.IndexNumber = S.IndexNumber 
+        AND SC.BatchId = B.BatchId 
+        AND SC.IsSelected = 1 
+        AND C.CompanyId = SC.CompanyId 
+      GROUP BY 
+        S.IndexNumber, 
+        S.FullName, 
+        S.NameWithInitials, 
+        S.PhoneNumber, 
+        S.Email, 
+        S.Sem1GPA, 
+        S.Sem2GPA, 
+        S.Sem3GPA, 
+        S.Sem4GPA, 
+        S.SGPA, 
+        B.BatchId, 
+        SC.IsSelected, 
+        C.CompanyId, 
+        C.Name
+      )`;
+  sql.query(sqlString, (err, result) => {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null, { data: result });
+    }
+  });
+};
 exports.createBasicStudent = (student, callback) => {
   var sqlString = "INSERT INTO student SET ?";
   sql.query(sqlString, student, (err, result) => {
