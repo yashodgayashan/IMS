@@ -129,3 +129,50 @@ UNION
         C.CompanyId,
         C.Name
 )
+/*
+ Get selected students by batch
+ */
+SELECT
+    S.IndexNumber,
+    S.FullName,
+    S.NameWithInitials,
+    S.PhoneNumber,
+    S.Email,
+    S.Sem1GPA,
+    S.Sem2GPA,
+    S.Sem3GPA,
+    S.Sem4GPA,
+    S.SGPA,
+    B.BatchId,
+    Sc.IsSelected,
+    C.CompanyId,
+    C.Name as CompanyName
+from
+    student S,
+    student_has_batch H,
+    Batch B,
+    student_select_company SC,
+    Company C
+where
+    s.IndexNumber = H.IndexNumber
+    AND H.BatchId = B.BatchId
+    AND SC.IndexNumber = S.IndexNumber
+    AND SC.BatchId = B.BatchId
+    AND SC.IsSelected = 1
+    AND C.CompanyId = SC.CompanyId
+    AND B.BatchId = ?
+GROUP BY
+    S.IndexNumber,
+    S.FullName,
+    S.NameWithInitials,
+    S.PhoneNumber,
+    S.Email,
+    S.Sem1GPA,
+    S.Sem2GPA,
+    S.Sem3GPA,
+    S.Sem4GPA,
+    S.SGPA,
+    B.BatchId,
+    SC.IsSelected,
+    C.CompanyId,
+    C.Name
