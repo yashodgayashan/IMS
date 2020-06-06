@@ -481,6 +481,151 @@ exports.getStudents = sendStudents => {
   });
 };
 
+exports.getStudentById = (studentId, sendStudent) => {
+  var basicStudentSQL = `
+  SELECT
+    S.IndexNumber,
+    S.FullName,
+    S.NameWithInitials,
+    S.PhoneNumber,
+    S.Email,
+    S.Sem1GPA,
+    S.Sem2GPA,
+    S.Sem3GPA,
+    S.Sem4GPA,
+    S.SGPA,
+    S.PreferedArea1,
+    S.PreferedArea2,
+    S.PreferedArea3
+  from
+    student S
+  WHERE
+    s.IndexNumber = ?`;
+  var studentCvAndStartDateSQL = `
+  SELECT
+    H.cv,
+    H.DateOfStart,
+    H.BatchId
+  from
+      student S,
+      Student_has_batch H
+  where
+      s.IndexNumber = H.IndexNumber
+      AND s.IndexNumber = ?`;
+  var preferedCompaniesSQL = `
+  SELECT
+    C.Name,
+    SC.batchId
+  FROM
+    student S,
+    Student_select_company SC,
+    Company C
+  WHERE
+    S.IndexNumber = SC.IndexNumber
+    AND SC.CompanyId = C.CompanyId
+    AND S.IndexNumber=?`;
+  var selectedCompanySQL = `
+  SELECT
+    C.Name,
+    SC.batchId,
+    SC.IsSelected
+  FROM
+    student S,
+    Student_select_company SC,
+    Company C
+  WHERE
+    S.IndexNumber = SC.IndexNumber
+    AND SC.CompanyId = C.CompanyId
+    AND SC.IsSelected = 1
+    AND S.IndexNumber = ?
+  `;
+  var internBatchesSQL = `
+  SELECT
+    H.cv,
+    H.BatchId
+  from
+      student S,
+      Student_has_batch H
+  where
+      s.IndexNumber = H.IndexNumber
+      AND s.IndexNumber = ?
+  `;
+  var batchesMap = new Map();
+  var companiesMap = new Map();
+  sql.query(basicStudentSQL, [studentId], (err, sendBasicStudent) => {
+    if (err) {
+      sendStudent(err, null);
+    } else {
+      // To get intern batches.
+      sql.query(internBatchesSQL, [studentId], (err, batches) => {
+        if (err) {
+          sendStudent(err, null);
+        } else {
+          batches.forEach(value => {
+            batchesMap.set(value.BatchId, []);
+            companiesMap.set(value.BatchId, []);
+          });
+          // To get CV and startDate
+          sql.query(
+            studentCvAndStartDateSQL,
+            [studentId],
+            (err, cvAndStartdate) => {
+              if (err) {
+                sendStudent(err, null);
+              } else {
+                cvAndStartdate.forEach(value => {
+                  batchesMap.get(value.BatchId).push({ cv: value.cv });
+                  batchesMap
+                    .get(value.BatchId)
+                    .push({ dateOfStart: value.DateOfStart });
+                });
+                sql.query(
+                  selectedCompanySQL,
+                  [studentId],
+                  (err, selectedCompanies) => {
+                    if (err) {
+                      sendStudent(err, null);
+                    } else {
+                      selectedCompanies.forEach(value => {
+                        batchesMap
+                          .get(value.batchId)
+                          .push({ selectedCompany: value.Name });
+                      });
+                      sql.query(
+                        preferedCompaniesSQL,
+                        [studentId],
+                        (err, preferedCompanies) => {
+                          if (err) {
+                            sendStudent(err, null);
+                          } else {
+                            preferedCompanies.forEach(value => {
+                              companiesMap.get(value.batchId).push(value.Name);
+                            });
+                            for (let batch of batchesMap.keys()) {
+                              batchesMap
+                                .get(batch)
+                                .push({ companies: companiesMap.get(batch) });
+                            }
+                            const obj = Object.fromEntries(batchesMap);
+                            sendStudent(null, {
+                              studentdata: sendBasicStudent[0],
+                              batchInfo: obj
+                            });
+                          }
+                        }
+                      );
+                    }
+                  }
+                );
+              }
+            }
+          );
+        }
+      });
+    }
+  });
+};
+
 exports.createBasicStudent = (student, callback) => {
   var sqlString = "INSERT INTO student SET ?";
   sql.query(sqlString, student, (err, result) => {
