@@ -1,19 +1,23 @@
 // Import database connection
-const sql = require("../models/database.js");
+const sql = require("./database.js");
 
-exports.getStudentsByBatch = (batch, callback) => {
+exports.getStudentsByBatch = (batch, sendStudentsByBatch) => {
   var sqlString =
     "( SELECT S.IndexNumber, S.FullName, S.NameWithInitials, S.PhoneNumber, S.Email, S.Sem1GPA, S.Sem2GPA, S.Sem3GPA, S.Sem4GPA, S.SGPA, B.BatchId, NULL as IsSelected, NULL as CompanyId, NULL as CompanyName from student S, student_has_batch H, Batch B where s.IndexNumber = H.IndexNumber  AND H.BatchId = B.BatchId AND B.BatchId = ? AND s.IndexNumber NOT IN ( SELECT S.IndexNumber from student S, student_has_batch H, Batch B, student_select_company SC where s.IndexNumber = H.IndexNumber AND H.BatchId = B.BatchId AND SC.IndexNumber = S.IndexNumber AND SC.BatchId = B.BatchId AND B.BatchId = ? AND SC.IsSelected = 1 ) GROUP BY S.IndexNumber, S.FullName, S.NameWithInitials, S.PhoneNumber, S.Email, S.Sem1GPA, S.Sem2GPA, S.Sem3GPA, S.Sem4GPA, S.SGPA, B.BatchId ) UNION ( SELECT S.IndexNumber, S.FullName, S.NameWithInitials, S.PhoneNumber, S.Email, S.Sem1GPA, S.Sem2GPA, S.Sem3GPA, S.Sem4GPA, S.SGPA, B.BatchId, Sc.IsSelected, C.CompanyId, C.Name as CompanyName from student S, student_has_batch H, Batch B, student_select_company SC, Company C where s.IndexNumber = H.IndexNumber AND H.BatchId = B.BatchId AND SC.IndexNumber = S.IndexNumber AND SC.BatchId = B.BatchId AND SC.IsSelected = 1 AND C.CompanyId = SC.CompanyId AND B.BatchId = ? GROUP BY S.IndexNumber, S.FullName, S.NameWithInitials, S.PhoneNumber, S.Email, S.Sem1GPA, S.Sem2GPA, S.Sem3GPA, S.Sem4GPA, S.SGPA, B.BatchId, SC.IsSelected, C.CompanyId, C.Name)";
   sql.query(sqlString, [batch, batch, batch], (err, result) => {
     if (err) {
-      callback(err, null);
+      sendStudentsByBatch(err, null);
     } else {
-      callback(null, { data: result });
+      sendStudentsByBatch(null, { data: result });
     }
   });
 };
 
-exports.getSelectedStudentsByBatch = (isSelected, batch, callback) => {
+exports.getSelectedStudentsByBatch = (
+  isSelected,
+  batch,
+  sendSelectedStudentsByBatch
+) => {
   if (isSelected == "true") {
     var sqlString = `
     SELECT
@@ -62,9 +66,9 @@ exports.getSelectedStudentsByBatch = (isSelected, batch, callback) => {
         C.Name`;
     sql.query(sqlString, [batch], (err, result) => {
       if (err) {
-        callback(err, null);
+        sendSelectedStudentsByBatch(err, null);
       } else {
-        callback(null, { data: result });
+        sendSelectedStudentsByBatch(null, { data: result });
       }
     });
   } else if (isSelected == "false") {
@@ -123,18 +127,22 @@ exports.getSelectedStudentsByBatch = (isSelected, batch, callback) => {
     `;
     sql.query(sqlString, [batch, batch], (err, result) => {
       if (err) {
-        callback(err, null);
+        sendSelectedStudentsByBatch(err, null);
       } else {
-        callback(null, { data: result });
+        sendSelectedStudentsByBatch(null, { data: result });
       }
     });
   } else {
     err = Error("Invalid query param");
-    callback(err, null);
+    sendSelectedStudentsByBatch(err, null);
   }
 };
 
-exports.getSelectedStudentsByCompanyBatch = (batchId, companyId, callback) => {
+exports.getSelectedStudentsByCompanyBatch = (
+  batchId,
+  companyId,
+  sendSelectedStudentsByCompanyBatch
+) => {
   var sqlString = `
       SELECT
       S.IndexNumber,
@@ -183,14 +191,14 @@ exports.getSelectedStudentsByCompanyBatch = (batchId, companyId, callback) => {
       C.Name`;
   sql.query(sqlString, [batchId, companyId], (err, result) => {
     if (err) {
-      callback(err, null);
+      sendSelectedStudentsByCompanyBatch(err, null);
     } else {
-      callback(null, { data: result });
+      sendSelectedStudentsByCompanyBatch(null, { data: result });
     }
   });
 };
 
-exports.getSelectedStudents = (isSelected, callback) => {
+exports.getSelectedStudents = (isSelected, sendSelectedStudents) => {
   if (isSelected == "true") {
     var sqlString = `
     SELECT
@@ -238,9 +246,9 @@ exports.getSelectedStudents = (isSelected, callback) => {
         C.Name`;
     sql.query(sqlString, (err, result) => {
       if (err) {
-        callback(err, null);
+        sendSelectedStudents(err, null);
       } else {
-        callback(null, { data: result });
+        sendSelectedStudents(null, { data: result });
       }
     });
   } else if (isSelected == "false") {
@@ -297,18 +305,21 @@ exports.getSelectedStudents = (isSelected, callback) => {
     `;
     sql.query(sqlString, (err, result) => {
       if (err) {
-        callback(err, null);
+        sendSelectedStudents(err, null);
       } else {
-        callback(null, { data: result });
+        sendSelectedStudents(null, { data: result });
       }
     });
   } else {
     err = Error("Invalid query param");
-    callback(err, null);
+    sendSelectedStudents(err, null);
   }
 };
 
-exports.getSelectedStudentsByCompany = (companyId, callback) => {
+exports.getSelectedStudentsByCompany = (
+  companyId,
+  sendSelectedStudentsByCompany
+) => {
   var sqlString = `
       SELECT
       S.IndexNumber,
@@ -356,14 +367,14 @@ exports.getSelectedStudentsByCompany = (companyId, callback) => {
       C.Name`;
   sql.query(sqlString, [companyId], (err, result) => {
     if (err) {
-      callback(err, null);
+      sendSelectedStudentsByCompany(err, null);
     } else {
-      callback(null, { data: result });
+      sendSelectedStudentsByCompany(null, { data: result });
     }
   });
 };
 
-exports.getStudents = callback => {
+exports.getStudents = sendStudents => {
   var sqlString = `(
       SELECT 
         S.IndexNumber, 
@@ -463,12 +474,13 @@ exports.getStudents = callback => {
       )`;
   sql.query(sqlString, (err, result) => {
     if (err) {
-      callback(err, null);
+      sendStudents(err, null);
     } else {
-      callback(null, { data: result });
+      sendStudents(null, { data: result });
     }
   });
 };
+
 exports.createBasicStudent = (student, callback) => {
   var sqlString = "INSERT INTO student SET ?";
   sql.query(sqlString, student, (err, result) => {
