@@ -409,9 +409,55 @@ VALUES
         "yashod"
     );
 
+INSERT INTO
+    Student (
+        IndexNumber,
+        CreatedBy,
+        RoleName,
+        FullName,
+        NameWithInitials,
+        PhoneNumber,
+        Sem1GPA,
+        Sem2GPA,
+        Sem3GPA,
+        Sem4GPA,
+        SGPA,
+        Email,
+        PreferedArea1,
+        PreferedArea2,
+        PreferedArea3,
+        Degree,
+        Password
+    )
+VALUES
+    (
+        "164120F",
+        'kasun',
+        'Student',
+        "Chamodi Sandeepani",
+        "SANDEEPANI K.G.C.",
+        0716931384,
+        3.89,
+        3.78,
+        4.03,
+        3.57,
+        3.72,
+        "chamodisandeepani@gmail.com",
+        "UI/UX",
+        "Networking",
+        "QA Engineering",
+        "IT",
+        "chamodi"
+    );
+
 /*
  Updated student has batch
  */
+INSERT INTO
+    Student_Has_Batch(BatchId, IndexNumber, CV, DateOfStart)
+VALUES
+    ("batch16", "164120F", "cv", null);
+
 INSERT INTO
     Student_Has_Batch(BatchId, IndexNumber, CV, DateOfStart)
 VALUES
