@@ -602,9 +602,26 @@ exports.getStudentById = (studentId, sendStudent) => {
                               companiesMap.get(value.batchId).push(value.Name);
                             });
                             for (let batch of batchesMap.keys()) {
-                              batchesMap
-                                .get(batch)
-                                .push({ companies: companiesMap.get(batch) });
+                              var val = batchesMap.get(batch);
+                              var cv;
+                              var stratDate;
+                              var selectedCompany;
+                              val.forEach(value => {
+                                if (value.cv) {
+                                  cv = value.cv;
+                                } else if (value.dateOfStart) {
+                                  stratDate = value.dateOfStart;
+                                } else if (value.selectedCompany) {
+                                  selectedCompany = value.selectedCompany;
+                                }
+                              });
+                              var modifiedSet = {
+                                cv: cv,
+                                stratDate: stratDate,
+                                selectedCompany: selectedCompany,
+                                companies: companiesMap.get(batch)
+                              };
+                              batchesMap.set(batch, modifiedSet);
                             }
                             const obj = Object.fromEntries(batchesMap);
                             sendStudent(null, {
