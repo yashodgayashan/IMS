@@ -1,0 +1,355 @@
+{
+	"info": {
+		"_postman_id": "08d39a05-6b6f-4d51-8ce2-fd731108c09a",
+		"name": "IMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get students",
+			"item": [
+				{
+					"name": "http://0.0.0.0:5000/students",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOYW1lIjoiWWFzaG9kIFBlcmVyYSIsIklkIjoiMTY0MTA2VCIsIlJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNTkxMTgzMDA4LCJleHAiOjE1OTEyNjk0MDh9.5qB3IEXTbwQMchjMCObnyvbWuI7GCV_KqjJAlPBZ1a4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://0.0.0.0:5000/students",
+							"protocol": "http",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "5000",
+							"path": [
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://0.0.0.0:5000/students?batch=batch16",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOYW1lIjoiWWFzaG9kIFBlcmVyYSIsIklkIjoiMTY0MTA2VCIsIlJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNTkxMTgzMDA4LCJleHAiOjE1OTEyNjk0MDh9.5qB3IEXTbwQMchjMCObnyvbWuI7GCV_KqjJAlPBZ1a4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://0.0.0.0:5000/students?batch=batch16",
+							"protocol": "http",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "5000",
+							"path": [
+								"students"
+							],
+							"query": [
+								{
+									"key": "batch",
+									"value": "batch16"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://0.0.0.0:5000/students?batch=batch16&company=wso2",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOYW1lIjoiWWFzaG9kIFBlcmVyYSIsIklkIjoiMTY0MTA2VCIsIlJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNTkxMTgzMDA4LCJleHAiOjE1OTEyNjk0MDh9.5qB3IEXTbwQMchjMCObnyvbWuI7GCV_KqjJAlPBZ1a4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://0.0.0.0:5000/students?batch=batch16&company=wso2",
+							"protocol": "http",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "5000",
+							"path": [
+								"students"
+							],
+							"query": [
+								{
+									"key": "batch",
+									"value": "batch16"
+								},
+								{
+									"key": "company",
+									"value": "wso2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://0.0.0.0:5000/students?company=wso2",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOYW1lIjoiWWFzaG9kIFBlcmVyYSIsIklkIjoiMTY0MTA2VCIsIlJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNTkxMTgzMDA4LCJleHAiOjE1OTEyNjk0MDh9.5qB3IEXTbwQMchjMCObnyvbWuI7GCV_KqjJAlPBZ1a4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://0.0.0.0:5000/students?company=wso2",
+							"protocol": "http",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "5000",
+							"path": [
+								"students"
+							],
+							"query": [
+								{
+									"key": "company",
+									"value": "wso2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://0.0.0.0:5000/students?batch=batch16&isSelected=true",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOYW1lIjoiWWFzaG9kIFBlcmVyYSIsIklkIjoiMTY0MTA2VCIsIlJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNTkxMTgzMDA4LCJleHAiOjE1OTEyNjk0MDh9.5qB3IEXTbwQMchjMCObnyvbWuI7GCV_KqjJAlPBZ1a4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://0.0.0.0:5000/students?batch=batch16&isSelected=true",
+							"protocol": "http",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "5000",
+							"path": [
+								"students"
+							],
+							"query": [
+								{
+									"key": "batch",
+									"value": "batch16"
+								},
+								{
+									"key": "isSelected",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://0.0.0.0:5000/students?isSelected=true",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOYW1lIjoiWWFzaG9kIFBlcmVyYSIsIklkIjoiMTY0MTA2VCIsIlJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNTkxMTgzMDA4LCJleHAiOjE1OTEyNjk0MDh9.5qB3IEXTbwQMchjMCObnyvbWuI7GCV_KqjJAlPBZ1a4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://0.0.0.0:5000/students?isSelected=true",
+							"protocol": "http",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "5000",
+							"path": [
+								"students"
+							],
+							"query": [
+								{
+									"key": "isSelected",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "get student",
+			"item": [
+				{
+					"name": "http://0.0.0.0:5000/students/164106t?batch=batch17",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOYW1lIjoiWWFzaG9kIFBlcmVyYSIsIklkIjoiMTY0MTA2VCIsIlJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNTkxMzM0NDQzLCJleHAiOjE1OTE0MjA4NDN9.Dla149KvMsJviMf4ZqpwjR6PjmM5Z-vTfhQuYrrPoaE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://0.0.0.0:5000/students/164106t?batch=batch17",
+							"protocol": "http",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "5000",
+							"path": [
+								"students",
+								"164106t"
+							],
+							"query": [
+								{
+									"key": "batch",
+									"value": "batch17"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://0.0.0.0:5000/students/164106t",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOYW1lIjoiWWFzaG9kIFBlcmVyYSIsIklkIjoiMTY0MTA2VCIsIlJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNTkxNDIwOTQzLCJleHAiOjE1OTE1MDczNDN9.wL-mEBAV8eEPIhR2jLb5jwM1m8Cx4C5lfJrf-38BIAs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://0.0.0.0:5000/students/164081J",
+							"protocol": "http",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "5000",
+							"path": [
+								"students",
+								"164081J"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userName\":\"164106t\",\n\t\"password\":\"yashod\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:5000/login",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "5000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
