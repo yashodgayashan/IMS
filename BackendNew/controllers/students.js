@@ -82,17 +82,30 @@ exports.getStudents = (req, res) => {
 //get students based on index number
 exports.getStudent = (req, res) => {
   var studentId = req.params.studentId;
+  var batchId = req.query.batch;
 
-  students.getStudent(studentId, (err, result) => {
-    if (err) {
-      console.error("Error :" + err);
-      res.status(404);
-    } else {
-      console.log("Get Student control function");
-      res.status(200);
-      res.send(result.data);
-    }
-  });
+  if (batchId) {
+    console.log("batch");
+    students.getStudentByIdAndBatch(studentId, batchId, (err, result) => {
+      if (err) {
+        console.error("Error :" + err);
+        res.status(404);
+      } else {
+        res.status(200);
+        res.send(result);
+      }
+    });
+  } else {
+    students.getStudentById(studentId, (err, result) => {
+      if (err) {
+        console.error("Error :" + err);
+        res.status(404);
+      } else {
+        res.status(200);
+        res.send(result);
+      }
+    });
+  }
 };
 
 exports.createBasicStudent = (req, res) => {
