@@ -643,6 +643,135 @@ exports.getStudentById = (studentId, sendStudent) => {
   });
 };
 
+exports.getStudentByIdAndBatch = (studentId, batchId, sendStudent) => {
+  var basicStudentSQL = `
+  SELECT
+    S.IndexNumber,
+    S.FullName,
+    S.NameWithInitials,
+    S.PhoneNumber,
+    S.Email,
+    S.Sem1GPA,
+    S.Sem2GPA,
+    S.Sem3GPA,
+    S.Sem4GPA,
+    S.SGPA,
+    S.PreferedArea1,
+    S.PreferedArea2,
+    S.PreferedArea3
+  from
+    student S,
+    Student_has_batch H
+  WHERE
+    s.IndexNumber = H.IndexNumber
+    AND s.IndexNumber = ?
+    AND H.BatchId = ?`;
+  var studentCvAndStartDateSQL = `
+  SELECT
+    H.cv,
+    H.DateOfStart,
+    H.BatchId
+  from
+      student S,
+      Student_has_batch H
+  where
+      s.IndexNumber = H.IndexNumber
+      AND s.IndexNumber = ?
+      AND H.BatchId = ?`;
+  var preferedCompaniesSQL = `
+  SELECT
+    C.Name,
+    SC.batchId
+  FROM
+    student S,
+    Student_select_company SC,
+    Company C
+  WHERE
+    S.IndexNumber = SC.IndexNumber
+    AND SC.CompanyId = C.CompanyId
+    AND S.IndexNumber = ?
+    AND SC.BatchId = ? `;
+  var selectedCompanySQL = `
+  SELECT
+    C.Name,
+    SC.batchId,
+    SC.IsSelected
+  FROM
+    student S,
+    Student_select_company SC,
+    Company C
+  WHERE
+    S.IndexNumber = SC.IndexNumber
+    AND SC.CompanyId = C.CompanyId
+    AND SC.IsSelected = 1
+    AND S.IndexNumber = ?
+    AND SC.BatchId = ? 
+  `;
+  var cv;
+  var startDate;
+  var selectedCompany;
+  var companies = [];
+  sql.query(basicStudentSQL, [studentId, batchId], (err, sendBasicStudent) => {
+    if (err) {
+      sendStudent(err, null);
+    } else {
+      sql.query(
+        studentCvAndStartDateSQL,
+        [studentId, batchId],
+        (err, cvAndStartdate) => {
+          if (err) {
+            sendStudent(err, null);
+          } else {
+            if (cvAndStartdate.length == 0) {
+              err = new Error("User not found");
+              sendStudent(err, null);
+            } else {
+              cv = cvAndStartdate[0].cv;
+              startDate = cvAndStartdate[0].DateOfStart;
+              sql.query(
+                selectedCompanySQL,
+                [studentId, batchId],
+                (err, selectedCompanies) => {
+                  if (err) {
+                    sendStudent(err, null);
+                  } else {
+                    if (selectedCompanies.length != 0) {
+                      selectedCompany = selectedCompanies[0].Name;
+                    }
+                    sql.query(
+                      preferedCompaniesSQL,
+                      [studentId, batchId],
+                      (err, preferedCompanies) => {
+                        if (err) {
+                          sendStudent(err, null);
+                        } else {
+                          preferedCompanies.forEach(value => {
+                            companies.push(value.Name);
+                          });
+                          var batchInfo = {
+                            cv: cv,
+                            startDate: startDate,
+                            selectedCompany: selectedCompany,
+                            companies: companies
+                          };
+                          sendStudent(null, {
+                            studentData: sendBasicStudent,
+                            batchInfo: batchInfo
+                          });
+                        }
+                      }
+                    );
+                  }
+                }
+              );
+            }
+          }
+        }
+      );
+    }
+  });
+};
+
 exports.createBasicStudent = (student, callback) => {
   var sqlString = "INSERT INTO student SET ?";
   sql.query(sqlString, student, (err, result) => {
