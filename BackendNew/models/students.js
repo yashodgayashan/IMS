@@ -617,7 +617,7 @@ exports.getStudentById = (studentId, sendStudent) => {
                               });
                               var modifiedSet = {
                                 cv: cv,
-                                stratDate: stratDate,
+                                startDate: startDate,
                                 selectedCompany: selectedCompany,
                                 companies: companiesMap.get(batch)
                               };
