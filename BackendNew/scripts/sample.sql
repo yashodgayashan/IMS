@@ -222,3 +222,117 @@ GROUP BY
     SC.IsSelected,
     C.CompanyId,
     C.Name
+    /*Get a single student*/
+    (
+        SELECT
+            S.IndexNumber,
+            S.FullName,
+            S.NameWithInitials,
+            S.PhoneNumber,
+            S.Email,
+            S.Sem1GPA,
+            S.Sem2GPA,
+            S.Sem3GPA,
+            S.Sem4GPA,
+            S.SGPA,
+            B.BatchId,
+            NULL as IsSelected,
+            NULL as CompanyId,
+            NULL as CompanyName,
+            H.cv,
+            H.DateOfStart,
+            S.PreferedArea1,
+            S.PreferedArea2,
+            S.PreferedArea3
+        from
+            student S,
+            student_has_batch H,
+            Batch B
+        where
+            s.IndexNumber = H.IndexNumber
+            AND H.BatchId = B.BatchId
+            AND s.IndexNumber NOT IN (
+                SELECT
+                    S.IndexNumber
+                from
+                    student S,
+                    student_has_batch H,
+                    Batch B,
+                    student_select_company SC
+                where
+                    s.IndexNumber = H.IndexNumber
+                    AND H.BatchId = B.BatchId
+                    AND SC.IndexNumber = S.IndexNumber
+                    AND SC.BatchId = B.BatchId
+                    AND SC.IsSelected = 1
+            )
+            AND s.IndexNumber = ?
+        GROUP BY
+            S.IndexNumber,
+            S.FullName,
+            S.NameWithInitials,
+            S.PhoneNumber,
+            S.Email,
+            S.Sem1GPA,
+            S.Sem2GPA,
+            S.Sem3GPA,
+            S.Sem4GPA,
+            S.SGPA,
+            B.BatchId,
+            H.cv,
+            H.DateOfStart
+    )
+UNION
+(
+    SELECT
+        S.IndexNumber,
+        S.FullName,
+        S.NameWithInitials,
+        S.PhoneNumber,
+        S.Email,
+        S.Sem1GPA,
+        S.Sem2GPA,
+        S.Sem3GPA,
+        S.Sem4GPA,
+        S.SGPA,
+        B.BatchId,
+        Sc.IsSelected,
+        C.CompanyId,
+        C.Name as CompanyName,
+        H.cv,
+        H.DateOfStart,
+        S.PreferedArea1,
+        S.PreferedArea2,
+        S.PreferedArea3
+    from
+        student S,
+        student_has_batch H,
+        Batch B,
+        student_select_company SC,
+        Company C
+    where
+        s.IndexNumber = H.IndexNumber
+        AND H.BatchId = B.BatchId
+        AND SC.IndexNumber = S.IndexNumber
+        AND SC.BatchId = B.BatchId
+        AND SC.IsSelected = 1
+        AND C.CompanyId = SC.CompanyId
+        AND s.IndexNumber = ?
+    GROUP BY
+        S.IndexNumber,
+        S.FullName,
+        S.NameWithInitials,
+        S.PhoneNumber,
+        S.Email,
+        S.Sem1GPA,
+        S.Sem2GPA,
+        S.Sem3GPA,
+        S.Sem4GPA,
+        S.SGPA,
+        B.BatchId,
+        SC.IsSelected,
+        C.CompanyId,
+        C.Name,
+        H.cv,
+        H.DateOfStart
+)
