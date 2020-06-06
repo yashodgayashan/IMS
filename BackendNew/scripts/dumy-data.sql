@@ -432,6 +432,11 @@ INSERT INTO
 VALUES
     ("batch17", "164106T", "cv", DATE '2020-1-17');
 
+INSERT INTO
+    Student_Has_Batch(BatchId, IndexNumber, CV, DateOfStart)
+VALUES
+    ("batch16", "164106T", "cv", DATE '2020-1-17');
+
 /*
  Add 8 student select company as dummy data
  */
@@ -474,6 +479,21 @@ INSERT INTO
     Student_Select_Company (BatchId, IndexNumber, CompanyId, IsSelected)
 VALUES
     ("batch17", "164106T", 'wso2', 1);
+
+INSERT INTO
+    Student_Select_Company (BatchId, IndexNumber, CompanyId, IsSelected)
+VALUES
+    ("batch17", "164106T", 'virtusa', 0);
+
+INSERT INTO
+    Student_Select_Company (BatchId, IndexNumber, CompanyId, IsSelected)
+VALUES
+    ("batch16", "164106T", 'wso2', 0);
+
+INSERT INTO
+    Student_Select_Company (BatchId, IndexNumber, CompanyId, IsSelected)
+VALUES
+    ("batch16", "164106T", 'virtusa', 1);
 
 /*
  Add monthly report dummy data
