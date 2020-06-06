@@ -89,7 +89,7 @@ exports.getStudent = (req, res) => {
     students.getStudentByIdAndBatch(studentId, batchId, (err, result) => {
       if (err) {
         console.error("Error :" + err);
-        res.status(404);
+        res.status(404).send();
       } else {
         res.status(200);
         res.send(result);
@@ -99,7 +99,7 @@ exports.getStudent = (req, res) => {
     students.getStudentById(studentId, (err, result) => {
       if (err) {
         console.error("Error :" + err);
-        res.status(404);
+        res.status(404).send();
       } else {
         res.status(200);
         res.send(result);
