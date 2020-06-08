@@ -147,21 +147,25 @@ exports.createBasicStudent = (req, res) => {
     });
   }
 
+  console.log(req.body);
   // Create a student
   const student = new BasicStudent({
-    batchId: req.body.batchId,
     createdBy: req.body.createdBy,
-    studentId: req.body.studentId,
     email: req.body.email,
     nameWithInitials: req.body.nameWithInitials,
     indexNumber: req.body.indexNumber,
     password: req.body.password
   });
 
-  students.createBasicStudent(student, (err, result) => {
+  const studentHasBatch = new StudentHasBatch({
+    batchId: req.body.batchId,
+    indexNumber: req.body.indexNumber
+  });
+
+  students.createBasicStudent(student, studentHasBatch, (err, result) => {
     if (err) {
       console.error("Error :" + err);
-      res.status(404);
+      res.status(400).send();
     } else {
       console.log("Get Student control function");
       res.status(200);
@@ -171,12 +175,15 @@ exports.createBasicStudent = (req, res) => {
 };
 
 const BasicStudent = function(student) {
-  this.batchId = student.batchId;
   this.createdBy = student.createdBy;
-  this.roleId = 3;
-  this.studentId = student.studentId;
+  this.roleName = "Student";
   this.email = student.email;
   this.nameWithInitials = student.nameWithInitials;
   this.indexNumber = student.indexNumber;
   this.password = student.password;
+};
+
+const StudentHasBatch = function(studentHasBatch) {
+  this.batchId = studentHasBatch.batchId;
+  this.indexNumber = studentHasBatch.indexNumber;
 };
