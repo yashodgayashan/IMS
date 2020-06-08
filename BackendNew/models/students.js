@@ -794,15 +794,51 @@ exports.createBasicStudent = (student, studentHasBatch, isCreated) => {
 };
 
 exports.updateStudent = (student, isUpdated) => {
-  var studentSql = "REPLACE INTO student SET ?";
-  sql.query(studentSql, student, (err, result) => {
-    if (err) {
-      console.log("error: ", err);
-      isUpdated(err, null);
-    } else {
-      isUpdated(null, { data: "Updated" });
+  console.log(student);
+  var studentSql = `
+    UPDATE 
+      Student 
+    SET 
+      email = ?, 
+      fullName = ?, 
+      nameWithInitials = ?,
+      phoneNumber = ?,
+      Sem1GPA = ?,
+      Sem2GPA = ?,
+      Sem3GPA = ?,
+      Sem4GPA = ?,
+      SGPA = ?,
+      PreferedArea1 = ?,
+      PreferedArea2 = ?,
+      PreferedArea3 = ?
+    WHERE
+      IndexNumber = ?`;
+  sql.query(
+    studentSql,
+    [
+      student.email,
+      student.fullName,
+      student.nameWithInitials,
+      student.phoneNumber,
+      student.Sem1GPA,
+      student.Sem2GPA,
+      student.Sem3GPA,
+      student.Sem4GPA,
+      student.SGPA,
+      student.PreferedArea1,
+      student.PreferedArea2,
+      student.PreferedArea3,
+      student.indexNumber
+    ],
+    (err, result) => {
+      if (err) {
+        console.log("error: ", err);
+        isUpdated(err, null);
+      } else {
+        isUpdated(null, { data: "Updated" });
+      }
     }
-  });
+  );
 };
 
 exports.getStudentCreater = (studentId, sendStudentCreater) => {
@@ -818,13 +854,13 @@ exports.getStudentCreater = (studentId, sendStudentCreater) => {
 };
 
 exports.getStudentPassword = (studentId, sendStudentCreater) => {
-  var sqlString = "SELECT CreatedBy FROM Student WHERE Password=?";
+  var sqlString = "SELECT Password FROM Student WHERE IndexNumber=?";
   sql.query(sqlString, studentId, (err, result) => {
     if (err) {
       console.log("error: ", err);
       sendStudentCreater(err, null);
     } else {
-      sendStudentCreater(null, { creater: result[0].Password });
+      sendStudentCreater(null, { password: result[0].Password });
     }
   });
 };
