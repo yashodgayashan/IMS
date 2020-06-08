@@ -204,6 +204,45 @@ exports.updateStudent = (req, res) => {
   }
 };
 
+const updateStudentInfo = (req, isUpdated) => {
+  var studentId = req.params.studentId;
+  students.getStudentCreater(studentId, (err, result) => {
+    if (err) {
+      isUpdated(err, null);
+    } else {
+      // Get createBy user.
+      var createdBy = result.creater;
+      students.getStudentPassword(studentId, (err, result) => {
+        if (err) {
+          isUpdated(err, null);
+        } else {
+          var password = result.password;
+          const student = new Student({
+            createdBy: createdBy,
+            email: req.body.email,
+            fullName: req.body.email,
+            nameWithInitials: req.body.nameWithInitials,
+            indexNumber: studentId,
+            password: password,
+            telephoneNumber: req.body.telephoneNumber,
+            gpa: req.body.gpa,
+            PreferedArea1: req.body.PreferedArea1,
+            PreferedArea2: req.body.PreferedArea2,
+            PreferedArea3: req.body.PreferedArea3
+          });
+          students.updateStudent(student, (err, result) => {
+            if (err) {
+              isUpdated(err, null);
+            } else {
+              isUpdated(null, result);
+            }
+          });
+        }
+      });
+    }
+  });
+};
+
 // Basic student model.
 const BasicStudent = function(student) {
   this.createdBy = student.createdBy;
