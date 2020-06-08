@@ -864,6 +864,26 @@ exports.updateStudentHasBatch = (student, isUpdated) => {
   );
 };
 
+exports.updatedStudentSelectCompany = (student, isUpdated) => {
+  var studentSql = `
+  INSERT IGNORE INTO Student_select_company
+    (BatchId, IndexNumber, CompanyId)
+  VALUES
+    (?, ?, ?)`;
+  sql.query(
+    studentSql,
+    [student.batchId, student.indexNumber, student.companyId],
+    (err, result) => {
+      if (err) {
+        console.log("error: ", err);
+        isUpdated(err, null);
+      } else {
+        isUpdated(null, { data: "Updated" });
+      }
+    }
+  );
+};
+
 exports.getStudentCreater = (studentId, sendStudentCreater) => {
   var sqlString = "SELECT CreatedBy FROM Student WHERE IndexNumber=?";
   sql.query(sqlString, studentId, (err, result) => {
