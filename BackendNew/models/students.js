@@ -604,7 +604,7 @@ exports.getStudentById = (studentId, sendStudent) => {
                             for (let batch of batchesMap.keys()) {
                               var val = batchesMap.get(batch);
                               var cv;
-                              var stratDate;
+                              var startDate;
                               var selectedCompany;
                               val.forEach(value => {
                                 if (value.cv) {
@@ -617,7 +617,7 @@ exports.getStudentById = (studentId, sendStudent) => {
                               });
                               var modifiedSet = {
                                 cv: cv,
-                                stratDate: stratDate,
+                                startDate: startDate,
                                 selectedCompany: selectedCompany,
                                 companies: companiesMap.get(batch)
                               };
@@ -789,6 +789,18 @@ exports.createBasicStudent = (student, studentHasBatch, callback) => {
           callback(null, { data: "Inserted" });
         }
       });
+    }
+  });
+};
+
+exports.updateStudent = (student, callback) => {
+  var studentSql = "REPLACE INTO student SET ?";
+  sql.query(studentSql, student, (err, result) => {
+    if (err) {
+      console.log("error: ", err);
+      callback(err, null);
+    } else {
+      callback(null, { data: "Updated" });
     }
   });
 };
