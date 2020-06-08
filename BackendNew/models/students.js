@@ -772,15 +772,23 @@ exports.getStudentByIdAndBatch = (studentId, batchId, sendStudent) => {
   });
 };
 
-exports.createBasicStudent = (student, callback) => {
-  var sqlString = "INSERT INTO student SET ?";
-  sql.query(sqlString, student, (err, result) => {
+exports.createBasicStudent = (student, studentHasBatch, callback) => {
+  var studentSql = "INSERT INTO student SET ?";
+  var studentHasBatchSql = "INSERT INTO Student_has_batch SET ?";
+  sql.query(studentSql, student, (err, result) => {
     if (err) {
       console.log("error: ", err);
       callback(err, null);
     } else {
       console.log("created student: ", { id: result.insertId, ...student });
-      callback(null, { data: result });
+      sql.query(studentHasBatchSql, studentHasBatch, (err, result) => {
+        if (err) {
+          console.log("error: ", err);
+          callback(err, null);
+        } else {
+          callback(null, { data: "Inserted" });
+        }
+      });
     }
   });
 };
