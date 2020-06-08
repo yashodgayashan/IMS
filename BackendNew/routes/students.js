@@ -8,9 +8,7 @@ router.post("/", students.createBasicStudent);
 
 router.get("/:studentId", students.getStudent);
 
-router.put("/:studentId", (req, res) => {
-  res.send("put student Id");
-});
+router.put("/:studentId", students.updateStudent);
 
 router.delete("/:studentId", (req, res) => {
   res.send("delete student Id");
