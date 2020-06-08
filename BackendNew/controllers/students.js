@@ -1,6 +1,7 @@
 const students = require("../models/students");
 const companies = require("../models/company");
 
+// Get all students.
 exports.getStudents = (req, res) => {
   var isSelected = req.query.isSelected;
   var company = req.query.company;
@@ -79,7 +80,7 @@ exports.getStudents = (req, res) => {
   }
 };
 
-//get students based on index number
+// Get students based on index number.
 exports.getStudent = (req, res) => {
   var studentId = req.params.studentId;
   var batchId = req.query.batch;
@@ -108,6 +109,7 @@ exports.getStudent = (req, res) => {
   }
 };
 
+// Create a student.
 exports.createBasicStudent = (req, res) => {
   // Validate request
   if (!req.body) {
@@ -174,6 +176,35 @@ exports.createBasicStudent = (req, res) => {
   });
 };
 
+// Update student information.
+exports.updateStudent = (req, res) => {
+  var batch = req.query.batch;
+  if (batch) {
+    updateStudentInfo(req, (err, result) => {
+      if (err) {
+        res.status(400).send();
+      } else {
+        updateStudentHasBatchInfo(req, (err, result) => {
+          if (err) {
+            res.status(400).send();
+          } else {
+            updateStudentSelectCompanyInfo(req, (err, result) => {
+              if (err) {
+                res.status(400).send();
+              } else {
+                res.status(200).send({ message: "ok" });
+              }
+            });
+          }
+        });
+      }
+    });
+  } else {
+    res.status(400).send();
+  }
+};
+
+// Basic student model.
 const BasicStudent = function(student) {
   this.createdBy = student.createdBy;
   this.roleName = "Student";
@@ -183,6 +214,7 @@ const BasicStudent = function(student) {
   this.password = student.password;
 };
 
+// Student has batch model.
 const StudentHasBatch = function(studentHasBatch) {
   this.batchId = studentHasBatch.batchId;
   this.indexNumber = studentHasBatch.indexNumber;
