@@ -816,6 +816,19 @@ exports.getStudentCreater = (studentId, sendStudentCreater) => {
     }
   });
 };
+
+exports.getStudentPassword = (studentId, sendStudentCreater) => {
+  var sqlString = "SELECT CreatedBy FROM Student WHERE Password=?";
+  sql.query(sqlString, studentId, (err, result) => {
+    if (err) {
+      console.log("error: ", err);
+      sendStudentCreater(err, null);
+    } else {
+      sendStudentCreater(null, { creater: result[0].Password });
+    }
+  });
+};
+
 exports.getStudntByUserNamePassword = (studentId, password, callback) => {
   var sqlString =
     "SELECT IndexNumber as Id, RoleName as Role, FullName as Name FROM Student WHERE indexNumber = ? AND password = ?";
