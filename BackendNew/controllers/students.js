@@ -262,6 +262,26 @@ const updateStudentHasBatchInfo = (req, isUpdated) => {
   });
 };
 
+const updateStudentSelectCompanyInfo = (req, isUpdated) => {
+  var studentId = req.params.studentId;
+  var batch = req.query.batch;
+  var error;
+  req.body.companies.forEach(value => {
+    var student = {
+      batchId: batch,
+      indexNumber: studentId,
+      companyId: value
+    };
+    students.updatedStudentSelectCompany(student, (err, result) => {
+      if (err) {
+        error = err;
+        isUpdated(error, null);
+      }
+    });
+  });
+  isUpdated(null, { message: "updated" });
+};
+
 // Basic student model.
 const BasicStudent = function(student) {
   this.createdBy = student.createdBy;
