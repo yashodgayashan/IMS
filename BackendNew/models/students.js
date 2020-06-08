@@ -794,7 +794,6 @@ exports.createBasicStudent = (student, studentHasBatch, isCreated) => {
 };
 
 exports.updateStudent = (student, isUpdated) => {
-  console.log(student);
   var studentSql = `
     UPDATE 
       Student 
@@ -830,6 +829,30 @@ exports.updateStudent = (student, isUpdated) => {
       student.PreferedArea3,
       student.indexNumber
     ],
+    (err, result) => {
+      if (err) {
+        console.log("error: ", err);
+        isUpdated(err, null);
+      } else {
+        isUpdated(null, { data: "Updated" });
+      }
+    }
+  );
+};
+
+exports.updateStudentHasBatch = (student, isUpdated) => {
+  var studentSql = `
+    UPDATE 
+      Student_has_batch 
+    SET 
+      CV = ?, 
+      DateOfStart = ?
+    WHERE
+      IndexNumber = ?
+      AND BatchId = ?`;
+  sql.query(
+    studentSql,
+    [student.cv, student.dateOfStart, student.indexNumber, student.batchId],
     (err, result) => {
       if (err) {
         console.log("error: ", err);
