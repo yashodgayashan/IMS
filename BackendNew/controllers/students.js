@@ -243,6 +243,25 @@ const updateStudentInfo = (req, isUpdated) => {
   });
 };
 
+const updateStudentHasBatchInfo = (req, isUpdated) => {
+  var studentId = req.params.studentId;
+  var batch = req.query.batch;
+  // convert date
+  const student = {
+    cv: req.body.cv,
+    dateOfStart: req.body.startDate,
+    indexNumber: studentId,
+    batchId: batch
+  };
+  students.updateStudentHasBatch(student, (err, result) => {
+    if (err) {
+      isUpdated(err, null);
+    } else {
+      isUpdated(null, result);
+    }
+  });
+};
+
 // Basic student model.
 const BasicStudent = function(student) {
   this.createdBy = student.createdBy;
