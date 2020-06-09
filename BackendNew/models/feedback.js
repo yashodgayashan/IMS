@@ -39,7 +39,7 @@ exports.Feedback = function(feedback) {
   this.EmployeeSupportiveness = feedback.EmployeeSupportiveness;
   this.ManagementSupportiveness = feedback.ManagementSupportiveness;
   this.SeniorEngineerCount = feedback.SeniorEngineerCount;
-  this.isPayed = feedback.isPayed;
+  this.IsPayed = feedback.IsPayed;
   this.Payment = feedback.Payment;
   this.Problems = feedback.Problems;
   this.Suggesions = feedback.Suggesions;
@@ -54,4 +54,17 @@ exports.Feedback = function(feedback) {
   this.MentorPhoneNumber = feedback.MentorPhoneNumber;
   this.MentorEmail = feedback.MentorEmail;
   this.MentorDesgnation = feedback.MentorDesgnation;
+};
+
+exports.createFeedback = (feedback, isCreated) => {
+  var feedbackSql = "INSERT INTO feedback SET ?";
+  sql.query(feedbackSql, feedback, (err, result) => {
+    if (err) {
+      console.log("error: ", err);
+      isCreated(err, null);
+    } else {
+      console.log("created student: ", { id: result.insertId, ...student });
+      isCreated(null, result);
+    }
+  });
 };
