@@ -74,9 +74,9 @@ exports.getFeedback = (studentId, batchId, feedbackId, sendFeedback) => {
     "SELECT * FROM feedback WHERE IndexNumber = ? AND BatchId = ? AND FeedbackId = ?";
   sql.query(sqlString, [studentId, batchId, feedbackId], (err, result) => {
     if (err) {
-      sendFeedbacks(err, null);
+      sendFeedback(err, null);
     } else {
-      sendFeedbacks(null, { data: result });
+      sendFeedback(null, { data: result[0] });
     }
   });
 };
