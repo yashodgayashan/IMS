@@ -10,9 +10,7 @@ router.get("/:studentId", students.getStudent);
 
 router.put("/:studentId", students.updateStudent);
 
-router.delete("/:studentId", (req, res) => {
-  res.send("delete student Id");
-});
+router.delete("/:studentId", students.removeStudent);
 
 router.get("/graph", (req, res) => {
   res.send("Graph");
