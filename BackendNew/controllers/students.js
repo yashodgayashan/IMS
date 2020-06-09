@@ -206,39 +206,22 @@ exports.updateStudent = (req, res) => {
 
 const updateStudentInfo = (req, isUpdated) => {
   var studentId = req.params.studentId;
-  students.getStudentCreater(studentId, (err, result) => {
+  const student = new Student({
+    email: req.body.email,
+    fullName: req.body.email,
+    nameWithInitials: req.body.nameWithInitials,
+    indexNumber: studentId,
+    telephoneNumber: req.body.telephoneNumber,
+    gpa: req.body.gpa,
+    PreferedArea1: req.body.PreferedArea1,
+    PreferedArea2: req.body.PreferedArea2,
+    PreferedArea3: req.body.PreferedArea3
+  });
+  students.updateStudent(student, (err, result) => {
     if (err) {
       isUpdated(err, null);
     } else {
-      // Get createBy user.
-      var createdBy = result.creater;
-      students.getStudentPassword(studentId, (err, result) => {
-        if (err) {
-          isUpdated(err, null);
-        } else {
-          var password = result.password;
-          const student = new Student({
-            createdBy: createdBy,
-            email: req.body.email,
-            fullName: req.body.email,
-            nameWithInitials: req.body.nameWithInitials,
-            indexNumber: studentId,
-            password: password,
-            telephoneNumber: req.body.telephoneNumber,
-            gpa: req.body.gpa,
-            PreferedArea1: req.body.PreferedArea1,
-            PreferedArea2: req.body.PreferedArea2,
-            PreferedArea3: req.body.PreferedArea3
-          });
-          students.updateStudent(student, (err, result) => {
-            if (err) {
-              isUpdated(err, null);
-            } else {
-              isUpdated(null, result);
-            }
-          });
-        }
-      });
+      isUpdated(null, result);
     }
   });
 };
@@ -246,7 +229,6 @@ const updateStudentInfo = (req, isUpdated) => {
 const updateStudentHasBatchInfo = (req, isUpdated) => {
   var studentId = req.params.studentId;
   var batch = req.query.batch;
-  // convert date
   const student = {
     cv: req.body.cv,
     dateOfStart: req.body.startDate,
