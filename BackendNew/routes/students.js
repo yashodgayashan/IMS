@@ -21,9 +21,7 @@ router.get("/:studentId/feedback", feedback.getmultipleFeedback);
 
 router.post("/:studentId/feedback", feedback.createFeedback);
 
-router.get("/:studentId/feedback/:feedbackId", (req, res) => {
-  res.send("get student feedback id");
-});
+router.get("/:studentId/feedback/:feedbackId", feedback.getFeedback);
 
 router.get("/:studentId/confirmation", (req, res) => {
   res.send("get student confirmation");
