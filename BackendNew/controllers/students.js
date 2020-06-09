@@ -151,7 +151,7 @@ exports.createBasicStudent = (req, res) => {
 
   console.log(req.body);
   // Create a student
-  const student = new BasicStudent({
+  const student = new students.BasicStudent({
     createdBy: req.body.createdBy,
     email: req.body.email,
     nameWithInitials: req.body.nameWithInitials,
@@ -159,7 +159,7 @@ exports.createBasicStudent = (req, res) => {
     password: req.body.password
   });
 
-  const studentHasBatch = new StudentHasBatch({
+  const studentHasBatch = new students.StudentHasBatch({
     batchId: req.body.batchId,
     indexNumber: req.body.indexNumber
   });
@@ -206,7 +206,7 @@ exports.updateStudent = (req, res) => {
 
 const updateStudentInfo = (req, isUpdated) => {
   var studentId = req.params.studentId;
-  const student = new Student({
+  const student = new students.Student({
     email: req.body.email,
     fullName: req.body.email,
     nameWithInitials: req.body.nameWithInitials,
@@ -262,40 +262,4 @@ const updateStudentSelectCompanyInfo = (req, isUpdated) => {
     });
   });
   isUpdated(null, { message: "updated" });
-};
-
-// Basic student model.
-const BasicStudent = function(student) {
-  this.createdBy = student.createdBy;
-  this.roleName = "Student";
-  this.email = student.email;
-  this.nameWithInitials = student.nameWithInitials;
-  this.indexNumber = student.indexNumber;
-  this.password = student.password;
-};
-
-// Student model.
-const Student = function(student) {
-  this.createdBy = student.createdBy;
-  this.roleName = "Student";
-  this.email = student.email;
-  this.fullName = student.fullName;
-  this.nameWithInitials = student.nameWithInitials;
-  this.indexNumber = student.indexNumber;
-  this.password = student.password;
-  this.phoneNumber = student.telephoneNumber;
-  this.Sem1GPA = student.gpa.first_sem;
-  this.Sem2GPA = student.gpa.second_sem;
-  this.Sem3GPA = student.gpa.third_sem;
-  this.Sem4GPA = student.gpa.fourth_sem;
-  this.SGPA = student.gpa.SGPA;
-  this.PreferedArea1 = student.PreferedArea1;
-  this.PreferedArea2 = student.PreferedArea2;
-  this.PreferedArea3 = student.PreferedArea3;
-};
-
-// Student has batch model.
-const StudentHasBatch = function(studentHasBatch) {
-  this.batchId = studentHasBatch.batchId;
-  this.indexNumber = studentHasBatch.indexNumber;
 };

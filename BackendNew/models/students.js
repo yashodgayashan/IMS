@@ -919,3 +919,39 @@ exports.getStudntByUserNamePassword = (studentId, password, callback) => {
     }
   });
 };
+
+// Basic student model.
+exports.BasicStudent = function(student) {
+  this.createdBy = student.createdBy;
+  this.roleName = "Student";
+  this.email = student.email;
+  this.nameWithInitials = student.nameWithInitials;
+  this.indexNumber = student.indexNumber;
+  this.password = student.password;
+};
+
+// Student model.
+exports.Student = function(student) {
+  this.createdBy = student.createdBy;
+  this.roleName = "Student";
+  this.email = student.email;
+  this.fullName = student.fullName;
+  this.nameWithInitials = student.nameWithInitials;
+  this.indexNumber = student.indexNumber;
+  this.password = student.password;
+  this.phoneNumber = student.telephoneNumber;
+  this.Sem1GPA = student.gpa.first_sem;
+  this.Sem2GPA = student.gpa.second_sem;
+  this.Sem3GPA = student.gpa.third_sem;
+  this.Sem4GPA = student.gpa.fourth_sem;
+  this.SGPA = student.gpa.SGPA;
+  this.PreferedArea1 = student.PreferedArea1;
+  this.PreferedArea2 = student.PreferedArea2;
+  this.PreferedArea3 = student.PreferedArea3;
+};
+
+// Student has batch model.
+exports.StudentHasBatch = function(studentHasBatch) {
+  this.batchId = studentHasBatch.batchId;
+  this.indexNumber = studentHasBatch.indexNumber;
+};
