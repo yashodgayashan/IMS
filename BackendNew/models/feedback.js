@@ -12,3 +12,15 @@ exports.getFeedbacks = (studentId, sendFeedbacks) => {
     }
   });
 };
+
+exports.getFeedbacksByBatch = (studentId, batchId, sendFeedbacks) => {
+  var sqlString =
+    "SELECT FeedbackId, BatchId, IndexNumber FROM feedback WHERE IndexNumber = ? AND BatchId = ?";
+  sql.query(sqlString, [studentId, batchId], (err, result) => {
+    if (err) {
+      sendFeedbacks(err, null);
+    } else {
+      sendFeedbacks(null, { data: result });
+    }
+  });
+};
