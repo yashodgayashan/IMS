@@ -931,7 +931,7 @@ exports.removeStudent = (studentId, isRemoved) => {
   });
 };
 
-exports.removeStudentHasBatch = (studentId, BatchId, isRemoved) => {
+exports.removeStudentHasBatch = (studentId, batchId, isRemoved) => {
   var sqlString =
     "DELETE FROM Student_has_batch WHERE IndexNumber = ? AND BatchId = ? AND CV IS NULL AND DateOfStart IS NULL";
   sql.query(sqlString, [studentId, batchId], (err, result) => {
