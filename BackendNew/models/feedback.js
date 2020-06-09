@@ -68,3 +68,15 @@ exports.createFeedback = (feedback, isCreated) => {
     }
   });
 };
+
+exports.getFeedback = (studentId, batchId, feedbackId, sendFeedback) => {
+  var sqlString =
+    "SELECT * FROM feedback WHERE IndexNumber = ? AND BatchId = ? AND FeedbackId = ?";
+  sql.query(sqlString, [studentId, batchId, feedbackId], (err, result) => {
+    if (err) {
+      sendFeedbacks(err, null);
+    } else {
+      sendFeedbacks(null, { data: result });
+    }
+  });
+};
