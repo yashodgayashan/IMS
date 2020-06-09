@@ -149,7 +149,6 @@ exports.createBasicStudent = (req, res) => {
     });
   }
 
-  console.log(req.body);
   // Create a student
   const student = new students.BasicStudent({
     createdBy: req.body.createdBy,
@@ -262,4 +261,39 @@ const updateStudentSelectCompanyInfo = (req, isUpdated) => {
     });
   });
   isUpdated(null, { message: "updated" });
+};
+
+// Remove student.
+exports.removeStudent = (req, res) => {
+  var batch = req.query.batch;
+  if (batch) {
+    var studentId = req.params.studentId;
+
+    students.removeStudentHasBatch(studentId, batch, (err, result) => {
+      if (err) {
+        res.status(500).send();
+      } else {
+        // If no one is removed
+        if (result.data.affectedRows == 0) {
+          res
+            .status(400)
+            .send({ message: "There is no student with the batch" });
+        } else {
+          students.removeStudent(studentId, (err, result) => {
+            if (err) {
+              res.status(400).send({ message: "Cannot removed the student" });
+            } else {
+              if (result.data.affectedRows == 0) {
+                res.status(400).send({ message: "There is no such student" });
+              } else {
+                res.status(200).send({ message: "Removed Successfully" });
+              }
+            }
+          });
+        }
+      }
+    });
+  } else {
+    res.status(400).send({ message: "Please define the batch" });
+  }
 };
