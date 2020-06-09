@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const students = require("../controllers/students");
+const feedback = require("../controllers/feedback");
 
 router.get("/", students.getStudents);
 
@@ -16,9 +17,7 @@ router.get("/graph", (req, res) => {
   res.send("Graph");
 });
 
-router.get("/:studentId/feedback", (req, res) => {
-  res.send("get student feedback");
-});
+router.get("/:studentId/feedback", feedback.getmultipleFeedback);
 
 router.post("/:studentId/feedback", (req, res) => {
   res.send("post student feedback");
