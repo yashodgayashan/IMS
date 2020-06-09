@@ -113,7 +113,7 @@ CREATE TABLE Monthly_Report (
 );
 
 CREATE TABLE Feedback (
-    FeedbackId int NOT NULL AUTO_INCREMENT,
+    FeedbackId int NOT NULL,
     BatchId varchar(255) NOT NULL,
     IndexNumber varchar(255) NOT NULL,
     SubmittedDate DATE NOT NULL,
@@ -141,7 +141,7 @@ CREATE TABLE Feedback (
     MentorPhoneNumber int,
     MentorEmail varchar(100),
     MentorDesgnation varchar(100),
-    PRIMARY KEY (FeedbackId),
+    PRIMARY KEY (FeedbackId, BatchId, IndexNumber),
     FOREIGN KEY (IndexNumber) REFERENCES Student(IndexNumber),
     FOREIGN KEY (BatchId) REFERENCES Batch(BatchId),
     FOREIGN KEY (CompanyId) REFERENCES Company(CompanyId)
