@@ -63,7 +63,7 @@ exports.createFeedback = (feedback, isCreated) => {
       console.log("error: ", err);
       isCreated(err, null);
     } else {
-      console.log("created student: ", { id: result.insertId, ...student });
+      console.log("created feddback: ", { id: result.insertId, ...feedback });
       isCreated(null, result);
     }
   });
