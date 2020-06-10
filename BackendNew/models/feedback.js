@@ -1,19 +1,19 @@
 // Import database connection
 const sql = require("./database.js");
 
-exports.getMultipleFeedback = (studentId, sendFeedbacks) => {
+exports.getMultipleFeedback = (studentId, sendFeedback) => {
   var sqlString =
     "SELECT FeedbackId, BatchId, IndexNumber FROM feedback WHERE IndexNumber = ?";
   sql.query(sqlString, [studentId], (err, result) => {
     if (err) {
-      sendFeedbacks(err, null);
+      sendFeedback(err, null);
     } else {
-      sendFeedbacks(null, { data: result });
+      sendFeedback(null, { data: result });
     }
   });
 };
 
-exports.getMultipleFeedbackByBatch = (studentId, batchId, sendFeedbacks) => {
+exports.getMultipleFeedbackByBatch = (studentId, batchId, sendFeedback) => {
   var sqlString =
     "SELECT FeedbackId, BatchId, IndexNumber FROM feedback WHERE IndexNumber = ? AND BatchId = ?";
   sql.query(sqlString, [studentId, batchId], (err, result) => {
