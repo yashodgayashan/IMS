@@ -277,7 +277,7 @@ exports.removeStudent = (req, res) => {
         if (result.data.affectedRows == 0) {
           res
             .status(400)
-            .send({ message: "There is no student with the batch" });
+            .send({ message: "There is no student associated with this batch" });
         } else {
           students.removeStudent(studentId, (err, result) => {
             if (err) {
