@@ -18,7 +18,7 @@ exports.getMultipleFeedbackByBatch = (studentId, batchId, sendFeedbacks) => {
     "SELECT FeedbackId, BatchId, IndexNumber FROM feedback WHERE IndexNumber = ? AND BatchId = ?";
   sql.query(sqlString, [studentId, batchId], (err, result) => {
     if (err) {
-      sendFeedbacks(err, null);
+      sendFeedback(err, null);
     } else {
       sendFeedbacks(null, { data: result });
     }
