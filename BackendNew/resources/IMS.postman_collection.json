@@ -320,6 +320,86 @@
 			"protocolProfileBehavior": {}
 		},
 		{
+			"name": "get multiple feedback",
+			"item": [
+				{
+					"name": "get multiple feedback by studentId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOYW1lIjoiWWFzaG9kIFBlcmVyYSIsIklkIjoiMTY0MTA2VCIsIlJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNTkxNjIxNjY4LCJleHAiOjE1OTE3MDgwNjh9.P-SodxCfIK_KWNL1PgxAYjEOFiyjoI3mvD-6MvD4_Ao",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://0.0.0.0:5000/students/164106T/feedback",
+							"protocol": "http",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "5000",
+							"path": [
+								"students",
+								"164106T",
+								"feedback"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get multiple feedback by studentId and batch",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOYW1lIjoiWWFzaG9kIFBlcmVyYSIsIklkIjoiMTY0MTA2VCIsIlJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNTkxNjIxNjY4LCJleHAiOjE1OTE3MDgwNjh9.P-SodxCfIK_KWNL1PgxAYjEOFiyjoI3mvD-6MvD4_Ao",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://0.0.0.0:5000/students/164106T/feedback?batch=batch16",
+							"protocol": "http",
+							"host": [
+								"0",
+								"0",
+								"0",
+								"0"
+							],
+							"port": "5000",
+							"path": [
+								"students",
+								"164106T",
+								"feedback"
+							],
+							"query": [
+								{
+									"key": "batch",
+									"value": "batch16"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "Login",
 			"request": {
 				"method": "POST",
@@ -345,6 +425,180 @@
 					"port": "5000",
 					"path": [
 						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Student",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOYW1lIjoiWWFzaG9kIFBlcmVyYSIsIklkIjoiMTY0MTA2VCIsIlJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNTkxNjAyMDIyLCJleHAiOjE1OTE2ODg0MjJ9.7rEV-5dRkMIrHQl3hZx2apbwivjB-NQtbkktdop3lkM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"batchId\" : \"batch17\",\n\t\"createdBy\" : \"amila\",\n\t\"indexNumber\" : \"164122T\",\n\t\"email\":\"ishara@gmail.com\",\n\t\"nameWithInitials\" : \"Sandeepani S I\",\n\t\"password\":\"test1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:5000/students",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "5000",
+					"path": [
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update Student",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOYW1lIjoiWWFzaG9kIFBlcmVyYSIsIklkIjoiMTY0MTA2VCIsIlJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNTkxNjAyMDIyLCJleHAiOjE1OTE2ODg0MjJ9.7rEV-5dRkMIrHQl3hZx2apbwivjB-NQtbkktdop3lkM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fullName\": \"Yashod Perera\",\n    \"nameWithInitials\": \"Perera U L Y G\",\n    \"email\": \"yashod@gmail.com\",\n    \"telephoneNumber\": 772424889,\n    \"gpa\": {\n        \"first_sem\": 3.65,\n        \"second_sem\": 4.02,\n        \"third_sem\": 3.98,\n        \"fourth_sem\": 3.23,\n        \"SGPA\": 3.87\n    },\n   \"PreferedArea1\": \"Software Engineerin\",\n   \"PreferedArea2\": \"UI/UX\",\n   \"PreferedArea3\": \"QA Engineering\",\n   \"cv\": \"cv\",\n   \"startDate\": \"2020-05-22\",\n   \"companies\":[\n   \t\t\"wso2\",\n   \t\t\"virtusa\",\n   \t\t\"creativesoftware\"\n   \t]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:5000/students/164106t?batch=batch17",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "5000",
+					"path": [
+						"students",
+						"164106t"
+					],
+					"query": [
+						{
+							"key": "batch",
+							"value": "batch17"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Student",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOYW1lIjoiWWFzaG9kIFBlcmVyYSIsIklkIjoiMTY0MTA2VCIsIlJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNTkxNjAyMDIyLCJleHAiOjE1OTE2ODg0MjJ9.7rEV-5dRkMIrHQl3hZx2apbwivjB-NQtbkktdop3lkM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"batchId\" : \"batch17\",\n\t\"createdBy\" : \"amila\",\n\t\"indexNumber\" : \"164122T\",\n\t\"email\":\"ishara@gmail.com\",\n\t\"nameWithInitials\" : \"Sandeepani S I\",\n\t\"password\":\"test1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:5000/students/164122T",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "5000",
+					"path": [
+						"students",
+						"164122T"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post feedback",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOYW1lIjoiWWFzaG9kIFBlcmVyYSIsIklkIjoiMTY0MTA2VCIsIlJvbGUiOiJTdHVkZW50IiwiaWF0IjoxNTkxNjIxNjY4LCJleHAiOjE1OTE3MDgwNjh9.P-SodxCfIK_KWNL1PgxAYjEOFiyjoI3mvD-6MvD4_Ao",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"feedbackId\": 3,\n    \"batchId\": \"batch17\",\n    \"submittedDate\": \"2020-07-23\",\n    \"companyId\": \"creativesoftware\",\n    \"startDate\": \"2020-03-12\",\n    \"projectBrief\": \"individial project\",\n    \"mentor\": \"Good mentoring\",\n    \"isGivenAdequateWork\": 0,\n    \"workEnvironment\": \"moderate and supportive\",\n    \"employeeSupportiveness\": \"high\",\n    \"managementSupportiveness\":\"moderate\",\n    \"seniorEngineerCount\":12,\n    \"isPayed\":1,\n    \"payment\":12500.50,\n    \"problems\":\"none\",\n    \"suggesions\":\"Have to give transport\",\n    \"overallComment\":\"Giid working environment\", \n    \"satisfaction\": \"yes\",\n    \"isRecommended\":1,\n    \"contactPerson\":\"sudesh perera\",\n    \"contactPersonPhoneNumber\": 772345643,\n    \"contactPersonEmail\":\"sudesh@gmail.com\",\n    \"contactPersonDesignation\":\"HR\",\n   \"mentorName\":\"Amila Supun\",\n   \"mentorPhoneNumber\":718273928,\"mentorEmail\":\"amila@gmail.com\",\n   \"mentorDesgnation\":\"Tech Lead\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:5000/students/164106T/feedback",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "5000",
+					"path": [
+						"students",
+						"164106T",
+						"feedback"
 					]
 				}
 			},
