@@ -20,7 +20,7 @@ exports.getMultipleFeedbackByBatch = (studentId, batchId, sendFeedbacks) => {
     if (err) {
       sendFeedback(err, null);
     } else {
-      sendFeedbacks(null, { data: result });
+      sendFeedback(null, { data: result });
     }
   });
 };
