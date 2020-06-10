@@ -1,6 +1,6 @@
 const feedback = require("../models/feedback");
 
-exports.getmultipleFeedback = (req, res) => {
+exports.getMultipleFeedback = (req, res) => {
   var batch = req.query.batch;
   var studentIndex = req.params.studentId;
   if (batch) {
