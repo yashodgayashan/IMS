@@ -872,7 +872,7 @@ exports.hasStudentABatch = (studentId, batch, hasBatch) => {
       console.log("error: ", err);
       hasBatch(err, null);
     } else {
-      hasBatch(null, { data: result });
+      hasBatch(null, { data: result[0].Count });
     }
   });
 };

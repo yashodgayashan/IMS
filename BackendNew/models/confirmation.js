@@ -46,3 +46,15 @@ exports.removeConfirmation = (
     }
   });
 };
+
+exports.hasConfirmed = (studentId, batchId, isConfirmed) => {
+  var sqlString =
+    "SELECT Count(*) AS Count FROM student_select_company WHERE IndexNumber = ? AND BatchId = ? AND IsSelected = 1";
+  sql.query(sqlString, [studentId, batchId], (err, result) => {
+    if (err) {
+      isConfirmed(err, null);
+    } else {
+      isConfirmed(null, { data: result[0].Count });
+    }
+  });
+};
