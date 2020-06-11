@@ -12,3 +12,20 @@ exports.getConfirmation = (studentId, batchId, sendConfirmation) => {
     }
   });
 };
+
+exports.createConfirmation = (
+  studentId,
+  batchId,
+  companyId,
+  updateConfirmation
+) => {
+  var sqlString =
+    "UPDATE student_select_company SET IsSelected = 1 WHERE IndexNumber = ? AND BatchId = ? AND CompanyId = ?";
+  sql.query(sqlString, [studentId, batchId, companyId], (err, result) => {
+    if (err) {
+      updateConfirmation(err, null);
+    } else {
+      updateConfirmation(null, { data: result });
+    }
+  });
+};
