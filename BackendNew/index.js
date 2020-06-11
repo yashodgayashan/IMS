@@ -33,9 +33,14 @@ handleDB = () => {
   connection.connect(function(err) {
     if (err) {
       console.log("Database error : " + err);
-      setTimeout(handleDB(), 2000);
+      setTimeout(handleDB, 2000);
     }
     console.log("Connected!!");
+  });
+
+  connection.on("error", function(err) {
+    console.log("db error", err);
+    handleDisconnect();
   });
 };
 
