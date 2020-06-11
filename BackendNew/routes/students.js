@@ -17,7 +17,7 @@ router.get("/graph", (req, res) => {
   res.send("Graph");
 });
 
-router.get("/:studentId/feedback", feedback.getmultipleFeedback);
+router.get("/:studentId/feedback", feedback.getMultipleFeedback);
 
 router.post("/:studentId/feedback", feedback.createFeedback);
 
