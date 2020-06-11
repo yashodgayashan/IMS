@@ -864,6 +864,19 @@ exports.updateStudentHasBatch = (student, isUpdated) => {
   );
 };
 
+exports.hasStudentABatch = (studentId, batch, hasBatch) => {
+  var sqlString =
+    "SELECT COUNT(*) AS Count FROM Student_has_batch WHERE IndexNumber = ? AND BatchId = ?";
+  sql.query(sqlString, [studentId, batch], (err, result) => {
+    if (err) {
+      console.log("error: ", err);
+      hasBatch(err, null);
+    } else {
+      hasBatch(null, { data: result });
+    }
+  });
+};
+
 exports.updatedStudentSelectCompany = (student, isUpdated) => {
   var studentSql = `
   INSERT IGNORE INTO Student_select_company
