@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const students = require("../controllers/students");
 const feedback = require("../controllers/feedback");
+const confirmation = require("../controllers/confirmation");
 
 router.get("/", students.getStudents);
 
@@ -23,13 +24,11 @@ router.post("/:studentId/feedback", feedback.createFeedback);
 
 router.get("/:studentId/feedback/:feedbackId", feedback.getFeedback);
 
-router.get("/:studentId/confirmation", (req, res) => {
-  res.send("get student confirmation");
-});
+router.get("/:studentId/confirmation", confirmation.getConfirmation);
 
-router.post("/:studentId/confirmation", (req, res) => {
-  res.send("post student confirmation");
-});
+router.post("/:studentId/confirmation", confirmation.createConfirmation);
+
+router.delete("/:studentId/confirmation", confirmation.removeConfirmation);
 
 router.get("/:studentId/reports", (req, res) => {
   res.send("get student reports");
