@@ -110,7 +110,7 @@ exports.removeConfirmation = (req, res) => {
                 } else {
                   res.status(400).send({
                     message:
-                      "Student is not confirmed for the company or student is not yet confirmed"
+                      "Student has not confirmed this company or yet to be confirmed"
                   });
                 }
               }
