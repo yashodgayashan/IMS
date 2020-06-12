@@ -103,7 +103,7 @@ exports.removeConfirmation = (req, res) => {
                       } else {
                         res
                           .status(200)
-                          .send({ confirmation: "Remove confirmation" });
+                          .send({ confirmation: "Removed confirmation" });
                       }
                     }
                   );
