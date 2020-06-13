@@ -23,3 +23,10 @@ exports.getReportsByBatch = (studentId, batchId, sendReports) => {
     }
   });
 };
+
+exports.Report = function(feedback) {
+  this.BatchId = feedback.BatchId;
+  this.IndexNumber = feedback.IndexNumber;
+  this.ReportNumber = feedback.ReportNumber;
+  this.Report = feedback.Report;
+};
