@@ -30,3 +30,16 @@ exports.Report = function(feedback) {
   this.ReportNumber = feedback.ReportNumber;
   this.Report = feedback.Report;
 };
+
+exports.createReport = (report, isCreated) => {
+  var reportSql = "INSERT INTO monthly_report SET ?";
+  sql.query(reportSql, report, (err, result) => {
+    if (err) {
+      console.log("error: ", err);
+      isCreated(err, null);
+    } else {
+      console.log("created feddback: ", { id: result.insertId, ...report });
+      isCreated(null, result);
+    }
+  });
+};
