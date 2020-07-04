@@ -3,6 +3,7 @@ const router = express.Router();
 const students = require("../controllers/students");
 const feedback = require("../controllers/feedback");
 const confirmation = require("../controllers/confirmation");
+const reports = require("../controllers/monthlyReports");
 
 router.get("/", students.getStudents);
 
@@ -30,13 +31,9 @@ router.post("/:studentId/confirmation", confirmation.createConfirmation);
 
 router.delete("/:studentId/confirmation", confirmation.removeConfirmation);
 
-router.get("/:studentId/reports", (req, res) => {
-  res.send("get student reports");
-});
+router.get("/:studentId/reports", reports.getReports);
 
-router.post("/:studentId/reports", (req, res) => {
-  res.send("post student reports");
-});
+router.post("/:studentId/reports", reports.createReport);
 
 router.get("/:studentId/reports/:reportsId", (req, res) => {
   res.send("get student reports id");
