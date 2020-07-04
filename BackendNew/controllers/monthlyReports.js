@@ -65,3 +65,33 @@ exports.createReport = (req, res) => {
     res.status(400).send({ message: "Please mention the batch" });
   }
 };
+
+const checkReport = (req, isCompleted) => {
+  var error = true;
+  if (!req.body) {
+    isCompleted(error, "Body should not be empty");
+  } else if (!req.body.reportNumber) {
+    isCompleted(error, "Name should not be empty");
+  } else if (!req.body.report) {
+    isCompleted(error, "Report should not be empty");
+  } else if (!req.body.date) {
+    isCompleted(error, "SubmittedDate should not be empty");
+  } else {
+    reports.getReportByNumber(
+      req.params.studentId,
+      req.query.batch,
+      req.body.reportNumber,
+      (err, data) => {
+        if (err) {
+          isCompleted(error, "Something wrong with the server");
+        } else {
+          if (data == true) {
+            isCompleted(error, "Report is already exsists");
+          } else {
+            isCompleted(null, null);
+          }
+        }
+      }
+    );
+  }
+};
