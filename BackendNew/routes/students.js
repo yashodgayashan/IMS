@@ -35,8 +35,6 @@ router.get("/:studentId/reports", reports.getReports);
 
 router.post("/:studentId/reports", reports.createReport);
 
-router.get("/:studentId/reports/:reportsId", (req, res) => {
-  res.send("get student reports id");
-});
+router.get("/:studentId/reports/:reportId", reports.getReport);
 
 module.exports = router;
