@@ -44,7 +44,7 @@ exports.createReport = (report, isCreated) => {
   });
 };
 
-exports.getReportByNumber = (studentId, batchId, reportNumber, sendReports) => {
+exports.hasReportByNumber = (studentId, batchId, reportNumber, sendReports) => {
   var sqlString =
     "SELECT * FROM Monthly_report WHERE IndexNumber = ? AND BatchId = ? AND ReportNumber = ?";
   sql.query(sqlString, [studentId, batchId, reportNumber], (err, result) => {
@@ -56,6 +56,18 @@ exports.getReportByNumber = (studentId, batchId, reportNumber, sendReports) => {
       } else {
         sendReports(null, false);
       }
+    }
+  });
+};
+
+exports.getReport = (studentId, batchId, reportNumber, sendReports) => {
+  var sqlString =
+    "SELECT * FROM Monthly_report WHERE IndexNumber = ? AND BatchId = ? AND ReportNumber = ?";
+  sql.query(sqlString, [studentId, batchId, reportNumber], (err, result) => {
+    if (err) {
+      sendReports(err, null);
+    } else {
+      sendReports(err, result);
     }
   });
 };
