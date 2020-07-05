@@ -77,7 +77,7 @@ const checkReport = (req, isCompleted) => {
   } else if (!req.body.date) {
     isCompleted(error, "SubmittedDate should not be empty");
   } else {
-    reports.getReportByNumber(
+    reports.hasReportByNumber(
       req.params.studentId,
       req.query.batch,
       req.body.reportNumber,
@@ -94,4 +94,21 @@ const checkReport = (req, isCompleted) => {
       }
     );
   }
+};
+
+exports.getReport = (req, res) => {
+  var batch = req.query.batch;
+  var studentId = req.params.studentId;
+  var reportId = req.params.reportId;
+  reports.getReport(studentId, batch, reportId, (err, report) => {
+    if (err) {
+      res.status(500).send({ message: "Internal Server Error" });
+    } else {
+      if (report.length == 0) {
+        res.status(400).send({ message: "Not found" });
+      } else {
+        res.status(200).send({ data: report[0] });
+      }
+    }
+  });
 };
