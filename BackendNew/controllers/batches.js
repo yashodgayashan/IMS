@@ -99,3 +99,38 @@ exports.updateBatch = (req, res) => {
     }
   });
 };
+
+const updateBatchInfo = (req, isUpdated) => {
+  var batchId = req.params.batchId;
+  const batch = new batches.Batch({
+    BatchId: batchId,
+    Year: req.body.year,
+    StartDate: req.body.startDate,
+    EndDate: req.body.endDate,
+    CompanyCount: req.body.allowedCompanyCount
+  });
+  batches.updateBatch(batch, (err, result) => {
+    if (err) {
+      isUpdated(err, null);
+    } else {
+      isUpdated(null, result);
+    }
+  });
+};
+
+const validateBatch = (req, isCompleted) => {
+  var error = true;
+  if (!req.body) {
+    isCompleted(error, "Body should not be empty");
+  } else if (!req.body.allowedCompanyCount) {
+    isCompleted(error, "Allowed comany count should not be empty");
+  } else if (!req.body.year) {
+    isCompleted(error, "Yeah should not be empty");
+  } else if (!req.body.startDate) {
+    isCompleted(error, "Start date should not be empty");
+  } else if (!req.body.endDate) {
+    isCompleted(error, "End date should not be empty");
+  } else {
+    isCompleted(null, null);
+  }
+};
