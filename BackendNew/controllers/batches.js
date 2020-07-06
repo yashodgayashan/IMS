@@ -39,3 +39,26 @@ exports.createBatch = (req, res) => {
     res.status(403).send("Unauthorized");
   }
 };
+
+const checkBatch = (req, isCompleted) => {
+  var error = true;
+  if (!req.body) {
+    isCompleted(error, "Body should not be empty");
+  } else if (!req.body.batchId) {
+    isCompleted(error, "BatchId should not be empty");
+  } else if (!req.body.allowedCompanyCount) {
+    isCompleted(error, "Allowed comany count should not be empty");
+  } else {
+    batches.hasBatch(req.body.batchId, (err, data) => {
+      if (err) {
+        isCompleted(error, "Something wrong with the server");
+      } else {
+        if (data == true) {
+          isCompleted(error, "Report is already exsists");
+        } else {
+          isCompleted(null, null);
+        }
+      }
+    });
+  }
+};
