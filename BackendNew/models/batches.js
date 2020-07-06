@@ -48,3 +48,14 @@ exports.hasBatch = (batchId, hasBatch) => {
     }
   });
 };
+
+exports.getBatch = (batchId, sendBatch) => {
+  var sqlString = "SELECT * FROM Batch WHERE BatchId = ? ";
+  sql.query(sqlString, [batchId], (err, result) => {
+    if (err) {
+      sendBatch(err, null);
+    } else {
+      sendBatch(err, result);
+    }
+  });
+};
