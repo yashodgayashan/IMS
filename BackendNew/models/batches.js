@@ -11,3 +11,12 @@ exports.getBatches = getBatches => {
     }
   });
 };
+
+exports.Batch = function(batch) {
+  this.BatchId = batch.BatchId;
+  this.CreatedBy = batch.CreatedBy;
+  this.Year = batch.Year;
+  this.StartDate = batch.StartDate;
+  this.EndDate = batch.EndDate;
+  this.CompanyCount = batch.CompanyCount;
+};
