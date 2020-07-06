@@ -59,3 +59,34 @@ exports.getBatch = (batchId, sendBatch) => {
     }
   });
 };
+
+exports.updateBatch = (batch, isUpdated) => {
+  var studentSql = `
+      UPDATE 
+        Batch 
+      SET 
+        Year = ?, 
+        StartDate = ?,
+        EndDate = ?,
+        CompanyCount = ?
+      WHERE
+        BatchId = ?`;
+  sql.query(
+    studentSql,
+    [
+      batch.Year,
+      batch.StartDate,
+      batch.EndDate,
+      batch.CompanyCount,
+      batch.BatchId
+    ],
+    (err, result) => {
+      if (err) {
+        console.log("error: ", err);
+        isUpdated(err, null);
+      } else {
+        isUpdated(null, { data: "Updated" });
+      }
+    }
+  );
+};
