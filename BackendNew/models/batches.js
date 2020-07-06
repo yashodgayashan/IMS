@@ -20,3 +20,16 @@ exports.Batch = function(batch) {
   this.EndDate = batch.EndDate;
   this.CompanyCount = batch.CompanyCount;
 };
+
+exports.createBatch = (batch, isCreated) => {
+  var batchSql = "INSERT INTO batch SET ?";
+  sql.query(batchSql, batch, (err, result) => {
+    if (err) {
+      console.log("error: ", err);
+      isCreated(err, null);
+    } else {
+      console.log("created feddback: ", { id: result.insertId, ...batch });
+      isCreated(null, result);
+    }
+  });
+};
