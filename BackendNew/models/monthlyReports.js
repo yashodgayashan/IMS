@@ -24,11 +24,11 @@ exports.getReportsByBatch = (studentId, batchId, sendReports) => {
   });
 };
 
-exports.Report = function(feedback) {
-  this.BatchId = feedback.BatchId;
-  this.IndexNumber = feedback.IndexNumber;
-  this.ReportNumber = feedback.ReportNumber;
-  this.Report = feedback.Report;
+exports.Report = function(report) {
+  this.BatchId = report.BatchId;
+  this.IndexNumber = report.IndexNumber;
+  this.ReportNumber = report.ReportNumber;
+  this.Report = report.Report;
 };
 
 exports.createReport = (report, isCreated) => {
