@@ -62,3 +62,23 @@ const checkBatch = (req, isCompleted) => {
     });
   }
 };
+
+exports.getBatch = (req, res) => {
+  var batch = req.params.batchId;
+  console.log(batch);
+  if (batch) {
+    batches.getBatch(batch, (err, result) => {
+      if (err) {
+        res.status(500).send({ message: "Internal Server Error" });
+      } else {
+        if (result.length == 0) {
+          res.status(400).send({ message: "Not found" });
+        } else {
+          res.status(200).send({ data: result[0] });
+        }
+      }
+    });
+  } else {
+    res.status(400).send({ message: "Please mention the batch" });
+  }
+};
