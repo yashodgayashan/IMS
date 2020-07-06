@@ -82,3 +82,20 @@ exports.getBatch = (req, res) => {
     res.status(400).send({ message: "Please mention the batch" });
   }
 };
+
+exports.updateBatch = (req, res) => {
+  validateBatch(req, (err, result) => {
+    if (err) {
+      res.status(500).send({ message: result });
+    } else {
+      updateBatchInfo(req, (err, result) => {
+        if (err) {
+          console.log("that");
+          res.status(500).send({ message: "Internal Server Error" });
+        } else {
+          res.status(200).send({ result });
+        }
+      });
+    }
+  });
+};
