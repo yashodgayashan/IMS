@@ -9,6 +9,7 @@ const jwt = require("jsonwebtoken");
 
 // Import Routes
 const studentRoutes = require("./routes/students.js");
+const batchRoutes = require("./routes/batches.js");
 const authenticationRoutes = require("./routes/authentication.js");
 
 // Import database connection
@@ -70,4 +71,5 @@ authenticateUser = (req, res, next) => {
 
 // Routing
 app.use("/students", authenticateUser, studentRoutes);
+app.use("/batches", authenticateUser, batchRoutes);
 app.use("/login", authenticationRoutes);
