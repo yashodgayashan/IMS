@@ -33,3 +33,18 @@ exports.createBatch = (batch, isCreated) => {
     }
   });
 };
+
+exports.hasBatch = (batchId, hasBatch) => {
+  var sqlString = "SELECT * FROM Batch WHERE BatchId = ? ";
+  sql.query(sqlString, [batchId], (err, result) => {
+    if (err) {
+      hasBatch(err, null);
+    } else {
+      if (result.length > 0) {
+        hasBatch(null, true);
+      } else {
+        hasBatch(null, false);
+      }
+    }
+  });
+};
